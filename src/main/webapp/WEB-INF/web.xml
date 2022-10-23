@@ -8,14 +8,14 @@
         <welcome-file>home.html</welcome-file>
     </welcome-file-list>
   
-    <servlet>
+    <!-- <servlet>
         <servlet-name>servletStore</servlet-name>
         <servlet-class>com.store.servletStore</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>servletStore</servlet-name>
         <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping> -->
     <session-config>
         <session-timeout>
             30
