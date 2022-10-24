@@ -6,7 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet(name = "UserController", urlPatterns = {"/profile.html", "/myaccount"})
+// @WebServlet(name = "UserController", urlPatterns = {"/profile.html", "/myaccount"})
 public class servletUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
@@ -41,8 +41,8 @@ public class servletUser extends HttpServlet {
         }
         //if attribute is not null then return the default page
         if (session.getAttribute("dbconnect") != null) {
-            MongoUtils client = (MongoUtils) session.getAttribute("dbconnect");
-            System.out.println(client.alive());
+            // MongoUtils client = (MongoUtils) session.getAttribute("dbconnect");
+            // System.out.println(client.alive());
         }
         else {
             url = "/";

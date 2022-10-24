@@ -7,14 +7,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
 // @WebServlet("/game")
-@WebServlet(name = "GameController", urlPatterns = {"/game/*"})
+@WebServlet(name = "GameController", urlPatterns = {"/game/*", "/product"})
 public class servletProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = "/home.html";
+        String url = "/single-product.html";
         request.getRequestDispatcher(url).forward(request, response);
         // get getServletContext()
         // getServletContext().getRequestDispatcher(url).forward(request, response);
@@ -37,7 +37,7 @@ public class servletProduct extends HttpServlet {
             else {
                 id = id.substring(1);
             }
-
+            doPost(request, response);
             //generate the product using the id
             //send the product to the jsp
             //forward the request to the jsp

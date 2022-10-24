@@ -5,7 +5,8 @@
     <display-name>Game Store Web Application</display-name>
 
     <welcome-file-list>
-        <welcome-file>home.html</welcome-file>
+        <!-- <welcome-file>home.html</welcome-file> -->
+        <welcome-file>home.jsp</welcome-file>
     </welcome-file-list>
   
     <!-- <servlet>

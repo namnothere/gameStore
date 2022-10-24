@@ -35,6 +35,10 @@ public class MongoUtils {
         MongoUtils.client = getMongoClient_2();
     }
 
+    public MongoUtils(MongoClient client) {
+        MongoUtils.client = client;
+    }
+
     private static MongoClient getMongoClient_2() {
         String uri = "mongodb+srv://aegis:aegis@baekettle.lkh9f.mongodb.net/?retryWrites=true&w=majority";
         MongoClient mongoClient = MongoClients.create(uri);
@@ -127,6 +131,10 @@ public class MongoUtils {
     }
   
     // Test
+
+    public static MongoClient getClient() {
+        return MongoUtils.client;
+    }
     
     public static boolean isValidUser(String username, String password) {
         MongoClient mongoClient = MongoUtils.client;

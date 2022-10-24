@@ -1,19 +1,36 @@
 package com.user;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.Serializable;
+
+import org.bson.Document;
+import org.bson.types.ObjectId;
+
 import com.store.MongoUtils;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.gridfs.GridFSBucket;
+import com.mongodb.client.gridfs.GridFSBuckets;
+import com.mongodb.client.gridfs.model.GridFSFile;
+import com.mongodb.client.gridfs.model.GridFSUploadOptions;
+
 
 public class user {
     private String name;
     private String username;
     private String email;
     private String password;
+    private String avatar;
 
     public user() {
         name = "";
         email = "";
         username = "";
         password = "";
+        avatar = "";
     }
 
     public String name() {
@@ -48,6 +65,55 @@ public class user {
         this.password = password;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public static byte[] LoadImage(String filePath) throws Exception {
+        File file = new File(filePath);
+        int size = (int)file.length();
+        byte[] buffer = new byte[size];
+        FileInputStream in = new FileInputStream(file);
+        in.read(buffer);
+        in.close();
+        return buffer;
+    }
+
+    public static void main(String[] args) throws Exception {
+        //Load our image
+        // byte[] imageBytes = LoadImage("C:/Temp/bear.bmp");
+        //Connect to database
+        // MongoClient client = MongoClients.create("mongodb://localhost:27017");
+
+        MongoUtils client = new MongoUtils();
+        MongoClient mongoClient = client.getClient();
+        
+        String dbName = "GridFSTestJava";
+        MongoDatabase db = mongoClient.getDatabase( dbName );
+        //Create GridFS object
+        // GridFSFile fs = new GridFSFile( db );
+        GridFSBucket gridFSBucket = GridFSBuckets.create(db);
+        //Save image into database
+        // GridFSFile in = GridFSFile.createFile( imageBytes );
+        // in.save();
+        // InputStream inStream = new FileInputStream(imageBytes);
+        String filePath = "D:\\Clip\\ytarchive-master\\ytarchive-master\\Gawr Gura Ch. hololive-EN\\a a a, mic OK, ikuyo [KARAOKE]-tk0HKYnhHY8\\a a a, mic OK, ikuyo [KARAOKE]-tk0HKYnhHY8.jpg";
+        InputStream inStream = new FileInputStream(new File(filePath));
+        // GridFSInputFile in = gridFSBucket.createFile(inStream);
+        GridFSUploadOptions uploadOptions = new GridFSUploadOptions().chunkSizeBytes(1024).metadata(new Document("type", "image").append("content_type", "image/png"));
+
+        String fileName = "goob";
+        ObjectId fileId = gridFSBucket.uploadFromStream(fileName, inStream, uploadOptions);
+
+        System.out.println("File ID: " + fileId);
+
+    }
+
+
     public boolean isValid() {
         return MongoUtils.isValidUser(username, password);
     }
@@ -59,4 +125,16 @@ public class user {
         }
         return false;
     }
+
+    public boolean changePasswordAction(MongoClient client, String newPassword) {
+        try {
+            String oldPassword = client.getPassword();
+            changePassword(oldPassword, newPassword);
+            return false;
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
 }

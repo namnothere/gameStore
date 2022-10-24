@@ -310,28 +310,28 @@
                   <div class="tab-pane active" id="profile">
                     <h6>YOUR PROFILE INFORMATION</h6>
                     <hr>
-                    <!-- <form action="update" id="profile" method="post"> -->
-                    <form action="myaccount" id="profile" method="post" onsubmit="return false">
+                      <form action="profile" method="post" id="profileInformation">
+                        <input type="hidden" name="action" value="updateProfile">
                       <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Kenneth Valdez">
+                        <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Kenneth Valdez">
                         <small id="fullNameHelp" class="form-text text-muted">Your name may appear around here where you are mentioned. You can change or remove it at any time.</small>
                       </div>
                       <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" value="KennethValdez" disabled>
+                        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" value="KennethValdez" disabled>
                       </div>
                       <div class="form-group">
                         <label for="bio">Your Bio</label>
-                        <textarea class="form-control autosize" id="bio" placeholder="Write something about you" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;">A weeb.</textarea>
+                        <textarea class="form-control autosize" id="bio" name="bio" placeholder="Write something about you" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;">A weeb.</textarea>
                       </div>
                       <div class="form-group">
                         <label for="url">URL</label>
-                        <input type="text" class="form-control" id="url" placeholder="Enter your website address" value="http://benije.ke/pozzivkij">
+                        <input type="text" class="form-control" id="url" name="url" placeholder="Enter your website address" value="http://benije.ke/pozzivkij">
                       </div>
                       <div class="form-group">
                         <label for="location">Location</label>
-                        <input type="text" class="form-control" id="location" placeholder="Enter your location" value="Bay Area, San Francisco, CA">
+                        <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" value="Bay Area, San Francisco, CA">
                       </div>
                       <div class="form-group small text-muted">
                         All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
@@ -608,11 +608,11 @@
         });
       });
       $("#profile").submit(function(e) {
-          e.preventDefault();
+          // e.preventDefault();
           // var http = new XMLHttpRequest();
           // http.open("POST", "/myaccount", true);
           // http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-          let userinfo = $(this).serializeArray();
+          let userinfo = $("#profileInformation").serializeArray();
           let user = {};
           userinfo.forEach((value) => {
                   // Dynamically create an object
@@ -620,15 +620,16 @@
                   // user[value.id] = value.value;
           });
           console.log("user", user);
+          user["action"] = "updateProfile";
           $.ajax({
             type: "POST",
-            url: "/myaccount",
+            url: "${pageContext.request.contextPath}/myaccount",
             data: user,
             success: function(data) {
               console.log(data);
               // alert("Successfully update profile.");
               // $('#updateProfileToast').click();
-              $('.toast').toast('show');
+              // $('.toast').toast('show');
             },
             error: function(data) {
               console.log(data);
@@ -641,9 +642,9 @@
     </script>
     <div class="successToast" id="update">
       <div class="toast fade hide" role="alert" data-delay="1500" data-autohide="true">
-        <!-- bigger outline -->
         <div class="toast-header">
-            <strong class="toast-header">Notification</strong>
+            <!-- <strong class="mr-auto toast-header">Notification</strong> -->
+            <strong class="mr-auto toast-header">Notification</strong>
             <small style="color: white">Just now</small>
             <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
                 <span aria-hidden="true">×</span>

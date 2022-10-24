@@ -62,7 +62,7 @@
                     <ul class="secondary-nav g-nav">
                         <li>
                             <!-- <a href="profile.html">My Account -->
-                            <a href="/profile">My Account
+                            <a href="${pageContext.request.contextPath}/profile">My Account
                                 <i class="fas fa-chevron-down u-s-m-l-9"></i>
                             </a>
                             <ul class="g-dropdown" style="width:200px">
