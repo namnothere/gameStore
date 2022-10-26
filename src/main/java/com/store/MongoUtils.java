@@ -135,21 +135,6 @@ public class MongoUtils {
     public static MongoClient getClient() {
         return MongoUtils.client;
     }
-    
-    public static boolean isValidUser(String username, String password) {
-        MongoClient mongoClient = MongoUtils.client;
-        MongoDatabase database = mongoClient.getDatabase("gameStore");
-        MongoCollection<Document> collection = database.getCollection("users");
-        Document doc = collection.find(Filters.eq("username", username)).first();
-        if (doc == null) {
-            return false;
-        }
-        String pwd = doc.getString("password");
-        if (pwd.equals(password)) {
-            return true;
-        }
-        return false;
-    }
 
     public static boolean testConnection() {
         return true;

@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.Serializable;
 
+import javax.servlet.http.HttpSession;
+
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -31,6 +33,14 @@ public class user {
         username = "";
         password = "";
         avatar = "";
+    }
+
+    public user(String name, String username, String email, String password, String avatar) {
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
     }
 
     public String name() {
@@ -83,6 +93,14 @@ public class user {
         return buffer;
     }
 
+    public static void showUser(user user) {
+        System.out.println("Name: " + user.name());
+        System.out.println("Username: " + user.username());
+        System.out.println("Email: " + user.getEmail());
+        System.out.println("Password: " + user.getPassword());
+        System.out.println("Avatar: " + user.getAvatar());
+    }
+
     public static void main(String[] args) throws Exception {
         //Load our image
         // byte[] imageBytes = LoadImage("C:/Temp/bear.bmp");
@@ -115,26 +133,13 @@ public class user {
 
 
     public boolean isValid() {
-        return MongoUtils.isValidUser(username, password);
+        // Verify when login
+        return userDB.isValidUser(username, password);
     }
 
-    public boolean changePassword(String oldPassword, String newPassword) {
-        if (oldPassword == password) {
-            password = newPassword;
-            return true;
-        }
-        return false;
-    }
-
-    public boolean changePasswordAction(MongoClient client, String newPassword) {
-        try {
-            String oldPassword = client.getPassword();
-            changePassword(oldPassword, newPassword);
-            return false;
-        }
-        catch (Exception e) {
-            return false;
-        }
+    public boolean isExist() {
+        // Verify when register
+        return userDB.isExistUser(username);
     }
 
 }
