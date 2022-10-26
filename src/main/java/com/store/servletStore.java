@@ -8,31 +8,15 @@ import javax.servlet.annotation.WebServlet;
 // import com.store.MongoUtils;
 
 // @WebServlet(name = "StoreController", urlPatterns = {"/home"})
-@WebServlet(name = "StoreController", urlPatterns = {"/"})
+// @WebServlet(name = "StoreController", urlPatterns = {"/"})
+@WebServlet(name = "StoreController")
 public class servletStore extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = "/home.html";
-        HttpSession session=request.getSession(false);
-
-        
-        if (session == null) {
-            //create a new session
-            session = request.getSession(true);
-            System.out.println("New session created");
-            MongoUtils client = new MongoUtils();
-            session.setAttribute("username","admin");  
-            session.setAttribute("password","123");
-            session.setAttribute("dbconnect", client);
-        }
-        else {
-            System.out.println("POST - Session already exists");
-        }
-        
-        request.getRequestDispatcher(url).forward(request, response);
+        doGet(request, response);
     }
     
     @Override
@@ -40,18 +24,18 @@ public class servletStore extends HttpServlet {
     HttpServletResponse response)
     throws ServletException, IOException {
         // System.out.println("doGET");
-        String url = "/home.html";
+        // String url = "/home.html";
+        String url = "/home.jsp";
         HttpSession session=request.getSession(false);
-        
         
         if (session == null) {
             //create a new session
             session = request.getSession(true);
             System.out.println("New session created");
-            MongoUtils client = new MongoUtils();
+            // MongoUtils client = new MongoUtils();
             session.setAttribute("username","admin");  
             session.setAttribute("password","123");
-            session.setAttribute("dbconnect", client);
+            session.setAttribute("dbconnect", "connected");
         }
         else {
             System.out.println("GET - Session already exists");

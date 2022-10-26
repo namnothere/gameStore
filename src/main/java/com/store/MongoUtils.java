@@ -35,6 +35,10 @@ public class MongoUtils {
         MongoUtils.client = getMongoClient_2();
     }
 
+    public MongoUtils(MongoClient client) {
+        MongoUtils.client = client;
+    }
+
     private static MongoClient getMongoClient_2() {
         String uri = "mongodb+srv://aegis:aegis@baekettle.lkh9f.mongodb.net/?retryWrites=true&w=majority";
         MongoClient mongoClient = MongoClients.create(uri);
@@ -127,24 +131,9 @@ public class MongoUtils {
     }
   
     // Test
-    
-    public static boolean isValidUser(String username, String password) {
-        MongoClient mongoClient = MongoUtils.client;
-        MongoDatabase database = mongoClient.getDatabase("gameStore");
-        MongoCollection<Document> collection = database.getCollection("users");
-        Document doc = collection.find(Filters.eq("username", username)).first();
-        if (doc == null) {
-            return false;
-        }
-        String pwd = doc.getString("password");
-        if (pwd.equals(password)) {
-            return true;
-        }
-        return false;
-    }
 
-    public static boolean testConnection() {
-        return true;
+    public static MongoClient getClient() {
+        return MongoUtils.client;
     }
     
     public static String alive() {
