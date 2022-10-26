@@ -135,10 +135,6 @@ public class MongoUtils {
     public static MongoClient getClient() {
         return MongoUtils.client;
     }
-
-    public static boolean testConnection() {
-        return true;
-    }
     
     public static String alive() {
         if (MongoUtils.client == null) {
