@@ -107,12 +107,5 @@
         </plugin>
       </plugins>
     </pluginManagement>
-
-    <resources>
-      <resource>
-        <directory>src/webapp/html</directory>
-      </resource>
-    </resources>
-
   </build>
 </project>
