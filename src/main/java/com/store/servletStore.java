@@ -7,9 +7,10 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 // import com.store.MongoUtils;
 
-// @WebServlet(name = "StoreController", urlPatterns = {"/home"})
+import com.dataUtils.dataUtils;
+
+@WebServlet(name = "StoreController", urlPatterns = {"/home", "/"})
 // @WebServlet(name = "StoreController", urlPatterns = {"/"})
-@WebServlet(name = "StoreController")
 public class servletStore extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
@@ -23,8 +24,6 @@ public class servletStore extends HttpServlet {
     protected void doGet(HttpServletRequest request,
     HttpServletResponse response)
     throws ServletException, IOException {
-        // System.out.println("doGET");
-        // String url = "/home.html";
         String url = "/home.jsp";
         HttpSession session=request.getSession(false);
         
@@ -33,15 +32,20 @@ public class servletStore extends HttpServlet {
             session = request.getSession(true);
             System.out.println("New session created");
             // MongoUtils client = new MongoUtils();
-            session.setAttribute("username","admin");  
-            session.setAttribute("password","123");
-            session.setAttribute("dbconnect", "connected");
+
+            String username = "Guest";
+            session.setAttribute("username", username);
+            String password = "mypassword";
+            session.setAttribute("password", dataUtils.hashPassword(password));
+
+            // session.setAttribute("username","admin");  
+            // session.setAttribute("password","123");
+            session.setAttribute("dbconnect", "connected (not actually connected)");
         }
         else {
             System.out.println("GET - Session already exists");
         }
 
         request.getRequestDispatcher(url).forward(request, response);
-        // doPost(request, response);
     }
 }
