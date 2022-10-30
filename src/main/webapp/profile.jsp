@@ -118,7 +118,7 @@
               <div class="row clearfix align-items-center">
                   <div class="col-lg-3 col-md-9 col-sm-6">
                       <div class="brand-logo text-lg-center">
-                          <a href="home.html">
+                          <a href="/">
                               <img src="images/main-logo/groover-branding-1.png" alt="Groover Brand Logo" class="app-brand-logo">
                           </a>
                       </div>
@@ -159,7 +159,7 @@
                       <nav>
                           <ul class="mid-nav g-nav">
                               <li class="u-d-none-lg">
-                                  <a href="home.html">
+                                  <a href="/">
                                       <i class="ion ion-md-home u-c-brand"></i>
                                   </a>
                               </li>
@@ -254,7 +254,7 @@
           <!-- Breadcrumb -->
           <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
               <li class="breadcrumb-item active" aria-current="page">Profile Settings</li>
             </ol>
@@ -312,33 +312,33 @@
                     <hr>
                       <form action="profile" method="post" id="profileInformation">
                         <input type="hidden" name="action" value="updateProfile">
-                      <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Kenneth Valdez">
-                        <small id="fullNameHelp" class="form-text text-muted">Your name may appear around here where you are mentioned. You can change or remove it at any time.</small>
-                      </div>
-                      <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" value="KennethValdez" disabled>
-                      </div>
-                      <div class="form-group">
-                        <label for="bio">Your Bio</label>
-                        <textarea class="form-control autosize" id="bio" name="bio" placeholder="Write something about you" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;">A weeb.</textarea>
-                      </div>
-                      <div class="form-group">
-                        <label for="url">URL</label>
-                        <input type="text" class="form-control" id="url" name="url" placeholder="Enter your website address" value="http://benije.ke/pozzivkij">
-                      </div>
-                      <div class="form-group">
-                        <label for="location">Location</label>
-                        <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" value="Bay Area, San Francisco, CA">
-                      </div>
-                      <div class="form-group small text-muted">
-                        All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
-                      </div>
-                      <!-- <button type="button" class="btn btn-primary" id="updateProfileToast">Update Profile</button> -->
-                      <button type="submit" class="btn btn-primary" id="updateProfileToast">Update Profile</button>
-                      <button type="reset" class="btn btn-light">Reset Changes</button>
+                        <div class="form-group">
+                          <label for="fullName">Full Name</label>
+                          <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Kenneth Valdez">
+                          <small id="fullNameHelp" class="form-text text-muted">Your name may appear around here where you are mentioned. You can change or remove it at any time.</small>
+                        </div>
+                        <div class="form-group">
+                          <label for="username">Username</label>
+                          <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" value="KennethValdez" disabled>
+                        </div>
+                        <div class="form-group">
+                          <label for="bio">Your Bio</label>
+                          <textarea class="form-control autosize" id="bio" name="bio" placeholder="Write something about you" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;">A weeb.</textarea>
+                        </div>
+                        <div class="form-group">
+                          <label for="url">URL</label>
+                          <input type="text" class="form-control" id="url" name="url" placeholder="Enter your website address" value="http://benije.ke/pozzivkij">
+                        </div>
+                        <div class="form-group">
+                          <label for="location">Location</label>
+                          <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" value="Bay Area, San Francisco, CA">
+                        </div>
+                        <div class="form-group small text-muted">
+                          All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
+                        </div>
+                        <!-- <button type="button" class="btn btn-primary" id="updateProfileToast">Update Profile</button> -->
+                        <button type="submit" class="btn btn-primary" id="updateProfileToast">Update Profile</button>
+                        <button type="reset" class="btn btn-light">Reset Changes</button>
                       
                     </form>
                   </div>
@@ -681,7 +681,7 @@
                           <h6>COMPANY</h6>
                           <ul>
                               <li>
-                                  <a href="home.html">Home</a>
+                                  <a href="/">Home</a>
                               </li>
                               <li>
                                   <a href="about.html">About</a>
@@ -777,7 +777,7 @@
                   </ul>
               </div>
               <p class="copyright-text">Copyright &copy; 2018
-                  <a href="home.html">Groover</a> All Right Reserved</p>
+                  <a href="/">Groover</a> All Right Reserved</p>
           </div>
       </div>
       <!-- Bottom-Footer /- -->

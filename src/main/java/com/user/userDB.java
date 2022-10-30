@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 // import org.apache.logging.log4j.Logger;
 // import org.apache.logging.log4j.LogManager;
 
-
+import com.dataUtils.dataUtils;
 
 // import javax.servlet.http.HttpSession;
 
@@ -83,8 +83,8 @@ public class userDB {
         MongoDatabase database = client.getDatabase("gameStore");
         MongoCollection<Document> collection = database.getCollection("users");
 
-        Document doc = new Document("name", user.name())
-                .append("username", user.username())
+        Document doc = new Document("name", user.getName())
+                .append("username", user.getUsername())
                 .append("email", user.getEmail())
                 .append("password", user.getPassword())
                 .append("avatar", user.getAvatar());
@@ -112,7 +112,6 @@ public class userDB {
     public static user getUser(String username) {
         MongoClient client = userDB.client;
         if (client == null) {
-            // System.out.println("mongoClient is null");
             LOGGER.log(Level.SEVERE, "mongoClient is null");
             client = getMongoClient();
             LOGGER.log(Level.INFO, "Successfully connected to the database");
@@ -129,16 +128,25 @@ public class userDB {
         return user;
     }
 
-    private static String getPassword(String username) {
-        MongoClient client = userDB.client;
-        if (client == null) {
-            client = getMongoClient();
+    public static user login(String username, String password) {
+        user user = getUser(username);
+        if (user == null) {
+            return null;
         }
-        MongoDatabase database = client.getDatabase("gameStore");
-        MongoCollection<Document> collection = database.getCollection("users");
+        // if (user.hashPassword().equals(dataUtils.hashPassword(password))) {
+        if (user.getPassword().equals(dataUtils.hashPassword(password))) {
+            return user;
+        }
+        return null;
+    }
 
-        Document doc = collection.find(Filters.eq("username", username)).first();
-        return doc.getString("password");
+    private static String getPassword(String username) {
+        user user = getUser(username);
+        if (user == null) {
+            return null;
+        }
+        return user.getPassword();
+        // return doc.getString("password");
     }
 
     private static String getPassword(user user) {
@@ -178,7 +186,7 @@ public class userDB {
             MongoDatabase database = client.getDatabase("gameStore");
             MongoCollection<Document> collection = database.getCollection("users");
             
-            Bson filter = Filters.eq("username", user.username());
+            Bson filter = Filters.eq("username", user.getUsername());
             Bson update = Updates.set("password", newPassword);
             Document doc = collection.findOneAndUpdate(filter, update);
             // collection.updateOne(filter, update);
