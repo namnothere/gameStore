@@ -82,16 +82,28 @@ public class userDB {
         }
         MongoDatabase database = client.getDatabase("gameStore");
         MongoCollection<Document> collection = database.getCollection("users");
+        //get the first document
+        Bson filter = Filters.eq("name", "usersDetails");
+        Document doc = collection.find(filter).first();
 
-        Document doc = new Document("name", user.getName())
-                .append("username", user.getUsername())
-                .append("email", user.getEmail())
-                .append("password", user.getPassword())
-                .append("avatar", user.getAvatar());
 
-        // collection.insertOne(doc);
-        //insert new object to the database
-        collection.findOneAndUpdate(doc, doc);
+
+        
+        //create new user as object
+        Document newUser = new Document("name", user.getName())
+        .append("username", user.getUsername())
+        .append("email", user.getEmail())
+        .append("password", user.getPassword())
+        .append("avatar", user.getAvatar());
+        
+        //append the new user object to the document
+        doc.append(user.getUsername(), newUser);
+
+        //update the document
+        Bson updateOperationDocument = new Document("$set", doc);
+        collection.updateOne(filter, updateOperationDocument);
+        
+        // collection.findOneAndUpdate(doc, doc);
     }
 
     public static boolean deleteUser(String username) {

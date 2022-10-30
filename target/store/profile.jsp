@@ -314,12 +314,18 @@
                         <input type="hidden" name="action" value="updateProfile">
                         <div class="form-group">
                           <label for="fullName">Full Name</label>
-                          <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Kenneth Valdez">
+                          <!-- <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="Kenneth Valdez"> -->
+                          <input type="text" class="form-control" id="fullName" name="fullName" aria-describedby="fullNameHelp" placeholder="Enter your fullname" value="${user.name}">
                           <small id="fullNameHelp" class="form-text text-muted">Your name may appear around here where you are mentioned. You can change or remove it at any time.</small>
                         </div>
                         <div class="form-group">
                           <label for="username">Username</label>
-                          <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" value="KennethValdez" disabled>
+                          <!-- <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" value="KennethValdez" disabled> -->
+                          <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" value="${user.username}" disabled>
+                        </div>
+                        <div class="form-group">
+                          <label for="bio">Email</label>
+                          <input class="form-control autosize" id="email" name="email" placeholder="Your email" value="${user.email}">
                         </div>
                         <div class="form-group">
                           <label for="bio">Your Bio</label>

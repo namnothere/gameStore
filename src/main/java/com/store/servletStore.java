@@ -24,8 +24,8 @@ public class servletStore extends HttpServlet {
     HttpServletResponse response)
     throws ServletException, IOException {
 
-        String uri = request.getRequestURI();
-        System.out.println("uri: " + uri);
+        // String uri = request.getRequestURI();
+        // System.out.println("uri: " + uri);
         // System.out.println("pathInfo: " + pathInfo .toString());
 
         String url = "/home.jsp";
@@ -55,7 +55,7 @@ public class servletStore extends HttpServlet {
 
             session.setAttribute("dbconnect", "connected (not actually connected)");
 
-            
+            System.out.println("user: " + user.toString());
 
         }
         else {

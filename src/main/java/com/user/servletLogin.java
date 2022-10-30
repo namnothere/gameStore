@@ -49,7 +49,16 @@ public class servletLogin extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(false);
         if (session != null) {
-            session.invalidate();
+            // session.invalidate();
+
+            //check if user is logged in
+            user user = (user) session.getAttribute("user");
+            if (user != null) {
+                // resp.sendRedirect("/home.jsp");
+                resp.sendRedirect(req.getContextPath() + "/");
+                System.out.println("user is logged in");
+                return;
+            }
         }
         String url = "/account-login.html";
         // resp.sendRedirect("login.jsp");

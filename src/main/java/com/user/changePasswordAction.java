@@ -74,7 +74,7 @@ public class changePasswordAction extends HttpServlet {
         // System.out.println("doGET");
         String url = "/profile.jsp";
         //redirect to myaccount page
-        HttpSession session=request.getSession(false);
+        HttpSession session = request.getSession(false);
 
         // MongoUtils client = (MongoUtils) session.getAttribute("dbconnect");
 
