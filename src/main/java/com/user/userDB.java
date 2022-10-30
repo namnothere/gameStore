@@ -26,7 +26,6 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
-import com.mongodb.client.model.Updates;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -73,46 +72,57 @@ public class userDB {
         userDB.client = client;
     }
 
-    public static void insertUser(user user) {
-        MongoClient client = userDB.client;
-        if (client == null) {
+    private static void connect() {
+        if (userDB.client == null) {
             LOGGER.log(Level.SEVERE, "mongoClient is null");
-            client = getMongoClient();
+            getMongoClient();
             LOGGER.log(Level.INFO, "Successfully connected to the database");
         }
+    }
+
+    public static void insertUser(user user) {
+        userDB.connect();
+        MongoClient client = userDB.client;
         MongoDatabase database = client.getDatabase("gameStore");
         MongoCollection<Document> collection = database.getCollection("users");
-        //get the first document
+        //get the first doc that contains all users
         Bson filter = Filters.eq("name", "usersDetails");
         Document doc = collection.find(filter).first();
 
+        //check if username already exists
+        if (doc != null) {
+            //check if username already exists
+            if (doc.containsKey(user.getUsername())) {
+                LOGGER.log(Level.SEVERE, "Username already exists");
+                return;
+            }
+        } else {
+            //insert new document
+            LOGGER.log(Level.INFO, "No document found");
+            // doc = new Document("name", "usersDetails");
+            return;
+        }
 
-
-        
-        //create new user as object
+        //create new user document object
         Document newUser = new Document("name", user.getName())
         .append("username", user.getUsername())
         .append("email", user.getEmail())
         .append("password", user.getPassword())
         .append("avatar", user.getAvatar());
         
-        //append the new user object to the document
+        //append new user object to the document
         doc.append(user.getUsername(), newUser);
 
         //update the document
         Bson updateOperationDocument = new Document("$set", doc);
         collection.updateOne(filter, updateOperationDocument);
-        
+
         // collection.findOneAndUpdate(doc, doc);
     }
 
     public static boolean deleteUser(String username) {
+        userDB.connect();
         MongoClient client = userDB.client;
-        if (client == null) {
-            LOGGER.log(Level.SEVERE, "mongoClient is null");
-            client = getMongoClient();
-            LOGGER.log(Level.INFO, "Successfully connected to the database");
-        }
         MongoDatabase database = client.getDatabase("gameStore");
         MongoCollection<Document> collection = database.getCollection("users");
 
@@ -122,21 +132,19 @@ public class userDB {
     }
 
     public static user getUser(String username) {
+        userDB.connect();
         MongoClient client = userDB.client;
-        if (client == null) {
-            LOGGER.log(Level.SEVERE, "mongoClient is null");
-            client = getMongoClient();
-            LOGGER.log(Level.INFO, "Successfully connected to the database");
-        }
         MongoDatabase database = client.getDatabase("gameStore");
         MongoCollection<Document> collection = database.getCollection("users");
 
-        Bson filter = Filters.eq("username", username);
+        // Bson filter = Filters.eq("username", username);
+        Bson filter = Filters.eq("name", "usersDetails");
         Document doc = collection.find(filter).first();
         if (doc == null) {
             return null;
         }
-        user user = new user(doc.getString("name"), doc.getString("username"), doc.getString("email"), doc.getString("password"), doc.getString("avatar"));
+        Document userDoc = (Document) doc.get(username);
+        user user = new user(userDoc.getString("name"), userDoc.getString("username"), userDoc.getString("email"), userDoc.getString("password"), userDoc.getString("avatar"));
         return user;
     }
 
@@ -176,8 +184,8 @@ public class userDB {
 
     public static ResponseData updatePassword(user user, String oldPassword, String newPassword) {
         String oldPaString = user.getPassword();
-        if (oldPassword == null) {
-            LOGGER.log(Level.SEVERE, "Missing old password");
+        if (oldPassword == null || newPassword == null || oldPassword.equals("") || newPassword.equals("")) {
+            LOGGER.log(Level.SEVERE, "Missing password");
             ResponseData data = new ResponseData(false, user);
             // return false;
             return data;
@@ -188,23 +196,26 @@ public class userDB {
             // return false;
             return data;
         }
+        userDB.connect();
         MongoClient client = userDB.client;
-        if (client == null) {
-            LOGGER.log(Level.SEVERE, "mongoClient is null");
-            client = getMongoClient();
-            LOGGER.log(Level.INFO, "Successfully connected to the database");
-        }
         try {
             MongoDatabase database = client.getDatabase("gameStore");
             MongoCollection<Document> collection = database.getCollection("users");
             
-            Bson filter = Filters.eq("username", user.getUsername());
-            Bson update = Updates.set("password", newPassword);
-            Document doc = collection.findOneAndUpdate(filter, update);
-            // collection.updateOne(filter, update);
+            Bson filter = Filters.eq("name", "usersDetails");
+
+            Document doc = collection.find(filter).first();
+            Document userDoc = (Document) doc.get(user.getUsername());
+            userDoc.replace("password", newPassword);
+            
+            //update the document
+            Bson updateOperationDocument = new Document("$set", doc);
+            // collection.findOneAndUpdate(filter, updateOperationDocument, new FindOneAndUpdateOptions().returnDocument(ReturnDocument.AFTER));
+            collection.updateOne(filter, updateOperationDocument);
+
             LOGGER.log(Level.INFO, "Successfully updated password");
             // user = getUser(user.username());
-            user = new user(doc.getString("name"), doc.getString("username"), doc.getString("email"), doc.getString("password"), doc.getString("avatar"));
+            user = new user(userDoc.getString("name"), userDoc.getString("username"), userDoc.getString("email"), userDoc.getString("password"), userDoc.getString("avatar"));
             ResponseData data = new ResponseData(true, user);
             // return true;
             // ResponseData data = new ResponseData(true, user);
@@ -219,55 +230,53 @@ public class userDB {
     }
 
     public static boolean isValidUser(String username, String password) {
+        userDB.connect();
         MongoClient client = userDB.client;
-        if (client == null) {
-            client = getMongoClient();
-        }
-        MongoDatabase database = client.getDatabase("gameStore");
-        MongoCollection<Document> collection = database.getCollection("users");
-        Document doc = collection.find(Filters.eq("username", username)).first();
-        if (doc == null) {
+        try {
+            MongoDatabase database = client.getDatabase("gameStore");
+            MongoCollection<Document> collection = database.getCollection("users");
+            Document doc = collection.find(Filters.eq("username", username)).first();
+            if (doc == null) {
+                return false;
+            }
+            String pwd = doc.getString("password");
+            if (pwd.equals(password)) {
+                return true;
+            }
             return false;
         }
-        String pwd = doc.getString("password");
-        if (pwd.equals(password)) {
-            return true;
+        catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "[isValidUser] Error: " + e.getMessage());
+            return false;
         }
-        return false;
     }
     
     public static boolean isExistUser(String username) {
+        userDB.connect();
         MongoClient client = userDB.client;
-        if (client == null) {
-
-            LOGGER.log(Level.SEVERE, "mongoClient is null");
-            client = getMongoClient();
-
-            LOGGER.log(Level.INFO, "Successfully connected to the database");
+        try {
+            MongoDatabase database = client.getDatabase("gameStore");
+            MongoCollection<Document> collection = database.getCollection("users");
+    
+            Document doc = collection.find(Filters.exists(username)).first();
+            
+            //check if username exist in doc
+            if (doc == null) {
+                LOGGER.log(Level.INFO, "doc is null aka this username is not exist (" + username + ")");
+                return false;
+            }
+            
+            LOGGER.log(Level.INFO, username + " this username is already exist");
+            return true;
         }
-        MongoDatabase database = client.getDatabase("gameStore");
-        MongoCollection<Document> collection = database.getCollection("users");
-
-        Document doc = collection.find(Filters.exists(username)).first();
-        
-        //check if username exist in doc
-        
-        
-        if (doc == null) {
-
-            LOGGER.log(Level.INFO, "doc is null aka this username is not exist (" + username + ")");
+        catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "[isExistUser] Error: " + e.getMessage());
             return false;
         }
-        
-        LOGGER.log(Level.INFO, username + " this username is already exist");
-        return true;
     }
     
-    // public static 
-
     public static void disconnect() {
         try {
-
             userDB.client.close();
             LOGGER.log(Level.INFO, "Disconnected from MongoDB");
         }
@@ -276,28 +285,32 @@ public class userDB {
         }
     }
 
-    // public static void 
-
     public static void main(String[] args) throws Exception {
 
         // userDB.disconnect();
-
-        // userDB db = new userDB();
-        user myUser = new user("myName", "newUser", "email", "password", "avatar");
-        userDB.insertUser(myUser);
-        LOGGER.log(Level.INFO, "Successfully inserted user");
+        // user myUser = new user("myName", "newUser", "email", "password", "avatar");
+        // userDB.insertUser(myUser);
+        // LOGGER.log(Level.INFO, "Successfully inserted user");
 
         //return user
         user user2 = userDB.getUser("newUser");
-        LOGGER.log(Level.INFO, "Successfully get user");
-        user.showUser(user2);
+        if (user2 == null) {
+            LOGGER.log(Level.SEVERE, "username is not exist");
+        }
+        else {
+            LOGGER.log(Level.INFO, "Successfully get user");
+            user.showUser(user2);
+        }
         
         //update password
-        user2 = userDB.updatePassword(user2, "password", "newPassword").user;
+        // user user2 = userDB.updatePassword(myUser, "password", "mynewPassword").user;
         
         //show that user again
-        user.showUser(user2);
+        // user.showUser(user2);
 
+        //remember to disconnect lol
+        //got blocked when multiple concurrent connections are alive
+        userDB.disconnect();
 
     }
 

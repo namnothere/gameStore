@@ -38,6 +38,41 @@ public class dataUtils {
         return "";
     }
 
+    public static boolean validatePassword(String password) {
+      // Password should follows these rules:
+      // 1. At least 8 characters long
+      // 2. At least 1 digit
+      // 3. At least 1 upper case letter
+      // 4. At least 1 special character
+      // 5. No white space (space, tab, newline)
+
+      if (password.length() < 8) {
+        return false;
+      }
+      
+      boolean hasDigit = false;
+      boolean hasUpperCase = false;
+      boolean hasSpecialChar = false;
+      boolean hasWhiteSpace = false;
+
+      for (int i = 0; i < password.length(); i++) {
+        char c = password.charAt(i);
+        if (Character.isDigit(c)) {
+          hasDigit = true;
+        } else if (Character.isUpperCase(c)) {
+          hasUpperCase = true;
+        } else if (!Character.isLetterOrDigit(c)) {
+          hasSpecialChar = true;
+        } else if (Character.isWhitespace(c)) {
+          hasWhiteSpace = true;
+        }
+      }
+
+      return hasDigit && hasUpperCase && hasSpecialChar && !hasWhiteSpace;
+
+      // return false;
+    }
+
     public static void main(String[] args) {
         String password = "123456";
         String hashedPassword = hashPassword(password);
