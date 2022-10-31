@@ -921,7 +921,7 @@ body {
     cursor: pointer;
     user-select: none;
     font-size: 14px;
-    color: #292929;
+    color: #ffffff;
     margin: 0;
     padding-left: 25px; }
     .check-box + .label-text:after {
@@ -1449,7 +1449,7 @@ body {
     cursor: pointer;
     user-select: none;
     font-size: 14px;
-    color: #292929;
+    color: #ffffff;
     margin: 0;
     padding-left: 25px; }
     .radio-box + .label-text:after {
@@ -3252,12 +3252,12 @@ body {
 
 .page-account .account-h6, .page-lostpassword .account-h6 {
   font-size: 13px;
-  color: #707070; }
+  color: #ffffff; }
 
 .page-account label, .page-lostpassword label {
-  font-weight: 600;
+  font-weight: 60;
   font-size: 14px;
-  color: #292929; }
+  color: #ffffff; }
 
 .page-account .label-text, .page-lostpassword .label-text {
   font-size: 13px;
@@ -3292,12 +3292,12 @@ body {
 
 .page-track-order .track-order-h6 {
   font-size: 13px;
-  color: #707070; }
+  color: #ffffff; }
 
 .page-track-order label {
   font-weight: 600;
   font-size: 14px;
-  color: #292929; }
+  color: #ffffff; }
 
 .page-track-order .label-text {
   font-size: 13px;

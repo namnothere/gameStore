@@ -857,7 +857,9 @@
                     <div class="login-wrapper">
                         <h2 class="account-h2 u-s-m-b-20">Login</h2>
                         <h6 class="account-h6 u-s-m-b-30">Welcome back! Sign in to your account.</h6>
-                        <form>
+                        <form action="account" method="post">
+                            <input type="hidden" name="action" value="login">
+                            <p class="text-danger">${messagelogin}</p>
                             <div class="u-s-m-b-30">
                                 <label for="user-name-email">Username or Email
                                     <span class="astk">*</span>
@@ -868,7 +870,12 @@
                                 <label for="login-password">Password
                                     <span class="astk">*</span>
                                 </label>
-                                <input name ="pass" type="text" id="login-password" class="text-field" placeholder="Password">
+                                <div class="input-group" id="show_hide_password">
+                                    <input name="pass" id="login-password" class="form-control" type="password" placeholder="Password">
+                                    <div class="input-group-prepend input-group-text">
+                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="group-inline u-s-m-b-30">
                                 <div class="group-1">
@@ -894,31 +901,39 @@
                     <div class="reg-wrapper">
                         <h2 class="account-h2 u-s-m-b-20">Register</h2>
                         <h6 class="account-h6 u-s-m-b-30">Registering for this site allows you to access your order status and history.</h6>
-                        <form>
+                        <form action="account" method="post">
                             <div class="u-s-m-b-30">
+                                <input type="hidden" name="action" value="register">
+                                <p class="text-danger">${messageregisterEmail}</p>
                                 <label for="user-name">Username
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="user-name" class="text-field" placeholder="Username">
+                                <input name="user" type="text" id="user-name" class="text-field" placeholder="Username">
                             </div>
                             <div class="u-s-m-b-30">
                                 <label for="email">Email
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="email" class="text-field" placeholder="Email">
+                                <input name="email" type="text" id="email" class="text-field" placeholder="Email">
                             </div>
                             <div class="u-s-m-b-30">
                                 <label for="password">Password
                                     <span class="astk">*</span>
                                 </label>
-                                <input type="text" id="password" class="text-field" placeholder="Password">
+                                <div class="input-group" id="show_hide_password">
+                                    <input name="pass" id="register-password" class="form-control" type="password" placeholder="Password">
+                                    <div class="input-group-prepend input-group-text">
+                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="u-s-m-b-30">
-                                <input type="checkbox" class="check-box" id="accept">
+                                <input name="checkbox" type="checkbox" class="check-box" id="accept">
                                 <label class="label-text no-color" for="accept">I’ve read and accept the
                                     <a href="terms-and-conditions.html" class="u-c-brand">terms & conditions</a>
                                 </label>
                             </div>
+                            <p class="text-danger">${messageregisterTaC}</p>
                             <div class="u-s-m-b-45">
                                 <button class="button button-primary w-100">Register</button>
                             </div>
@@ -1170,5 +1185,7 @@ ga('send', 'pageview')
 <script type="text/javascript" src="js/owl.carousel.min.js"></script>
 <!-- Main -->
 <script type="text/javascript" src="js/app.js"></script>
+<!--Hide Password-->
+<script type="text/javascript" src="js/hide-pass.js"></script>
 </body>
 </html>
