@@ -738,5 +738,6 @@ $(function () {
         // All Categories Functionality
         searchFetchAllCategoriesFunctionality();
     });
+    
 
 })(jQuery, window, document);
