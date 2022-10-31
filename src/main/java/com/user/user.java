@@ -11,6 +11,7 @@ import org.bson.Document;
 import org.bson.types.ObjectId;
 
 import com.store.MongoUtils;
+import com.dataUtils.dataUtils;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
@@ -43,7 +44,7 @@ public class user {
         this.avatar = avatar;
     }
 
-    public String name() {
+    public String getName() {
         return name;
     }
 
@@ -51,7 +52,7 @@ public class user {
         this.name = name;
     }
 
-    public String username() {
+    public String getUsername() {
         return username;
     }
 
@@ -83,6 +84,27 @@ public class user {
         this.avatar = avatar;
     }
 
+    public boolean login() {
+        user user = userDB.login(this.username, this.password);
+        if (user != null) {
+            this.name = user.getName();
+            this.email = user.getEmail();
+            // this.username = username;
+            // this.password = password;
+            this.avatar = user.getAvatar();
+            return true;
+        }
+        return false;
+    }
+
+    public String hashPassword() {
+        String hashString = dataUtils.hashPassword(this.password);
+        if (hashString != null && !hashString.isEmpty()) {
+            return hashString;
+        }
+        return null;
+    }
+
     public static byte[] LoadImage(String filePath) throws Exception {
         File file = new File(filePath);
         int size = (int)file.length();
@@ -94,8 +116,8 @@ public class user {
     }
 
     public static void showUser(user user) {
-        System.out.println("Name: " + user.name());
-        System.out.println("Username: " + user.username());
+        System.out.println("Name: " + user.getName());
+        System.out.println("Username: " + user.getUsername());
         System.out.println("Email: " + user.getEmail());
         System.out.println("Password: " + user.getPassword());
         System.out.println("Avatar: " + user.getAvatar());

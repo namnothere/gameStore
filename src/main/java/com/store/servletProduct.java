@@ -16,10 +16,6 @@ public class servletProduct extends HttpServlet {
         
         String url = "/single-product.html";
         request.getRequestDispatcher(url).forward(request, response);
-        // get getServletContext()
-        // getServletContext().getRequestDispatcher(url).forward(request, response);
-        // RequestDispatcher rd = request.getRequestDispatcher(url);
-        // rd.forward(request, response);
     }
     
     @Override

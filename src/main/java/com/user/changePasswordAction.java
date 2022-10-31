@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.store.MongoUtils;
+// import com.store.MongoUtils;
 
 // @WebServlet(name = "UserController", urlPatterns = {"/profile.html", "/myaccount"})
 // @WebServlet(name = "UserController", urlPatterns = {"/profile", "/myaccount"})
@@ -74,7 +74,7 @@ public class changePasswordAction extends HttpServlet {
         // System.out.println("doGET");
         String url = "/profile.jsp";
         //redirect to myaccount page
-        HttpSession session=request.getSession(false);
+        HttpSession session = request.getSession(false);
 
         // MongoUtils client = (MongoUtils) session.getAttribute("dbconnect");
 

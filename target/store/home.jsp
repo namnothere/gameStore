@@ -82,7 +82,7 @@
                                         Checkout</a>
                                 </li>
                                 <li>
-                                    <a href="account">
+                                    <a href="/account">
                                         <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
                                         Login / Signup</a>
                                 </li>
@@ -124,7 +124,7 @@
                 <div class="row clearfix align-items-center">
                     <div class="col-lg-3 col-md-9 col-sm-6">
                         <div class="brand-logo text-lg-center">
-                            <a href="home.html">
+                            <a href="/home">
                                 <img src="images/main-logo/groover-branding-1.png" alt="Groover Brand Logo" class="app-brand-logo">
                             </a>
                         </div>
@@ -165,7 +165,7 @@
                         <nav>
                             <ul class="mid-nav g-nav">
                                 <li class="u-d-none-lg">
-                                    <a href="home.html">
+                                    <a href="/home">
                                         <i class="ion ion-md-home u-c-brand"></i>
                                     </a>
                                 </li>
@@ -716,7 +716,7 @@
                                     <ul>
                                         <li class="menu-title">Home & Static Pages</li>
                                         <li>
-                                            <a href="home.html" class="u-c-brand">Home</a>
+                                            <a href="/home" class="u-c-brand">Home</a>
                                         </li>
                                         <li>
                                             <a href="about.html">About</a>
@@ -4487,7 +4487,7 @@
                             <h6>COMPANY</h6>
                             <ul>
                                 <li>
-                                    <a href="home.html">Home</a>
+                                    <a href="/home">Home</a>
                                 </li>
                                 <li>
                                     <a href="about.html">About</a>
@@ -4583,7 +4583,7 @@
                     </ul>
                 </div>
                 <p class="copyright-text">Copyright &copy; 2018
-                    <a href="home.html">Groover</a> All Right Reserved</p>
+                    <a href="/home">Groover</a> All Right Reserved</p>
             </div>
         </div>
         <!-- Bottom-Footer /- -->
@@ -4693,7 +4693,7 @@
                                     </div>
                                     <ul class="bread-crumb">
                                         <li class="has-separator">
-                                            <a href="home.html">Home</a>
+                                            <a href="/home">Home</a>
                                         </li>
                                         <li class="has-separator">
                                             <a href="shop-v1-root-category.html">Men's Clothing</a>
