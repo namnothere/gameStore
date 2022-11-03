@@ -12,3 +12,15 @@ $(document).ready(function() {
         }
     });
 });
+
+var setButtonState = function () {
+    if ($("#user-name-email").val().trim() == "" || $("#login-password").val().trim() == "") {
+        $("#button-login").attr("disabled", true);
+    }
+    else {
+        $("#button-login").removeAttr("disabled");
+    }
+}
+$("#user-name-email").bind("input propertychange change keyup paste select", setButtonState);
+$("#login-password").bind("input propertychange change keyup paste select", setButtonState);
+setButtonState();

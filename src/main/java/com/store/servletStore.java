@@ -37,31 +37,32 @@ public class servletStore extends HttpServlet {
             // System.out.println("New session created");
             // MongoUtils client = new MongoUtils();
 
-            // String username = "Guest";
-            // session.setAttribute("username", username);
-            // String password = "mypassword";
-            // session.setAttribute("password", dataUtils.hashPassword(password));
+        //     // String username = "Guest";
+        //     // session.setAttribute("username", username);
+        //     // String password = "mypassword";
+        //     // session.setAttribute("password", dataUtils.hashPassword(password));
 
-            // session.setAttribute("username","admin");  
-            // session.setAttribute("password","123");
+        //     // session.setAttribute("username","admin");  
+        //     // session.setAttribute("password","123");
 
-            // create a temp user for testing
-            user user = new user();
-            user.setUsername("Guest");
-            user.setPassword("123");
-            user.setName("Guest");
-            user.setEmail("guest@localhost");
-            session.setAttribute("user", user);
+        //     // create a temp user for testing
+        //     user user = new user();
+        //     user.setUsername("Guest");
+        //     user.setPassword("123");
+        //     user.setName("Guest");
+        //     user.setEmail("guest@localhost");
+        //     session.setAttribute("user", user);
 
-            session.setAttribute("dbconnect", "connected (not actually connected)");
+        //     session.setAttribute("dbconnect", "connected (not actually connected)");
 
-            System.out.println("user: " + user.toString());
+        //     System.out.println("user: " + user.toString());
 
-        }
-        else {
-            System.out.println("GET - Session already exists");
-        }
+        // }
+        // else {
+        //     System.out.println("GET - Session already exists");
+        // }
 
         request.getRequestDispatcher(url).forward(request, response);
+    }
     }
 }

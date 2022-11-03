@@ -23,8 +23,26 @@ public class AccountControl extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        request.getRequestDispatcher("/account.jsp").forward(request, response);
-        return;
+        HttpSession session = request.getSession(false);
+                if (session != null) {
+                    // session.invalidate();
+        
+                    //check if user is logged in
+                    user user = (user) session.getAttribute("user");
+                    if (user != null) {
+                        // resp.sendRedirect("/home.jsp");
+                        response.sendRedirect(request.getContextPath() + "/");
+                        System.out.println("User is logged in" + user);
+                        return;
+                    }
+                }
+                String url = "/account.jsp";
+                // resp.sendRedirect("login.jsp");
+                // resp.sendRedirect("account-login.html");
+                // req.getRequestDispatcher("login").forward(req, resp);
+                getServletContext()
+                                .getRequestDispatcher(url)
+                                .forward(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -53,12 +71,21 @@ public class AccountControl extends HttpServlet {
         user u = new user();
         u.setUsername(username);
         u.setPassword(password);
-        if (u.isValid()){
-            response.sendRedirect("/store/");
+        if (u.login()){
+            HttpSession session = request.getSession();
+            session.setAttribute("user", u);
+            // if (remember != null) {
+            //     Cookie cookie = new Cookie("username", username);
+            //     cookie.setMaxAge(60 * 60 * 24 * 7);
+            //     resp.addCookie(cookie);
+            // }
+            response.sendRedirect("home.jsp");
+            return;
         }
         else{
             request.setAttribute("messagelogin", "Incorrect username or password");
             request.getRequestDispatcher("/account.jsp").forward(request, response);
+            return;
         }
     }   
     protected void processRequestRegister (HttpServletRequest request, HttpServletResponse response)

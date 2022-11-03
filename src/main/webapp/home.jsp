@@ -67,7 +67,7 @@
                             </a>
                             <ul class="g-dropdown" style="width:200px">
                                 <li>
-                                    <a href="cart.html">
+                                    <a href="cart.jsp">
                                         <i class="fas fa-cog u-s-m-r-9"></i>
                                         My Cart</a>
                                 </li>
@@ -82,7 +82,7 @@
                                         Checkout</a>
                                 </li>
                                 <li>
-                                    <a href="/account">
+                                    <a href="account.jsp">
                                         <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
                                         Login / Signup</a>
                                 </li>
@@ -218,7 +218,7 @@
                         </a>
                     </li>
                     <li class="clearfix">
-                        <a href="single-product.html">
+                        <a href="single-product.jsp">
                             <img src="images/product/product@1x.jpg" alt="Product">
                             <span class="mini-item-name">Black Rock Dress with High Jewelery Necklace</span>
                             <span class="mini-item-price">$55.00</span>

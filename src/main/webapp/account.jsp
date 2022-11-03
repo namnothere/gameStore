@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="css/utility.css">
     <!-- Main -->
     <link rel="stylesheet" href="css/bundle.css">
+    <!-- Custom -->
+    <link rel="stylesheet" href="css/custom.css">
 </head>
 
 <body>
@@ -81,7 +83,7 @@
                                         Checkout</a>
                                 </li>
                                 <li>
-                                    <a href="account.html">
+                                    <a href="">
                                         <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
                                         Login / Signup</a>
                                 </li>
@@ -864,14 +866,15 @@
                                 <label for="user-name-email">Username or Email
                                     <span class="astk">*</span>
                                 </label>
-                                <input name="user" type="text" id="user-name-email" class="text-field" placeholder="Username / Email">
+                                <input name="user" type="text" id="user-name-email" class="text-field" placeholder="Username / Email" onkeyup="success()">
                             </div>
                             <div class="u-s-m-b-30">
                                 <label for="login-password">Password
                                     <span class="astk">*</span>
                                 </label>
                                 <div class="input-group" id="show_hide_password">
-                                    <input name="pass" id="login-password" class="form-control" type="password" placeholder="Password">
+                                    <input name="pass" id="login-password" class="form-control" type="password" placeholder="Password" onkeyup="success()">
+                                    <div class = "error-msg"></div>
                                     <div class="input-group-prepend input-group-text">
                                         <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                     </div>
@@ -890,7 +893,7 @@
                                 </div>
                             </div>
                             <div class="m-b-45">
-                                <button class="button button-outline-secondary w-100" type="submit">Login</button>
+                                <button class="button button-outline-secondary w-100" type="submit" id="button-login">Login</button>
                             </div>
                         </form>
                     </div>
@@ -1185,7 +1188,7 @@ ga('send', 'pageview')
 <script type="text/javascript" src="js/owl.carousel.min.js"></script>
 <!-- Main -->
 <script type="text/javascript" src="js/app.js"></script>
-<!--Hide Password-->
-<script type="text/javascript" src="js/hide-pass.js"></script>
+<!--Utilities-->
+<script type="text/javascript" src="js/account.js"></script>
 </body>
 </html>
