@@ -4,10 +4,21 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class dataUtils {
 
     final protected static char[] hexArray = "0123456789ABCDEF"
     .toCharArray();
+    
+    public static MongoClient client = null;
+    private static final Logger LOGGER = Logger.getLogger(dataUtils.class
+    .getClass().getName());
+
 
     public static String bytesToHex(byte[] bytes) {
         char[] hexChars = new char[bytes.length * 2];
@@ -20,6 +31,7 @@ public class dataUtils {
         return new String(hexChars);
       }
       
+
 
     private static String SALT = "123456";
 
@@ -76,6 +88,33 @@ public class dataUtils {
       // convert epoch to date
       Date date = new Date(epoch);
       return date;
+    }
+
+    private static MongoClient getMongoClient() {
+      String uri = "mongodb+srv://aegis:aegis@baekettle.lkh9f.mongodb.net/?retryWrites=true&w=majority";
+      MongoClient mongoClient = MongoClients.create(uri);
+      dataUtils.client = mongoClient;
+      return mongoClient;
+    }
+
+    public static MongoClient getMongoClientInstance() {
+      if (dataUtils.client == null) {
+        return getMongoClient();
+      } else {
+        return dataUtils.client;
+      }
+    }
+
+    public static void disconnect() {
+      try {
+        if (dataUtils.client != null) {
+          dataUtils.client.close();
+          LOGGER.log(Level.INFO, "Disconnected from MongoDB");
+        }
+      } catch (Exception e) {
+        // e.printStackTrace();
+        LOGGER.log(Level.SEVERE, "[disconnect] " + e);
+      }
     }
 
     public static void main(String[] args) {

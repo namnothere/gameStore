@@ -103,7 +103,7 @@ public class ProductUtils {
             Document doc = collection.find().first();
             JSONObject apps = new JSONObject(doc.get("applist", Document.class).get("apps", Document.class).toJson());
             for (Game game : games) {
-                JSONObject gameObj = game.toJson();
+                JSONObject gameObj = game.toJSON();
                 apps.put(Integer.toString(game.getID()), gameObj.get(Integer.toString(game.getID())));
             }
             // collection.updateOne(doc, new Document("$set", doc));
