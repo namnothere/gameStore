@@ -38,6 +38,8 @@ $(function () {
         zoomWindowHeight: 540,
         zoomWindowOffetx: 10,
         borderColour: '#e9e9e9',
+        zoomEnabled: false,
+        // zoomEnabled: true,
     });
 
     // For `modals` we don't want to enable `zoom window`.

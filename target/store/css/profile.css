@@ -64,3 +64,36 @@ body{
 .shadow-none {
   box-shadow: none!important;
 }
+
+.user-frame {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #0b0d20;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #0b0d20;
+  /* overflow: auto; */
+  padding-bottom: 1vh;
+}
+  .user-frame .pfp {
+    /* top left of the div parent*/
+    position: relative;
+    top: -0.25%;
+    left: 5%;
+    /* width: 20%; */
+    position: absolute;
+    /* circle border */
+    border-radius: 50%;
+    border: 1vh solid #0b0d20;
+    background-color: #0b0d20;
+  }
+  .user-frame .info {
+    width: 100%;
+    height: 100%;
+    background-color: #293b60;
+  }
+  .user-frame .private-info {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+  }

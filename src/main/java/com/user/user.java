@@ -3,21 +3,21 @@ package com.user;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.io.Serializable;
+// import java.io.Serializable;
 
-import javax.servlet.http.HttpSession;
+// import javax.servlet.http.HttpSession;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import com.store.MongoUtils;
 import com.dataUtils.dataUtils;
+import com.game.ProductUtils;
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
+// import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.gridfs.GridFSBucket;
 import com.mongodb.client.gridfs.GridFSBuckets;
-import com.mongodb.client.gridfs.model.GridFSFile;
+// import com.mongodb.client.gridfs.model.GridFSFile;
 import com.mongodb.client.gridfs.model.GridFSUploadOptions;
 
 
@@ -129,7 +129,7 @@ public class user {
         //Connect to database
         // MongoClient client = MongoClients.create("mongodb://localhost:27017");
 
-        MongoUtils client = new MongoUtils();
+        ProductUtils client = new ProductUtils();
         MongoClient mongoClient = client.getClient();
         
         String dbName = "GridFSTestJava";

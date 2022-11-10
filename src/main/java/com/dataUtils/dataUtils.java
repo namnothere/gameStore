@@ -2,6 +2,7 @@ package com.dataUtils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 public class dataUtils {
 
@@ -69,13 +70,25 @@ public class dataUtils {
       }
 
       return hasDigit && hasUpperCase && hasSpecialChar && !hasWhiteSpace;
+    }
 
-      // return false;
+    public static Date epochToDate(long epoch) {
+      // convert epoch to date
+      Date date = new Date(epoch);
+      return date;
     }
 
     public static void main(String[] args) {
         String password = "123456";
         String hashedPassword = hashPassword(password);
-        System.out.println(hashedPassword);
+        System.out.println("hashedPassword: " + hashedPassword);
+
+        boolean isValid = validatePassword(password);
+        System.out.println("isValid: " + isValid);
+
+        long epoch = 1667594672;
+        Date date = epochToDate(epoch);
+        System.out.println("Date: " + date);
+
     }
 }

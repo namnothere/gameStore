@@ -1,3 +1,4 @@
+com\store\PageNotFound.class
 com\user\user.class
 com\user\servletLogin.class
 com\store\servletStore.class

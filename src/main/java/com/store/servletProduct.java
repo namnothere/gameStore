@@ -6,8 +6,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-// @WebServlet("/game")
-@WebServlet(name = "GameController", urlPatterns = {"/game/*", "/product"})
+@WebServlet(name = "GameController", urlPatterns = {"/game/*/", "/product/*/"})
 public class servletProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
@@ -27,12 +26,13 @@ public class servletProduct extends HttpServlet {
             //split the 100 and get the id
             
             String id = request.getPathInfo();
-            if (id==null) {
-                id = "0";
-            }
-            else {
-                id = id.substring(1);
-            }
+            // if (id==null) {
+            //     id = "0";
+            // }
+            // else {
+            //     id = id.substring(1);
+            // }
+            System.out.println("getPathInfo: " + id);
             doPost(request, response);
             //generate the product using the id
             //send the product to the jsp

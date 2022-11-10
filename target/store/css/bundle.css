@@ -227,14 +227,14 @@ body {
 .redirect-link-wrapper .redirect-link {
   background-color: transparent;
   color: #292929;
-  font-size: 12px;
+  font-size: 14px;
   display: inline-block; }
   .redirect-link-wrapper .redirect-link:after {
     content: '';
     display: block;
     width: 100%;
     margin-top: 5px;
-    transition: all .8s ease-in;
+    transition: all .25s ease-in;
     border: 1px solid #DCDCDD; }
   .redirect-link-wrapper .redirect-link:hover:after {
     border-color: #d90429; }
@@ -2451,12 +2451,16 @@ body {
 --------------------------------------------------------------*/
 .page-404 h1 {
   font-size: 200px;
-  color: #333;
+  /* color: #333; */
+  color: #dcd7d7;
   font-weight: 700; }
 
 .page-404 h5 {
   font-size: 13px;
-  color: #333; }
+  /* color: #333; } */
+  color: #dcd7d7; }
+.page-404 a > span {
+  color: #dcd7d7; }
 
 /*--------------------------------------------------------------
 16.0 Single-Product-Fullwidth-page:
@@ -2646,7 +2650,8 @@ body {
     .r-1 .total-score-wrapper .circle-wrapper {
       width: 85px;
       height: 85px;
-      border: 1px solid #292929;
+      /* border: 1px solid #292929; */
+      border: 1.5px solid #ffffff;
       border-radius: 50%;
       margin: 0 auto 8px; }
       .r-1 .total-score-wrapper .circle-wrapper > h1 {
