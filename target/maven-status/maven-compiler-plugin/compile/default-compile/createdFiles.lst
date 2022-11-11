@@ -1,5 +1,4 @@
- com\user\user.class
-com\user\servletLogin.class
+com\user\user.class
 com\store\servletStore.class
 com\user\userDB.class
 com\game\Game.class

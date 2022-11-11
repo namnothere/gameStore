@@ -834,7 +834,14 @@
     <!-- Main-Slider -->
     <div class="default-height ph-item">
         <div class="slider-main owl-carousel">
-            <div class="bg-image one">
+            <% for(int i = 0; i < 3; i++) { %>
+                <div class="bg-image one">
+                    <div class="slide-content slide-animation">
+                        <h1>Sample</h1>
+                    </div>
+                </div>
+            <% } %>
+            <!-- <div class="bg-image one">
                 <div class="slide-content slide-animation">
                     <h1>Casual Clothing</h1>
                     <h2>lifestyle / clothing / hype</h2>
@@ -854,11 +861,14 @@
                     </h1>
                     <h2 style="color:#333"># shopping</h2>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Main-Slider /- -->
     <!-- Banner-Layer -->
+
+    <!-- Event Banner -->
+
     <div class="banner-layer">
         <div class="container">
             <div class="image-banner">
@@ -869,647 +879,100 @@
         </div>
     </div>
     <!-- Banner-Layer /- -->
-    <!-- Men-Clothing -->
+    <!-- Special Offers -->
+    <% for (int k = 0; k < 5; k++) { %>
     <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
-                <h3 class="sec-maker-h3">MEN'S CLOTHING</h3>
-                <ul class="nav tab-nav-style-1-a justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#men-latest-products">Latest Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#men-best-selling-products">Best Selling</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#men-top-rating-products">Top Rating</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#men-featured-products">Featured Products</a>
-                    </li>
-                </ul>
+                <h3 class="sec-maker-h3">Special Offers</h3>
             </div>
             <div class="wrapper-content">
                 <div class="outer-area-tab">
                     <div class="tab-content">
-                        <div class="tab-pane active show fade" id="men-latest-products">
+                        <div class="tab-pane active show fade">
                             <div class="slider-fouc">
                                 <div class="products-slider owl-carousel" data-item="4">
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
+                                    <% for (int i = 0; i < 12; i++) { %>
+                                        <div class="item">
+                                            <div class="image-container">
+                                                <a class="item-img-wrapper-link" href="single-product.html">
+                                                    <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
                                                 </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Tops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Casual Hoodie Full Cotton</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tag new">
-                                            <span>NEW</span>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Tops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">T-Shirts</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Mischka Plain Men T-Shirt</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Tops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v4-filter-as-category.html">T-Shirts</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Black Bean Plain Men T-Shirt</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Bottoms</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Jeans</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Regular Rock Blue Men Jean</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tag new">
-                                            <span>NEW</span>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Tops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Suits</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Black Maire Full Men Suit</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tag sale">
-                                            <span>SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Outwear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Jackets</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Woodsmoke Rookie Parka Jacket</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
-                                                    </div>
-                                                    <span>(0)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Ties</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Blue Zodiac Boxes Reg Tie
+                                                <div class="item-action-behaviors">
+                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
                                                     </a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
+                                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                                    <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                                </div>
+                                            </div>
+                                            <div class="item-content">
+                                                <div class="what-product-is">
+                                                    <ul class="bread-crumb">
+                                                        <% for (int j = 0; i < 3; i++) { %>
+                                                            <li class="has-separator">
+                                                                <a href="shop-v1-root-category.html">Men's</a>
+                                                            </li>
+                                                        <% } %>
+                                                        <li>
+                                                            <a href="shop-v3-sub-sub-category.html">Hoodies</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h6 class="item-title">
+                                                        <a href="single-product.html">Casual Hoodie Full Cotton</a>
+                                                    </h6>
+                                                    <div class="item-stars">
+                                                        <div class='star' title="0 out of 5 - based on 0 Reviews">
+                                                            <span style='width:0'></span>
+                                                        </div>
+                                                        <span>(0)</span>
                                                     </div>
-                                                    <span>(0)</span>
                                                 </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Bottoms</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Shoes</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Zambezi Carved Leather Business Casual Shoes
-                                                    </a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
+                                                <div class="price-template">
+                                                    <div class="item-new-price">
+                                                        $55.00
                                                     </div>
-                                                    <span>(0)</span>
+                                                    <div class="item-old-price">
+                                                        $60.00
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
+                                            <div class="tag new">
+                                                <span>NEW</span>
                                             </div>
                                         </div>
-                                        <div class="tag discount">
-                                            <span>-15%</span>
-                                        </div>
-                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="men-best-selling-products">
-                            <!-- Product Not Found -->
-                            <div class="product-not-found">
-                                <div class="not-found">
-                                    <h2>SORRY!</h2>
-                                    <h6>There is not any product in specific catalogue.</h6>
-                                </div>
-                            </div>
-                            <!-- Product Not Found /- -->
-                        </div>
-                        <div class="tab-pane fade" id="men-top-rating-products">
-                            <div class="slider-fouc">
-                                <div class="products-slider owl-carousel" data-item="4">
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Tops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Suits</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Black Maire Full Men Suit</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                        <span style='width:67px'></span>
-                                                    </div>
-                                                    <span>(23)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tag sale">
-                                            <span>SALE</span>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Outwear</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Jackets</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Woodsmoke Rookie Parka Jacket</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                        <span style='width:67px'></span>
-                                                    </div>
-                                                    <span>(23)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Accessories</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Ties</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Blue Zodiac Boxes Reg Tie</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                        <span style='width:67px'></span>
-                                                    </div>
-                                                    <span>(23)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="single-product.html">
-                                                <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                </a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Bottoms</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Shoes</a>
-                                                    </li>
-                                                </ul>
-                                                <h6 class="item-title">
-                                                    <a href="single-product.html">Zambezi Carved Leather Business Casual Shoes
-                                                    </a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="4.5 out of 5 - based on 23 Reviews">
-                                                        <span style='width:67px'></span>
-                                                    </div>
-                                                    <span>(23)</span>
-                                                </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <div class="item-new-price">
-                                                    $55.00
-                                                </div>
-                                                <div class="item-old-price">
-                                                    $60.00
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tag discount">
-                                            <span>-15%</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="men-featured-products">
-                            <!-- Product Not Found -->
-                            <div class="product-not-found">
-                                <div class="not-found">
-                                    <h2>SORRY!</h2>
-                                    <h6>There is not any product in specific catalogue.</h6>
-                                </div>
-                            </div>
-                            <!-- Product Not Found /- -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Banner-Image & View-more -->
+    <div class="banner-image-view-more">
+        <div class="container">
+            <div class="image-banner u-s-m-y-40">
+                <a href="shop-v1-root-category.html" class="mx-auto banner-hover effect-dark-opacity">
+                    <img class="img-fluid" src="images/banners/ban-men.jpg" alt="Banner Image">
+                </a>
+            </div>
+            <div class="redirect-link-wrapper text-center u-s-p-t-25 u-s-p-b-80">
+                <a class="redirect-link" href="store-directory.html">
+                    <span>View more on this category</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <% } %>
     <!-- Men-Clothing-Timing-Section -->
-    <section class="section-maker">
+    <!-- <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
                 <span class="sec-maker-span-text">Men's Clothing</span>
                 <h3 class="sec-maker-h3 u-s-m-b-22">Hot Deals</h3>
                 <span class="sec-maker-span-text">Ends in</span>
-                <!-- Timing-Box -->
                 <div class="section-timing-wrapper dynamic">
                     <span class="fictitious-seconds" style="display:none;">18000</span>
                     <div class="section-box-wrapper box-days">
@@ -1536,11 +999,11 @@
                             <span class="section-value">SEC</span>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- Timing-Box /- -->
             </div>
             <!-- Carousel -->
-            <div class="slider-fouc">
+            <!-- <div class="slider-fouc">
                 <div class="products-slider owl-carousel" data-item="4">
                     <div class="item">
                         <div class="image-container">
@@ -1736,12 +1199,11 @@
                     </div>
                 </div>
             </div>
-            <!-- Carousel /- -->
         </div>
-    </section>
+    </section> -->
     <!-- Men-Clothing-Timing-Section /- -->
     <!-- Banner-Image & View-more -->
-    <div class="banner-image-view-more">
+    <!-- <div class="banner-image-view-more">
         <div class="container">
             <div class="image-banner u-s-m-y-40">
                 <a href="shop-v1-root-category.html" class="mx-auto banner-hover effect-dark-opacity">
@@ -1754,28 +1216,14 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Banner-Image & View-more /- -->
     <!-- Men-Clothing /- -->
     <!-- Women-Clothing -->
-    <section class="section-maker">
+    <!-- <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
-                <h3 class="sec-maker-h3">WOMEN'S CLOTHING</h3>
-                <ul class="nav tab-nav-style-1-a justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#women-latest-products">Latest Products</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#women-best-selling-products">Best Selling</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#women-top-rating-products">Top Rating</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#women-featured-products">Featured Products</a>
-                    </li>
-                </ul>
+                <h3 class="sec-maker-h3">RPG</h3>
             </div>
             <div class="wrapper-content">
                 <div class="outer-area-tab">
@@ -1783,6 +1231,7 @@
                         <div class="tab-pane active show fade" id="women-latest-products">
                             <div class="slider-fouc">
                                 <div class="products-slider owl-carousel" data-item="4">
+                                    <% for (int i = 0; i < 10; i++) { %>
                                     <div class="item">
                                         <div class="image-container">
                                             <a class="item-img-wrapper-link" href="single-product.html">
@@ -1833,7 +1282,8 @@
                                             <span>NEW</span>
                                         </div>
                                     </div>
-                                    <div class="item">
+                                    <% } %> -->
+                                    <!-- <div class="item">
                                         <div class="image-container">
                                             <a class="item-img-wrapper-link" href="single-product.html">
                                                 <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
@@ -2170,17 +1620,17 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="women-best-selling-products">
+                        </div> -->
+                        <!-- <div class="tab-pane fade" id="women-best-selling-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
+                        <!-- </div>
                         <div class="tab-pane fade" id="women-top-rating-products">
                             <div class="slider-fouc">
                                 <div class="products-slider owl-carousel" data-item="4">
@@ -2377,17 +1827,17 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="women-featured-products">
+                        </div> -->
+                        <!-- <div class="tab-pane fade" id="women-featured-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
+                        <!-- </div>
                     </div>
                 </div>
             </div>
@@ -2397,10 +1847,10 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Women-Clothing /- -->
     <!-- Toys-Hobbies-&-Robots -->
-    <section class="section-maker">
+    <!-- <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
                 <h3 class="sec-maker-h3">Toys Hobbies & Robots</h3>
@@ -2812,16 +2262,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="toys-best-selling-products">
+                        <div class="tab-pane fade" id="toys-best-selling-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
+                        <!-- </div>
                         <div class="tab-pane fade" id="toys-top-rating-products">
                             <div class="slider-fouc">
                                 <div class="products-slider owl-carousel" data-item="4">
@@ -3020,16 +2470,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="toys-featured-products">
+                        <div class="tab-pane fade" id="toys-featured-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
+                        <!-- </div>
                     </div>
                 </div>
             </div>
@@ -3039,10 +2489,10 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Toys-Hobbies-&-Robots /- -->
     <!-- Mobiles-&-Tablets -->
-    <section class="section-maker">
+    <!-- <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
                 <h3 class="sec-maker-h3">Mobiles & Tablets</h3>
@@ -3296,16 +2746,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="tablets">
+                                        <div class="tab-pane fade" id="tablets"> -->
                                             <!-- Product Not Found -->
-                                            <div class="product-not-found">
+                                            <!-- <div class="product-not-found">
                                                 <div class="not-found">
                                                     <h2>SORRY!</h2>
                                                     <h6>There is not any product in specific catalogue.</h6>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- Product Not Found /- -->
-                                        </div>
+                                        <!-- </div>
                                         <div class="tab-pane fade" id="smart-watches">
                                             <div class="slider-fouc">
                                                 <div class="specific-category-slider owl-carousel" data-item="3">
@@ -3509,73 +2959,73 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="device-accessories">
+                                        <div class="tab-pane fade" id="device-accessories"> -->
                                             <!-- Product Not Found -->
-                                            <div class="product-not-found">
+                                            <!-- <div class="product-not-found">
                                                 <div class="not-found">
                                                     <h2>SORRY!</h2>
                                                     <h6>There is not any product in specific catalogue.</h6>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- Product Not Found /- -->
-                                        </div>
-                                        <div class="tab-pane fade" id="power-banks">
+                                        <!-- </div>
+                                        <div class="tab-pane fade" id="power-banks"> -->
                                             <!-- Product Not Found -->
-                                            <div class="product-not-found">
+                                            <!-- <div class="product-not-found">
                                                 <div class="not-found">
                                                     <h2>SORRY!</h2>
                                                     <h6>There is not any product in specific catalogue.</h6>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- Product Not Found /- -->
-                                        </div>
+                                        <!-- </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="mobiles-best-selling-products">
+                        </div> -->
+                        <!-- <div class="tab-pane fade" id="mobiles-best-selling-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
-                        <div class="tab-pane fade" id="mobiles-top-rating-products">
+                        <!-- </div>
+                        <div class="tab-pane fade" id="mobiles-top-rating-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
-                        <div class="tab-pane fade" id="mobiles-featured-products">
+                        <!-- </div>
+                        <div class="tab-pane fade" id="mobiles-featured-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
+                        <!-- </div>
                     </div>
                 </div>
-            </div>
-            <div class="redirect-link-wrapper text-center u-s-p-t-25 u-s-p-b-80">
+            </div> -->
+            <!-- <div class="redirect-link-wrapper text-center u-s-p-t-25 u-s-p-b-80">
                 <a class="redirect-link" href="store-directory.html">
                     <span>View more on this category</span>
                 </a>
             </div>
-        </div>
+        </div> -->
     </section>
     <!-- Mobiles-&-Tablets /- -->
     <!-- Consumer-Electronics -->
-    <section class="section-maker">
+    <!-- <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
                 <h3 class="sec-maker-h3">Consumer Electronics</h3>
@@ -3828,16 +3278,16 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="pc-and-accessories">
+                                        <div class="tab-pane fade" id="pc-and-accessories"> -->
                                             <!-- Product Not Found -->
-                                            <div class="product-not-found">
+                                            <!-- <div class="product-not-found">
                                                 <div class="not-found">
                                                     <h2>SORRY!</h2>
                                                     <h6>There is not any product in specific catalogue.</h6>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- Product Not Found /- -->
-                                        </div>
+                                        <!-- </div>
                                         <div class="tab-pane fade" id="tv">
                                             <div class="slider-fouc">
                                                 <div class="specific-category-slider owl-carousel" data-item="3">
@@ -4037,61 +3487,61 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="cam-corder">
+                                        </div> -->
+                                        <!-- <div class="tab-pane fade" id="cam-corder"> -->
                                             <!-- Product Not Found -->
-                                            <div class="product-not-found">
+                                            <!-- <div class="product-not-found">
                                                 <div class="not-found">
                                                     <h2>SORRY!</h2>
                                                     <h6>There is not any product in specific catalogue.</h6>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- Product Not Found /- -->
-                                        </div>
-                                        <div class="tab-pane fade" id="audio-amplifiers">
+                                        <!-- </div>
+                                        <div class="tab-pane fade" id="audio-amplifiers"> -->
                                             <!-- Product Not Found -->
-                                            <div class="product-not-found">
+                                            <!-- <div class="product-not-found">
                                                 <div class="not-found">
                                                     <h2>SORRY!</h2>
                                                     <h6>There is not any product in specific catalogue.</h6>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <!-- Product Not Found /- -->
-                                        </div>
+                                        <!-- </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="consumer-best-selling-products">
+                        </div> -->
+                        <!-- <div class="tab-pane fade" id="consumer-best-selling-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
-                        <div class="tab-pane fade" id="consumer-top-rating-products">
+                        <!-- </div>
+                        <div class="tab-pane fade" id="consumer-top-rating-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
-                        <div class="tab-pane fade" id="consumer-featured-products">
+                        <!-- </div>
+                        <div class="tab-pane fade" id="consumer-featured-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
+                        <!-- </div>
                     </div>
                 </div>
             </div>
@@ -4101,10 +3551,10 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Consumer-Electronics /- -->
     <!-- Books-&-Audible -->
-    <section class="section-maker">
+    <!-- <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
                 <h3 class="sec-maker-h3">Books & Audible</h3>
@@ -4302,36 +3752,36 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="books-best-selling-products">
+                        <div class="tab-pane fade" id="books-best-selling-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
-                        <div class="tab-pane fade" id="books-top-rating-products">
+                        <!-- </div>
+                        <div class="tab-pane fade" id="books-top-rating-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
-                        <div class="tab-pane fade" id="books-featured-products">
+                        <!-- </div>
+                        <div class="tab-pane fade" id="books-featured-products"> -->
                             <!-- Product Not Found -->
-                            <div class="product-not-found">
+                            <!-- <div class="product-not-found">
                                 <div class="not-found">
                                     <h2>SORRY!</h2>
                                     <h6>There is not any product in specific catalogue.</h6>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- Product Not Found /- -->
-                        </div>
+                        <!-- </div>
                     </div>
                 </div>
             </div>
@@ -4341,14 +3791,14 @@
                 </a>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- Books-&-Audible /- -->
     <!-- Continue-Link -->
-    <div class="continue-link-wrapper u-s-p-b-80">
+    <!-- <div class="continue-link-wrapper u-s-p-b-80">
         <a class="continue-link" href="store-directory.html" title="View all products on site">
             <i class="ion ion-ios-more"></i>
         </a>
-    </div>
+    </div> -->
     <!-- Continue-Link /- -->
     <!-- Brand-Slider -->
     <div class="brand-slider u-s-p-b-80">
@@ -4443,10 +3893,9 @@
     </section>
     <!-- Site-Priorities /- -->
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
+    <!-- z -->
             <!-- Outer-Footer -->
-            <div class="outer-footer-wrapper u-s-p-y-80">
+            <!-- <div class="outer-footer-wrapper u-s-p-y-80">
                 <h6>
                     For special offers and other discount information
                 </h6>
@@ -4461,7 +3910,7 @@
                     <input type="text" id="newsletter-field" placeholder="Your Email Address">
                     <button type="submit" class="button">SUBMIT</button>
                 </form>
-            </div>
+            </div> -->
             <!-- Outer-Footer /- -->
             <!-- Mid-Footer -->
             <div class="mid-footer-wrapper u-s-p-b-80">

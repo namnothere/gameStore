@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import com.user.user;
 
 // @WebServlet(name = "StoreController", urlPatterns = {"/home", "/"})
-@WebServlet(name = "StoreController", urlPatterns = {""})
+@WebServlet(name = "StoreController", urlPatterns = {"store"})
 public class servletStore extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
