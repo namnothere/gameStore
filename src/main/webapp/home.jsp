@@ -1,4 +1,4 @@
-<%@ page import="com.game.ProductUtils"%>
+
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
@@ -881,9 +881,7 @@
     </div>
     <!-- Banner-Layer /- -->
     <!-- Special Offers -->
-    <%  ProductUtils gameDB = new ProductUtils();
-        list<game> games = gameDB.getAllGames();
-        for (int k = 0; k < 10; k++) { %>
+    <% for (int k = 0; k < 10; k++) { %>
     <section class="section-maker">
         <div class="container">
             <div class="sec-maker-header text-center">
