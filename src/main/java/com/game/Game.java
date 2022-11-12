@@ -10,15 +10,15 @@ public class Game {
     public int ID;
     public String name;
     public String desc;
-    public List<String> videos;
-    public List<String> images;
+    public List<String> videos = new ArrayList<String>();
+    public List<String> images = new ArrayList<String>();
     public Float price;
     public boolean isFree;
-    public List<String> publishers;
-    public List<String> developers;
+    public List<String> publishers = new ArrayList<String>();
+    public List<String> developers = new ArrayList<String>();
     public int metacritic;
-    public List<category> categories;
-    public List<genre> genres;
+    public List<category> categories = new ArrayList<category>();
+    public List<genre> genres = new ArrayList<genre>();
     public String releaseDate;
     public String background_raw; // url to the raw image
 
@@ -67,8 +67,18 @@ public class Game {
         this.videos = videos;
         this.images = images;
         this.price = price;
+        //leave the rest null
+        this.isFree = false;
+        this.publishers = new ArrayList<String>();
+        this.developers = new ArrayList<String>();
+        this.metacritic = 0;
+        this.categories = new ArrayList<category>();
+        this.genres = new ArrayList<genre>();
+        this.releaseDate = "";
+        this.background_raw = "";
     }
 
+    
 
     public float getPrice() {
         return this.price;

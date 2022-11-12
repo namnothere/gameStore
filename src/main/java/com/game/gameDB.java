@@ -2,6 +2,7 @@ package com.game;
 
 import java.util.ArrayList;
 import java.util.List;
+// import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,7 +10,7 @@ import com.dataUtils.dataUtils;
 import com.mongodb.MongoException;
 
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
+// import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
@@ -17,7 +18,7 @@ import com.mongodb.client.result.InsertOneResult;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
-import org.json.JSONArray;
+// import org.json.JSONArray;
 
 public class gameDB {
 
@@ -28,7 +29,7 @@ public class gameDB {
     private static MongoClient connect() {
         if (gameDB.client == null) {
             LOGGER.log(Level.SEVERE, "mongoClient is null");
-            dataUtils.getMongoClientInstance();
+            gameDB.client = dataUtils.getMongoClientInstance();
             LOGGER.log(Level.INFO, "Successfully connected to the database");
         }
         return gameDB.client;
@@ -76,12 +77,27 @@ public class gameDB {
         //get the collection
         MongoCollection<Document> collection = database.getCollection("products");
 
+
+        //append document to the document
+        Document genreDoc = new Document();
+        List<genre> genres = game.getGenres();
+        for (genre g : genres) {
+            genreDoc.append(g.ID, g.description);
+        }
+
+        // Document publisherDoc = new Document();
+        // List<String> publishers = game.getPublishers();
+        // for (String p : publishers) {
+        //     publisherDoc.append(p.ID, p.description);
+        // }
+
+
         //create a document
         Document newGame = new Document("name", game.getName())
         .append("price", game.getPrice())
         .append("description", game.getDesc())
         .append("image", game.getImages())
-        .append("genre", game.getGenres())
+        .append("genre", genreDoc)
         .append("releaseDate", game.getReleaseDate())
         .append("publisher", game.getPublishers())
         .append("developer", game.getDevelopers())
@@ -115,12 +131,8 @@ public class gameDB {
                         add("https://www.google.com");
                     }
                 });
-                game.setGenres(new ArrayList<genre>() {
-                    {
-                        add(new genre("ID"+ innerI, "Genre " + innerI));
-                        add(new genre("ID_"+ innerI, "Genre__" + innerI));
-                    }
-                });
+                game.setCategories(new category("category_" + innerI, "description_" + innerI));
+                game.setGenres(new genre("genre_" + innerI, "description_" + innerI));
                 game.setReleaseDate("2020-01-01");
                 game.setPublishers(new ArrayList<String>() {
                         {
@@ -147,6 +159,7 @@ public class gameDB {
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
+        seedSampleGames();
 
     }
 

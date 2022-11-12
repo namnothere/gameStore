@@ -12,6 +12,7 @@ import java.util.List;
 // import org.bson.types.ObjectId;
 
 import com.dataUtils.dataUtils;
+import com.game.Game;
 // import com.game.ProductUtils;
 // import com.mongodb.client.MongoClient;
 // import com.mongodb.client.MongoClients;
@@ -31,7 +32,7 @@ public class user {
     private String avatar;
     private String role;
     private float balance;
-    private List<String> ownedGames;
+    private List<Integer> ownedGames = null;
 
 
     public user() {
@@ -111,23 +112,28 @@ public class user {
         this.balance = balance;
     }
 
-    public boolean buy(Transaction transaction) {
+    public boolean purchase(Transaction transaction) {
         //check if user has enough balance
         if (this.balance >= transaction.getTotal()) {
             //update user balance
             this.balance -= transaction.getTotal();
             //update transaction status
-            transaction.setStatus("success");
+            // transaction.setStatus("success");
             //update transaction payment method
-            transaction.setPaymentMethod("cash");
+            // transaction.setPaymentMethod("cash");
             
             //assign transaction to user
             transaction.setUser(this);
 
+            //add games to user owned games
+            for (Game game : transaction.getGames()) {
+                this.ownedGames.add(game.getID());
+            }
+
             //confirm transaction
             transaction.approve();
             //update user
-            userDB.updateUser(this);
+            userDB.updateUserBalance(this);
             //add transaction to database
             // transactionDB.addTransaction(transaction);
             return true;

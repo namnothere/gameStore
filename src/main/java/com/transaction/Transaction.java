@@ -190,8 +190,24 @@ public class Transaction {
     public boolean approve() {
         //user.buy will call this function to approve the transaction
         //and update it in database
+        setStatus("success");
+        //update the transaction in database
+        return transactionDB.updateTransaction(this);
+
+        // return false;
+    }
+
+    // public static getTransaction(String transactionCode) {
+    //     return transactionDB.getTransaction(transactionCode);
+    // }
+    public static void main(String[] args) throws Exception {
+        //Load our image
+        // byte[] imageBytes = LoadImage("C:/Temp/bear.bmp");
+        //Connect to database
+        // MongoClient client = MongoClients.create("mongodb://localhost:27017");
+
         
-        return false;
+
     }
 
 }
