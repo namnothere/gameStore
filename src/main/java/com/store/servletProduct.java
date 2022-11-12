@@ -6,15 +6,14 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-// @WebServlet("/game")
-@WebServlet(name = "GameController", urlPatterns = {"/game/*", "/product"})
+@WebServlet(name = "GameController", urlPatterns = {"/game/*/", "/product/*/"})
 public class servletProduct extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
         
-        String url = "/single-product.html";
+        String url = "/single-product.jsp";
         request.getRequestDispatcher(url).forward(request, response);
     }
     
@@ -27,12 +26,18 @@ public class servletProduct extends HttpServlet {
             //split the 100 and get the id
             
             String id = request.getPathInfo();
-            if (id==null) {
-                id = "0";
-            }
-            else {
-                id = id.substring(1);
-            }
+            request.setAttribute("id", id);
+            // if (id==null) {
+            //     id = "0";
+            // }
+            // else {
+            //     id = id.substring(1);
+            // }
+            PrintWriter out = response.getWriter(); 
+            out.println("<script type=\"text/javascript\">");  
+            out.println("alert('"+ id +"');");  
+            out.println("</script>");
+            System.out.println("getPathInfo: " + id);
             doPost(request, response);
             //generate the product using the id
             //send the product to the jsp

@@ -1,5 +1,8 @@
 package com.game;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -7,41 +10,39 @@ public class Game {
     public int ID;
     public String name;
     public String desc;
-    public JSONArray videos;
-    public JSONArray images;
-    public JSONObject prices;
+    public List<String> videos;
+    public List<String> images;
+    public Float price;
     public boolean isFree;
+    public List<String> publishers;
+    public List<String> developers;
+    public int metacritic;
+    public List<category> categories;
+    public List<genre> genres;
+    public String releaseDate;
+    public String background_raw; // url to the raw image
+
+    public Game() {
+
+    }
 
     public Game(String json, String ID) {
-        // JSONObject obj = new JSONObject(json).getJSONObject("data");
-        // the first key is the ID
-        // System.out.println(json);
         JSONObject game = new JSONObject(json);
-        // Iterator<String> keys = obj.keys();
-        // String key = keys;
-        // String id = String.valueOf(ID);
-        // JSONObject game = obj.getJSONObject(ID);
-        
-        
-
-        // this.ID = obj.getInt("steam_appid");
-        // this.name = obj.getString("name");
-        // this.desc = obj.getString("detailed_description");
 
         this.ID = Integer.valueOf(ID);
         this.name = game.getString("name");
         this.desc = game.getString("desc");
 
         if (game.has("videos")) {
-            this.videos = game.getJSONArray("videos");
+            this.videos = jsonArrayToList(game.getJSONArray("videos"));
         }
 
-        this.images = game.getJSONArray("images");
-        if (game.has("prices")) {
-            this.prices = game.getJSONObject("prices");
+        this.images = jsonArrayToList(game.getJSONArray("images"));
+        if (game.has("price_overview")) {
+            this.price = game.getJSONObject("price_overview").getFloat("initial") / 100;
         }
         else {
-            this.prices = null;
+            this.price = null;
         }
 
         if (game.has("is_free")) {
@@ -51,21 +52,26 @@ public class Game {
             this.isFree = false;
         }
 
-        // System.out.println("+ Name: " + this.name);
+        this.publishers = jsonArrayToList(game.getJSONArray("publishers"));
+        this.developers = jsonArrayToList(game.getJSONArray("developers"));
+        this.metacritic = game.getJSONObject("metacritic").getInt("score");
+        this.categories = jsonArrayToCategoryList(game.getJSONArray("categories"));
+        this.releaseDate = game.getString("release_date");
+        this.background_raw = game.getString("background_raw");
     }
 
-    public Game(int ID, String name, String desc, JSONArray videos, JSONArray images, JSONObject prices) {
+    public Game(int ID, String name, String desc, List<String> videos, List<String> images, Float price) {
         this.ID = ID;
         this.name = name;
         this.desc = desc;
         this.videos = videos;
         this.images = images;
-        this.prices = prices;
+        this.price = price;
     }
 
 
-    public float getPrice(String region) {
-        return this.prices.getFloat(region);
+    public float getPrice() {
+        return this.price;
     }
 
     public int getID() {
@@ -80,19 +86,151 @@ public class Game {
         return this.desc;
     }
     
-    public JSONArray getVideos() {
+    public List<String> getVideos() {
         return this.videos;
     }
 
-    public JSONArray getImages() {
+    public List<String> getImages() {
         return this.images;
     }
 
-    public JSONObject getPrices() {
-        return this.prices;
+    public List<String> getPublishers() {
+        return this.publishers;
     }
 
-    public JSONObject toJson() {
+    public List<String> getDevelopers() {
+        return this.developers;
+    }
+
+    public int getMetacritic() {
+        return this.metacritic;
+    }
+
+    public List<category> getCategories() {
+        return this.categories;
+    }
+
+    public List<genre> getGenres() {
+        return this.genres;
+    }
+
+    public String getReleaseDate() {
+        return this.releaseDate;
+    }
+
+    public String getBackground_raw() {
+        return this.background_raw;
+    }
+
+    public boolean getIsFree() {
+        return this.isFree;
+    }
+
+    public boolean setPrice(Float price) {
+        this.price = price;
+        return true;
+    }
+
+    public boolean setID(int ID) {
+        this.ID = ID;
+        return true;
+    }
+
+    public boolean setName(String name) {
+        this.name = name;
+        return true;
+    }
+
+
+    public boolean setDesc(String desc) {
+        this.desc = desc;
+        return true;
+    }
+
+    public boolean setVideos(List<String> videos) {
+        this.videos = videos;
+        return true;
+    }
+
+    public boolean setImages(List<String> images) {
+        this.images = images;
+        return true;
+    }
+
+    public boolean setFree(boolean isFree) {
+        this.isFree = isFree;
+        return true;
+    }
+
+    public boolean setPublishers(List<String> publishers) {
+        this.publishers = publishers;
+        return true;
+    }
+
+    public boolean setDevelopers(List<String> developers) {
+        this.developers = developers;
+        return true;
+    }
+
+    public boolean setMetacritic(int metacritic) {
+        this.metacritic = metacritic;
+        return true;
+    }
+
+    public boolean setCategories(List<category> categories) {
+        this.categories = categories;
+        return true;
+    }
+    public boolean setCategories(category category) {
+        this.categories.add(category);
+        return true;
+    }
+
+    public boolean setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+        return true;
+    }
+
+    public boolean setBackgroundRaw(String background_raw) {
+        this.background_raw = background_raw;
+        return true;
+    }
+
+    public boolean setGenres(List<genre> genres) {
+        this.genres = genres;
+        return true;
+    }
+
+    public boolean setGenres(genre genre) {
+        this.genres.add(genre);
+        return true;
+    }
+
+    public boolean setRating(int i) {
+        this.metacritic = i;
+        return true;
+    }
+
+    public List<String> jsonArrayToList(JSONArray jsonArray) {
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            list.add(jsonArray.getString(i));
+        }
+        return list;
+    }
+
+    public List<category> jsonArrayToCategoryList(JSONArray jsonArray) {
+        List<category> list = new ArrayList<category>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONObject obj = jsonArray.getJSONObject(i);
+            String id = obj.getString("id");
+            String description = obj.getString("description");
+            list.add(new category(id, description));
+        }
+        return list;
+    }
+
+    public JSONObject toJSON() {
         JSONObject obj = new JSONObject();
 
         
@@ -103,7 +241,7 @@ public class Game {
         gameInfos.put("desc", this.desc);
         gameInfos.put("videos", this.videos);
         gameInfos.put("images", this.images);
-        gameInfos.put("prices", this.prices);
+        gameInfos.put("price", this.price);
         gameInfos.put("isFree", this.isFree);
 
         obj.put(Integer.toString(this.ID), gameInfos);

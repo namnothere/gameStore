@@ -2650,7 +2650,8 @@ body {
     .r-1 .total-score-wrapper .circle-wrapper {
       width: 85px;
       height: 85px;
-      border: 1px solid #292929;
+      /* border: 1px solid #292929; */
+      border: 1.5px solid #ffffff;
       border-radius: 50%;
       margin: 0 auto 8px; }
       .r-1 .total-score-wrapper .circle-wrapper > h1 {

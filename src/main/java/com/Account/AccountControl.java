@@ -1,4 +1,4 @@
-package com.Account;
+/* package com.Account;
 
 import java.io.IOException;
 import java.io.PrintWriter;  
@@ -113,3 +113,4 @@ public class AccountControl extends HttpServlet {
         
     }
 }
+ */

@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/utility.css">
     <!-- Main -->
     <link rel="stylesheet" href="css/bundle.css">
+    <!-- <link rel="stylesheet" href="css/bundle.blue.css"> -->
 </head>
 
 <body>
@@ -913,7 +914,7 @@
                         <div class="section-1-title-breadcrumb-rating">
                             <div class="product-title">
                                 <h1>
-                                    <a href="single-product.html">Casual Hoodie Full Cotton</a>
+                                    <p></p>
                                 </h1>
                             </div>
                             <div class="product-rating">

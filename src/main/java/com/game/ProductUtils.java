@@ -1,6 +1,4 @@
-package com.store;
-
-import com.game.Game;
+package com.game;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -22,7 +20,7 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.json.JSONObject;
 
-public class MongoUtils {
+public class ProductUtils {
     // private static final String HOST = "localhost";
     // private static final int PORT = 27017;
   
@@ -31,12 +29,12 @@ public class MongoUtils {
   
     private static MongoClient client = null;
 
-    public MongoUtils() {
-        MongoUtils.client = getMongoClient_2();
+    public ProductUtils() {
+        ProductUtils.client = getMongoClient_2();
     }
 
-    public MongoUtils(MongoClient client) {
-        MongoUtils.client = client;
+    public ProductUtils(MongoClient client) {
+        ProductUtils.client = client;
     }
 
     private static MongoClient getMongoClient_2() {
@@ -47,8 +45,10 @@ public class MongoUtils {
 
     public static List<Game> getAllGames() {
         //read game data from MongoDB
-        // MongoClient mongoClient = getMongoClient_2();
-        MongoClient mongoClient = MongoUtils.client;
+        MongoClient mongoClient = ProductUtils.client;
+        if (client == null) {
+            mongoClient = getMongoClient_2();
+        }
         MongoDatabase database = mongoClient.getDatabase("gameStore");
         MongoCollection<Document> collection = database.getCollection("products");
 
@@ -103,7 +103,7 @@ public class MongoUtils {
             Document doc = collection.find().first();
             JSONObject apps = new JSONObject(doc.get("applist", Document.class).get("apps", Document.class).toJson());
             for (Game game : games) {
-                JSONObject gameObj = game.toJson();
+                JSONObject gameObj = game.toJSON();
                 apps.put(Integer.toString(game.getID()), gameObj.get(Integer.toString(game.getID())));
             }
             // collection.updateOne(doc, new Document("$set", doc));
@@ -133,11 +133,11 @@ public class MongoUtils {
     // Test
 
     public static MongoClient getClient() {
-        return MongoUtils.client;
+        return ProductUtils.client;
     }
     
     public static String alive() {
-        if (MongoUtils.client == null) {
+        if (ProductUtils.client == null) {
             return "false";
         }
         return "alive";
