@@ -1,11 +1,15 @@
+<<<<<<< HEAD
 com\game\ProductUtils.class
 com\transaction\Transaction.class
 com\game\gameDB$4.class
+=======
+com\game\cartGame.class
+>>>>>>> dataInteract
 com\store\servletStore.class
-com\user\userDB.class
 com\game\Game.class
 com\store\servletStore$1.class
 com\user\changePasswordAction.class
+<<<<<<< HEAD
 com\game\gameDB.class
 com\user\userDB$ResponseData.class
 com\game\category.class
@@ -20,4 +24,27 @@ com\game\gameDB$2.class
 com\store\servletProduct.class
 com\game\gameDB$1.class
 com\store\servletStore$2.class
+=======
+com\user\userDB$ResponseData.class
+com\game\category.class
+com\game\gameDB$3.class
+com\store\PageNotFound.class
+com\game\genre.class
+com\cart\Cart.class
+com\store\servletProduct.class
+com\game\gameDB$1.class
+com\store\jsp_example$3.class
+com\game\ProductUtils.class
+com\transaction\Transaction.class
+com\user\userDB.class
+com\game\gameDB.class
+com\store\jsp_example$1.class
+com\dataUtils\dataUtils.class
+com\store\servletUser.class
+com\store\jsp_example$2.class
+com\user\user.class
+com\store\jsp_example.class
+com\user\servletLogin.class
+com\game\gameDB$2.class
+>>>>>>> dataInteract
 com\transaction\transactionDB.class

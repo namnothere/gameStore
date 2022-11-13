@@ -127,12 +127,12 @@ public class Transaction {
 
     public void addGame(Game game) {
         this.games.add(game);
-        this.total += game.getPriceFinal();
+        this.total += game.getInitialPrice();
     }
 
     public void removeGame(Game game) {
         this.games.remove(game);
-        this.total -= game.getPriceFinal();
+        this.total -= game.getInitialPrice();
     }
 
     public String getStatus() {
@@ -170,7 +170,7 @@ public class Transaction {
     public void calTotal() {
         float total = 0;
         for (Game game : this.games) {
-            total += game.getPriceFinal();
+            total += game.getInitialPrice();
         }
         this.total = total;
     }
@@ -190,8 +190,24 @@ public class Transaction {
     public boolean approve() {
         //user.buy will call this function to approve the transaction
         //and update it in database
+        setStatus("success");
+        //update the transaction in database
+        return transactionDB.updateTransaction(this);
+
+        // return false;
+    }
+
+    // public static getTransaction(String transactionCode) {
+    //     return transactionDB.getTransaction(transactionCode);
+    // }
+    public static void main(String[] args) throws Exception {
+        //Load our image
+        // byte[] imageBytes = LoadImage("C:/Temp/bear.bmp");
+        //Connect to database
+        // MongoClient client = MongoClients.create("mongodb://localhost:27017");
+
         
-        return false;
+
     }
 
 }

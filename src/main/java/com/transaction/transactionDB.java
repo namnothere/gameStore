@@ -79,6 +79,50 @@ public class transactionDB {
         return transaction;
     }
 
+    public static Transaction getTransaction(String transactionCode) {
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("transactions");
+
+        //declare filter to find the transaction
+        Document filter = new Document("transactionCode", transactionCode);
+
+        //find the user, return the first one
+        Document doc = collection.find(filter).first();
+        if (doc == null) {
+            return null;
+        }
+
+        //create a new game object
+        Transaction transaction = new Transaction(doc);
+
+        return transaction;
+    }
+
+    public static boolean updateTransaction(Transaction transaction) {
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("transactions");
+
+        //create a document
+        Document newTransaction = new Document("date", transaction.getDate())
+        .append("transactionCode", transaction.getTransactionCode())
+        .append("games", transaction.getGames());
+
+        //update the document
+        collection.updateOne(Filters.eq("transactionCode", transaction.getTransactionCode()), new Document("$set", newTransaction));
+
+        return true;
+    }
+
     public static boolean seedSampleTransactions() {
         try {
             for (int i = 0; i < 10; i++) {
