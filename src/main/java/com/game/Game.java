@@ -12,13 +12,14 @@ public class Game {
     public String desc;
     public List<String> videos;
     public List<String> images;
-    public Float price;
+    public Float priceInitial;
+    public Float priceFinal;
     public boolean isFree;
     public List<String> publishers;
     public List<String> developers;
     public int metacritic;
-    public List<category> categories;
-    public List<genre> genres;
+    public List<category> categories = new ArrayList<category>();
+    public List<genre> genres = new ArrayList<genre>();
     public String releaseDate;
     public String background_raw; // url to the raw image
 
@@ -31,18 +32,20 @@ public class Game {
 
         this.ID = Integer.valueOf(ID);
         this.name = game.getString("name");
-        this.desc = game.getString("desc");
+        this.desc = game.getString("description");
 
         if (game.has("videos")) {
             this.videos = jsonArrayToList(game.getJSONArray("videos"));
         }
 
-        this.images = jsonArrayToList(game.getJSONArray("images"));
+        this.images = jsonArrayToList(game.getJSONArray("image"));
         if (game.has("price_overview")) {
-            this.price = game.getJSONObject("price_overview").getFloat("initial") / 100;
+            this.priceInitial = game.getJSONObject("price_overview").getFloat("initial") / 100;
+            this.priceFinal = game.getJSONObject("price_overview").getFloat("final") / 100;
         }
         else {
-            this.price = null;
+            this.priceInitial = null;
+            this.priceFinal = null;
         }
 
         if (game.has("is_free")) {
@@ -60,18 +63,22 @@ public class Game {
         this.background_raw = game.getString("background_raw");
     }
 
-    public Game(int ID, String name, String desc, List<String> videos, List<String> images, Float price) {
+    public Game(int ID, String name, String desc, List<String> videos, List<String> images, Float priceInitial, Float priceFinal) {
         this.ID = ID;
         this.name = name;
         this.desc = desc;
         this.videos = videos;
         this.images = images;
-        this.price = price;
+        this.priceInitial = priceInitial;
+        this.priceFinal = priceFinal;
     }
 
 
-    public float getPrice() {
-        return this.price;
+    public float getPriceInitial() {
+        return this.priceInitial;
+    }
+    public float getPriceFinal() {
+        return this.priceFinal;
     }
 
     public int getID() {
@@ -126,8 +133,12 @@ public class Game {
         return this.isFree;
     }
 
-    public boolean setPrice(Float price) {
-        this.price = price;
+    public boolean setPriceInitial(Float priceInitial) {
+        this.priceInitial = priceInitial;
+        return true;
+    }
+    public boolean setPriceFinal(float priceFinal) {
+        this.priceFinal = priceFinal;
         return true;
     }
 
@@ -241,7 +252,8 @@ public class Game {
         gameInfos.put("desc", this.desc);
         gameInfos.put("videos", this.videos);
         gameInfos.put("images", this.images);
-        gameInfos.put("price", this.price);
+        gameInfos.put("priceInitial", this.priceInitial);
+        gameInfos.put("priceFinal", this.priceFinal);
         gameInfos.put("isFree", this.isFree);
 
         obj.put(Integer.toString(this.ID), gameInfos);
