@@ -127,12 +127,12 @@ public class Transaction {
 
     public void addGame(Game game) {
         this.games.add(game);
-        this.total += game.getPrice();
+        this.total += game.getPriceFinal();
     }
 
     public void removeGame(Game game) {
         this.games.remove(game);
-        this.total -= game.getPrice();
+        this.total -= game.getPriceFinal();
     }
 
     public String getStatus() {
@@ -170,7 +170,7 @@ public class Transaction {
     public void calTotal() {
         float total = 0;
         for (Game game : this.games) {
-            total += game.getPrice();
+            total += game.getPriceFinal();
         }
         this.total = total;
     }

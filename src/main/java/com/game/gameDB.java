@@ -43,17 +43,17 @@ public class gameDB {
         gameDB.client = client;
     }
 
-    public static Game getGame(String name) {
+    public static Game getGame(String id) {
         //connect to the database
         MongoClient client = connect();
-
+        System.out.println(id);
         //get the database
         MongoDatabase database = client.getDatabase("gameStore");
         //get the collection
         MongoCollection<Document> collection = database.getCollection("products");
 
         //declare filter to find the game
-        Bson filter = Filters.eq("name", name);
+        Bson filter = Filters.eq("id", id);
 
         //find the user, return the first one
         Document doc = collection.find(filter).first();
@@ -62,7 +62,7 @@ public class gameDB {
         }
 
         //create a new game object
-        Game game = new Game(doc.toJson(), doc.getString("steam_appid"));
+        Game game = new Game(doc.toJson(), doc.getString("id"));
         return game;
     }
 
@@ -78,7 +78,8 @@ public class gameDB {
 
         //create a document
         Document newGame = new Document("name", game.getName())
-        .append("price", game.getPrice())
+        .append("priceInitial", game.getPriceInitial())
+        .append("priceFinal", game.getPriceFinal())
         .append("description", game.getDesc())
         .append("image", game.getImages())
         .append("genre", game.getGenres())
@@ -107,7 +108,8 @@ public class gameDB {
                 final Integer innerI = Integer.valueOf(i);
 
                 game.setName("Game " + i);
-                game.setPrice((float) 10.00);
+                game.setPriceInitial((float) 10.00);
+                game.setPriceFinal((float) 5.00);
                 game.setDesc("This is a sample game");
                 game.setImages(new ArrayList<String>() {
                     {

@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
@@ -881,77 +881,75 @@
     </div>
     <!-- Banner-Layer /- -->
     <!-- Special Offers -->
-    <% for (int k = 0; k < 10; k++) { %>
-    <section class="section-maker">
-        <div class="container">
-            <div class="sec-maker-header text-center">
-                <h3 class="sec-maker-h3">Special Offers</h3>
-            </div>
-            <div class="wrapper-content">
-                <div class="outer-area-tab">
-                    <div class="tab-content">
-                        <div class="tab-pane active show fade">
-                            <div class="slider-fouc">
-                                <div class="products-slider owl-carousel" data-item="4">
-                                    <% for (int i = 0; i < 12; i++) { %>
-                                        <div class="item">
-                                            <div class="image-container">
-                                                <a class="item-img-wrapper-link" href="single-product.html">
-                                                    <img class="img-fluid" src="images/product/product@3x.jpg" alt="Product">
-                                                </a>
-                                                <div class="item-action-behaviors">
-                                                    <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
+    <c:forEach var="genre" items="${genres}"> 
+        <section class="section-maker">
+            <div class="container">
+                <div class="sec-maker-header text-center">
+                    <h3 class="sec-maker-h3">${genre}</h3>
+                </div>
+                <div class="wrapper-content">
+                    <div class="outer-area-tab">
+                        <div class="tab-content">
+                            <div class="tab-pane active show fade">
+                                <div class="slider-fouc">
+                                    <div class="products-slider owl-carousel" data-item="4">
+                                        <c:forEach var="game" items="${games}">
+                                            <div class="item">
+                                                <div class="image-container">
+                                                    <a class="item-img-wrapper-link" href="single-product.html">
+                                                        <img class="img-fluid" src="${game.images[0]}" alt="Product">
                                                     </a>
-                                                    <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                    <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                    <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                                    <div class="item-action-behaviors">
+                                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
+                                                        </a>
+                                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
+                                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
+                                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="item-content">
-                                                <div class="what-product-is">
-                                                    <ul class="bread-crumb">
-                                                        <% for (int j = 0; i < 3; i++) { %>
-                                                            <li class="has-separator">
-                                                                <a href="shop-v1-root-category.html">Men's</a>
-                                                            </li>
-                                                        <% } %>
-                                                        <li>
-                                                            <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                                        </li>
-                                                    </ul>
-                                                    <h6 class="item-title">
-                                                        <a href="single-product.html">Casual Hoodie Full Cotton</a>
-                                                    </h6>
-                                                    <div class="item-stars">
-                                                        <div class='star' title="0 out of 5 - based on 0 Reviews">
-                                                            <span style='width:0'></span>
+                                                <div class="item-content">
+                                                    <div class="what-product-is">
+                                                        <ul class="bread-crumb">
+                                                            <c:forEach var="genre_single" items="${game.getGenres()}">
+                                                                <li class="has-separator">
+                                                                    <a href="shop-v1-root-category.html">${genre_single}</a>
+                                                                </li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                        <h6 class="item-title">
+                                                            <a href="single-product.html">${game.name}</a>
+                                                        </h6>
+                                                        <div class="item-stars">
+                                                            <div class='star' title="0 out of 5 - based on 0 Reviews">
+                                                                <span style='width:0'></span>
+                                                            </div>
+                                                            <span>${game.metacritic}</span>
                                                         </div>
-                                                        <span>(0)</span>
+                                                    </div>
+                                                    <div class="price-template">
+                                                        <div class="item-new-price">
+                                                            ${game.priceInitial}
+                                                        </div>
+                                                        <div class="item-old-price">
+                                                            ${game.priceFinal}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="price-template">
-                                                    <div class="item-new-price">
-                                                        $55.00
-                                                    </div>
-                                                    <div class="item-old-price">
-                                                        $60.00
-                                                    </div>
+                                                <div class="tag new">
+                                                    <span>NEW</span>
                                                 </div>
                                             </div>
-                                            <div class="tag new">
-                                                <span>NEW</span>
-                                            </div>
-                                        </div>
-                                    <% } %>
+                                        </c:forEach>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <% } %>
+        </section>
+    </c:forEach>
+    
     <!-- Men-Clothing-Timing-Section -->
     <!-- <section class="section-maker">
         <div class="container">
@@ -4189,7 +4187,7 @@
                                                 <option value="1">Heather Grey</option>
                                                 <option value="3">Black</option>
                                                 <option value="5">White</option>
-                                            </select>
+             all                               </select>
                                         </div>
                                     </div>
                                     <div class="sizes u-s-m-b-11">

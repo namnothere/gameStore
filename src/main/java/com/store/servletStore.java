@@ -7,15 +7,20 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 // import com.store.MongoUtils;
 import com.user.user;
+import java.util.ArrayList;
+import java.util.List;
+import com.game.Game;
+import com.game.category;
+import com.game.genre;
 
 // @WebServlet(name = "StoreController", urlPatterns = {"/home", "/"})
-@WebServlet(name = "StoreController", urlPatterns = {"store"})
+@WebServlet(name = "StoreController", urlPatterns = {""})
 public class servletStore extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         doGet(request, response);
     }
     
@@ -61,8 +66,53 @@ public class servletStore extends HttpServlet {
         // else {
         //     System.out.println("GET - Session already exists");
         // }
+        }
+         //create a list of games
+         List<Game> games = new ArrayList<Game>();
+         List<String> genres = new ArrayList<String>();
 
+         //create 5 games
+         for (int i = 0; i < 5; i++) {
+             Game game = new Game();
+             final Integer innerI = Integer.valueOf(i);
+             game.setName("Game " + innerI);
+             game.setPriceInitial((float) 10.00);
+             game.setPriceFinal((float) 5.00);
+             game.setDesc("This is a sample game");
+             game.setImages(new ArrayList<String>() {
+                 {
+                     add("https://preview.redd.it/kbuawznk8u241.jpg?width=640&crop=smart&auto=webp&s=31cb0765c9a3bc3132a4f75488a87574c0471248");
+                     add("https://preview.redd.it/kbuawznk8u241.jpg?width=640&crop=smart&auto=webp&s=31cb0765c9a3bc3132a4f75488a87574c0471248");
+                 }
+             });
+             game.setCategories(new category("category_" + i, "description_" + i));
+             game.setGenres(new genre("genre_" + i, "description_" + i));
+             game.setReleaseDate("2020-01-01");
+             game.setPublishers(new ArrayList<String>() {
+                     {
+                         add("Publisher " + innerI);
+                         add("SecondPublisher " + innerI);
+                     }
+                 });
+             game.setDevelopers(new ArrayList<String>() {
+                 {
+                     add("Developer " + innerI);
+                     add("SecondDeveloper " + innerI);
+                 }
+             });
+             game.setRating(0);
+ 
+             games.add(game);
+         }
+         
+         //create 5 categories
+         for (int i = 0; i < 5; i++) {
+            genres.add("genre " + i);
+         }
+ 
+         //pass sample data to the jsp
+        request.setAttribute("games", games);
+        request.setAttribute("genres", genres);
         request.getRequestDispatcher(url).forward(request, response);
-    }
     }
 }
