@@ -71,7 +71,8 @@ public class ProductUtils {
         while (keys.hasNext()) {
             String key = keys.next();
             JSONObject game = obj.getJSONObject(key);
-            games.add(new Game(game.toString(), key));
+            Integer id = game.getInt("id");
+            games.add(new Game(game.toString(), id));
         }
         
         for (Game game : games) {
@@ -94,7 +95,7 @@ public class ProductUtils {
             while (keys.hasNext()) {
                 String key = keys.next();
                 JSONObject gameObj = obj.getJSONObject(key);
-                games.add(new Game(gameObj.toString(), key));
+                // games.add(new Game(gameObj.toString(), key));
             }
 
             MongoClient mongoClient = getMongoClient_2();
