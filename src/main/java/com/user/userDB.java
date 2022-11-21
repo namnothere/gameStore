@@ -68,7 +68,7 @@ public class userDB {
     private static MongoClient connect() {
         if (userDB.client == null) {
             LOGGER.log(Level.SEVERE, "mongoClient is null");
-            dataUtils.getMongoClientInstance();
+            userDB.client = dataUtils.getMongoClientInstance();
             LOGGER.log(Level.INFO, "Successfully connected to the database");
         }
         return userDB.client;
@@ -93,6 +93,10 @@ public class userDB {
         }
 
         //create a user object from the document
+
+        // Float balance = (Float)doc.getDouble("balance");
+
+
         user user = new user(
             doc.getString("name"),
             doc.getString("username"),
@@ -100,7 +104,7 @@ public class userDB {
             doc.getString("email"),
             doc.getString("avatar"),
             doc.getString("role"),
-            doc.getInteger("balance")
+            doc.getDouble("balance")
         );
         return user;
     }
@@ -252,7 +256,7 @@ public class userDB {
                 doc.getString("email"),
                 doc.getString("avatar"),
                 doc.getString("role"),
-                doc.getInteger("balance")
+                doc.getDouble("balance")
             );
             ResponseData data = new ResponseData(true, user);
             return data;
@@ -293,6 +297,7 @@ public class userDB {
 
     public static boolean login(String username, String password) {
         //get user from db
+
         user user = getUser(username);
         if (user == null) {
             return false;
@@ -347,7 +352,7 @@ public class userDB {
                     "email" + i,
                     "avatar" + i,
                     "user",
-                    1000
+                    1000.0
                 ));
             }
         }
@@ -371,7 +376,7 @@ public class userDB {
         // }
         
         //seedSample data for testing: 10 users
-        seedSampleUsers();
+        // seedSampleUsers();
 
         // ====================================================================================================
 
@@ -396,8 +401,8 @@ public class userDB {
         // ====================================================================================================
 
         //delete user
-        // user User = userDB.getUser("admin");
-        // boolean del = userDB.deleteUser(User);
+        // user User = userDB.getUser("zdragonz999");
+        // boolean del = userDB.deleteUser("zdragonz999");
         // if (del) {
         //     LOGGER.log(Level.INFO, "Successfully deleted user");
         // }

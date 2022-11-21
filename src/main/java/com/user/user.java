@@ -6,6 +6,8 @@ import java.io.FileInputStream;
 // import java.io.Serializable;
 import java.util.List;
 
+import com.cart.Cart;
+
 // import javax.servlet.http.HttpSession;
 
 // import org.bson.Document;
@@ -31,7 +33,8 @@ public class user {
     private String password;
     private String avatar;
     private String role;
-    private float balance;
+    private double balance;
+    private Cart cart;
     private List<Integer> ownedGames = null;
 
 
@@ -44,9 +47,10 @@ public class user {
         role = "user";
         balance = 0;
         ownedGames = null;
+        cart = null;
     }
 
-    public user(String name, String username, String email, String password, String avatar, String role, float balance) {
+    public user(String name, String username, String email, String password, String avatar, String role, Double balance) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -104,13 +108,31 @@ public class user {
         this.role = role;
     }
 
-    public float getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
     public void setBalance(float balance) {
         this.balance = balance;
     }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
+    }
+
+    public List<Integer> getOwnedGames() {
+        return ownedGames;
+    }
+
+    public void setOwnedGames(List<Integer> ownedGames) {
+        this.ownedGames = ownedGames;
+    }
+
+
 
     public boolean purchase(Transaction transaction) {
         //check if user has enough balance

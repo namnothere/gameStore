@@ -238,7 +238,6 @@ public class gameDB {
     }
 
 
-
     public static List<Game> getGamesByCategory(Integer categoryID, Integer limit) {
         //connect to the database
         MongoClient client = connect();
@@ -330,6 +329,7 @@ public class gameDB {
     }
 
     public static List<Game> sortAlphabet(List<Game> games) {
+        //pull games from database if null
 
         //sort and return if games is not null
         if (games != null) {
@@ -419,6 +419,52 @@ public class gameDB {
         return games;
     }
 
+    public static List<Game> getGamesByName(String name, Integer limit) {
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("products");
+
+        //declare filter to find the game with similar name with case insensitive
+        Bson filter = Filters.regex("name", name, "i");
+
+        List<Document> docs = new ArrayList<Document>();
+
+        //find games, return limit number of games
+        //default limit being 0 means no limit
+        if (limit == 0) {
+            docs = collection.find(filter).into(new ArrayList<Document>());
+        } else {
+            docs = collection.find(filter).limit(limit).into(new ArrayList<Document>());
+        }
+
+        if (docs == null || docs.size() == 0) {
+            //no games found / category not found
+            LOGGER.log(Level.INFO, "No games found for name: " + name);
+            return null;
+        }
+
+        //create a list of games
+        List<Game> games = new ArrayList<Game>();
+
+        //iterate through the documents
+        for (Document doc : docs) {
+            //create a new game object
+            Game game = new Game(doc.toJson(), doc.getInteger("id"));
+            games.add(game);
+        }
+        return games;
+    }
+
+
+    public static List<Game> getGamesByName(String name) {
+        return getGamesByName(name, 0);
+    }
+
+
     public static void showGame(Game game) {
         System.out.println("Game ID: " + game.getID());
         System.out.println("Game Name: " + game.getName());
@@ -466,7 +512,12 @@ public class gameDB {
             //get games by prices range
             //current database using USD as currency
             //3999 -> 39.99
-            List<Game> games = getGamesByPrice(50 * 100, 100 * 100, 0, false);
+            // List<Game> games = getGamesByPrice(50 * 100, 100 * 100, 0, false);
+
+            //get games by name
+            List<Game> games = getGamesByName("d", 10);
+            //return dota 2 and dota underlords
+            //pretty much working as intended
 
             //show games found
             if (games != null) {
