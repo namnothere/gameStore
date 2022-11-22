@@ -6,8 +6,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
-import com.game.Game;
-import com.game.gameDB;
+import com.game.*;
+
 
 @WebServlet(name = "GameController", urlPatterns = {"/game/*", "/product"})
 public class servletProduct extends HttpServlet {
@@ -38,8 +38,20 @@ public class servletProduct extends HttpServlet {
                 id = "0";
             }
             Game game = new Game();
-            game = GameDB.getGame(id);
+            game = GameDB.getGame(Integer.parseInt(id));
+            List<Game> similarGames = new ArrayList<Game>();
+            for (category cat : game.categories)
+            {
+                List<Game> temp = GameDB.getGamesByCategory(cat.ID, 10);
+                if (!(similarGames.stream().map(Game::getName).filter(temp.get(0).getName()::equals).findFirst().isPresent()))
+                {
+                    similarGames.add(temp.get(0));
+                }
+                
+            }
+
             request.setAttribute("game", game);
+            request.setAttribute("similarGames", similarGames);
             //System.out.println(game.name);
             doPost(request, response);
             //generate the product using the id

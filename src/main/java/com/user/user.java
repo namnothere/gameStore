@@ -31,7 +31,7 @@ public class user {
     private String password;
     private String avatar;
     private String role;
-    private float balance;
+    private double balance;
     private List<Integer> ownedGames = null;
 
 
@@ -46,7 +46,7 @@ public class user {
         ownedGames = null;
     }
 
-    public user(String name, String username, String email, String password, String avatar, String role, float balance) {
+    public user(String name, String username, String email, String password, String avatar, String role, Double balance) {
         this.name = name;
         this.username = username;
         this.email = email;
@@ -104,7 +104,7 @@ public class user {
         this.role = role;
     }
 
-    public float getBalance() {
+    public double getBalance() {
         return balance;
     }
 

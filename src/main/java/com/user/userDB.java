@@ -67,7 +67,7 @@ public class userDB {
     private static MongoClient connect() {
         if (userDB.client == null) {
             LOGGER.log(Level.SEVERE, "mongoClient is null");
-            dataUtils.getMongoClientInstance();
+            userDB.client = dataUtils.getMongoClientInstance();
             LOGGER.log(Level.INFO, "Successfully connected to the database");
         }
         return userDB.client;
@@ -95,11 +95,11 @@ public class userDB {
         user user = new user(
             doc.getString("name"),
             doc.getString("username"),
-            doc.getString("password"),
             doc.getString("email"),
+            doc.getString("password"),
             doc.getString("avatar"),
             doc.getString("role"),
-            doc.getInteger("balance")
+            doc.getDouble("balance")
         );
         return user;
     }
@@ -152,7 +152,8 @@ public class userDB {
             .append("username", user.getUsername())
             .append("email", user.getEmail())
             .append("password", hashedPassword)
-            .append("avatar", user.getAvatar());
+            .append("avatar", user.getAvatar())
+            .append("balance", user.getBalance());
 
             //insert new user document
             InsertOneResult result = collection.insertOne(newUser);
@@ -251,7 +252,7 @@ public class userDB {
                 doc.getString("email"),
                 doc.getString("avatar"),
                 doc.getString("role"),
-                doc.getInteger("balance")
+                doc.getDouble("balance")
             );
             ResponseData data = new ResponseData(true, user);
             return data;
@@ -296,7 +297,6 @@ public class userDB {
         if (user == null) {
             return false;
         }
-
         //compare password
         //database only contains hased password
         if (user.getPassword().equals(dataUtils.hashPassword(password))) {
@@ -346,7 +346,7 @@ public class userDB {
                     "email" + i,
                     "avatar" + i,
                     "user",
-                    1000
+                    1000.0
                 ));
             }
         }
@@ -370,7 +370,7 @@ public class userDB {
         // }
         
         //seedSample data for testing: 10 users
-        seedSampleUsers();
+        //seedSampleUsers();
 
         // ====================================================================================================
 
@@ -395,7 +395,8 @@ public class userDB {
         // ====================================================================================================
 
         //delete user
-        // user User = userDB.getUser("admin");
+        // user User = userDB.getUser("zdragonz999");
+        // System.out.println(User);
         // boolean del = userDB.deleteUser(User);
         // if (del) {
         //     LOGGER.log(Level.INFO, "Successfully deleted user");

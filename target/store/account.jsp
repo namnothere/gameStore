@@ -882,7 +882,7 @@
                             </div>
                             <div class="group-inline u-s-m-b-30">
                                 <div class="group-1">
-                                    <input type="checkbox" class="check-box" id="remember-me-token">
+                                    <input type="checkbox" class="check-box" id="remember-me-token" name="remember-me">
                                     <label class="label-text" for="remember-me-token">Remember me</label>
                                 </div>
                                 <div class="group-2 text-right">

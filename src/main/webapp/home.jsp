@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
@@ -10,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Groover - Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more</title>
+    <title>Groover - Online Shopping for Games and Softwares</title>
     <!-- Standard Favicon -->
     <link href="favicon.ico" rel="shortcut icon">
     <!-- Base Google Font for Web-app -->
@@ -47,49 +48,58 @@
                 <nav>
                     <ul class="primary-nav g-nav">
                         <li>
-                            <a href="tel:+111444989">
+                            <a href="tel:+84819200602">
                                 <i class="fas fa-phone u-c-brand u-s-m-r-9"></i>
-                                Telephone:+111-444-989</a>
+                                Telephone:+848-81920-0602</a>
                         </li>
                         <li>
-                            <a href="mailto:contact@domain.com">
+                            <a href="mailto:20110386@student.hcmute.edu.vn">
                                 <i class="fas fa-envelope u-c-brand u-s-m-r-9"></i>
-                                E-mail: contact@domain.com
+                                E-mail: 20110386@student.hcmute.edu.vn
                             </a>
                         </li>
                     </ul>
                 </nav>
                 <nav>
+                    
                     <ul class="secondary-nav g-nav">
                         <li>
-                            <!-- <a href="profile.html">My Account -->
-                            <a href="${pageContext.request.contextPath}/profile">My Account
-                                <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                            </a>
-                            <ul class="g-dropdown" style="width:200px">
-                                <li>
-                                    <a href="cart.jsp">
-                                        <i class="fas fa-cog u-s-m-r-9"></i>
-                                        My Cart</a>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html">
-                                        <i class="far fa-heart u-s-m-r-9"></i>
-                                        My Wishlist</a>
-                                </li>
-                                <li>
-                                    <a href="checkout.html">
-                                        <i class="far fa-check-circle u-s-m-r-9"></i>
-                                        Checkout</a>
-                                </li>
-                                <li>
-                                    <a href="account.jsp">
+                            <c:choose>
+                                <c:when test="${sessionScope.logined == 'true'}">
+                                    <a>${sessionScope.user.name}
+                                        <i class="fas fa-chevron-down u-s-m-l-9"></i>
+                                    </a>
+                                    <ul class="g-dropdown" style="width:200px">
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/profile">
+                                                <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
+                                                My Profile</a>
+                                        </li>
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/cart.jsp">
+                                                <i class="fas fa-cog u-s-m-r-9"></i>
+                                                My Cart</a>
+                                        </li>
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/wishlist.jsp">
+                                                <i class="far fa-heart u-s-m-r-9"></i>
+                                                My Wishlist</a>
+                                        </li>
+                                        <li>
+                                            <a href="${pageContext.request.contextPath}/logout">
+                                                <i class="far fa-check-circle u-s-m-r-9"></i>
+                                                Logout</a>
+                                        </li>
+                                    </ul>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${pageContext.request.contextPath}/account">
                                         <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                        Login / Signup</a>
-                                </li>
-                            </ul>
+                                        Login / Register</a>
+                                </c:otherwise>
+                            </c:choose>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a>USD
                                 <i class="fas fa-chevron-down u-s-m-l-9"></i>
                             </a>
@@ -114,6 +124,7 @@
                                     <a href="#">ARB</a>
                                 </li>
                             </ul>
+                        </li> -->
                     </ul>
                 </nav>
             </div>
@@ -125,40 +136,16 @@
                 <div class="row clearfix align-items-center">
                     <div class="col-lg-3 col-md-9 col-sm-6">
                         <div class="brand-logo text-lg-center">
-                            <a href="/home">
+                            <a href="${pageContext.request.contextPath}">
                                 <img src="images/main-logo/groover-branding-1.png" alt="Groover Brand Logo" class="app-brand-logo">
                             </a>
                         </div>
                     </div>
                     <div class="col-lg-6 u-d-none-lg">
-                        <form class="form-searchbox">
+                        <form class="form-searchbox" action="search" method="post">
+                            <input type="hidden" name="action" value="search">
                             <label class="sr-only" for="search-landscape">Search</label>
                             <input id="search-landscape" type="text" class="text-field" placeholder="Search everything">
-                            <div class="select-box-position">
-                                <div class="select-box-wrapper select-hide">
-                                    <label class="sr-only" for="select-category">Choose category for search</label>
-                                    <select class="select-box" id="select-category">
-                                        <option selected="selected" value="">
-                                            All
-                                        </option>
-                                        <option value="">Men's Clothing</option>
-                                        <option value="">Women's Clothing
-                                        </option>
-                                        <option value="">Toys Hobbies & Robots
-                                        </option>
-                                        <option value="">Mobiles & Tablets
-                                        </option>
-                                        <option value="">Consumer Electronics
-                                        </option>
-                                        <option value="">Books & Audible
-                                        </option>
-                                        <option value="">Beauty & Health
-                                        </option>
-                                        <option value="">Furniture Home & Office
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
                             <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
                         </form>
                     </div>
@@ -166,20 +153,18 @@
                         <nav>
                             <ul class="mid-nav g-nav">
                                 <li class="u-d-none-lg">
-                                    <a href="/home">
+                                    <a href="${pageContext.request.contextPath}">
                                         <i class="ion ion-md-home u-c-brand"></i>
                                     </a>
                                 </li>
                                 <li class="u-d-none-lg">
-                                    <a href="wishlist.html">
+                                    <a href="${pageContext.request.contextPath}/wishlist.jsp">
                                         <i class="far fa-heart"></i>
                                     </a>
                                 </li>
                                 <li>
                                     <a id="mini-cart-trigger">
                                         <i class="ion ion-md-basket"></i>
-                                        <span class="item-counter">4</span>
-                                        <span class="item-price">$220.00</span>
                                     </a>
                                 </li>
                             </ul>
@@ -195,9 +180,8 @@
                 <button type="button" class="button fas fa-search" id="responsive-search"></button>
             </div>
             <div class="fixed-responsive-wrapper">
-                <a href="wishlist.html">
+                <a href="wishlist.jsp">
                     <i class="far fa-heart"></i>
-                    <span class="fixed-item-counter">4</span>
                 </a>
             </div>
         </div>
@@ -873,19 +857,20 @@
     <div class="banner-layer">
         <div class="container">
             <div class="image-banner">
-                <a href="shop-v1-root-category.html" class="mx-auto banner-hover effect-dark-opacity">
-                    <img class="img-fluid" src="images/banners/bannerlayer-1.jpg" alt="Winter Season Banner">
+                <a href="#" class="mx-auto banner-hover effect-dark-opacity">
+                    <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/1330/2869/products/Sale-_Generic_1024x1024.jpg?v=1491234572" alt="Winter Season Banner">
                 </a>
             </div>
         </div>
     </div>
     <!-- Banner-Layer /- -->
     <!-- Special Offers -->
+    
     <c:forEach var="genre" items="${genres}"> 
         <section class="section-maker">
             <div class="container">
                 <div class="sec-maker-header text-center">
-                    <h3 class="sec-maker-h3">${genre}</h3>
+                    <h3 class="sec-maker-h3">${genre.getDescription()}</h3>
                 </div>
                 <div class="wrapper-content">
                     <div class="outer-area-tab">
@@ -893,11 +878,11 @@
                             <div class="tab-pane active show fade">
                                 <div class="slider-fouc">
                                     <div class="products-slider owl-carousel" data-item="4">
-                                        <c:forEach var="game" items="${games}">
+                                        <c:forEach var="game" items="${gamesGen.get(genre.getID())}">
                                             <div class="item">
                                                 <div class="image-container">
-                                                    <a class="item-img-wrapper-link" href="single-product.html">
-                                                        <img class="img-fluid" src="${game.images[0]}" alt="Product">
+                                                    <a class="item-img-wrapper-link" href="game?id=${game.getID()}">
+                                                        <img class="img-fluid" src="${game.getImages().get(0)}" alt="Product">
                                                     </a>
                                                     <div class="item-action-behaviors">
                                                         <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
@@ -910,29 +895,39 @@
                                                 <div class="item-content">
                                                     <div class="what-product-is">
                                                         <ul class="bread-crumb">
-                                                            <c:forEach var="genre_single" items="${game.getGenres()}">
+                                                            <!-- <c:forEach var="genre_single" items="${game.getGenres()}">
                                                                 <li class="has-separator">
-                                                                    <a href="shop-v1-root-category.html">${genre_single}</a>
+                                                                    <a href="shop-v1-root-category.html">${genre_single.getDescription()}</a>
                                                                 </li>
-                                                            </c:forEach>
+                                                            </c:forEach> -->
                                                         </ul>
                                                         <h6 class="item-title">
-                                                            <a href="single-product.html">${game.name}</a>
+                                                            <a href="game?id=${game.getID()}">${game.getName()}</a>
                                                         </h6>
                                                         <div class="item-stars">
-                                                            <div class='star' title="0 out of 5 - based on 0 Reviews">
+                                                            <div class='star' title="${game.getRating()} out of 5 - based on 0 Reviews">
                                                                 <span style='width:0'></span>
                                                             </div>
-                                                            <span>${game.metacritic}</span>
                                                         </div>
                                                     </div>
+
                                                     <div class="price-template">
-                                                        <div class="item-new-price">
-                                                            ${game.priceInitial}
-                                                        </div>
-                                                        <div class="item-old-price">
-                                                            ${game.priceFinal}
-                                                        </div>
+                                                        <c:if test="${not game.isIsFree()}">
+                                                            <div class="item-new-price">
+                                                                ${game.getInitialPrice()} USD
+                                                            </div>
+                                                        </c:if> 
+                                                        <c:if test="${game.isIsFree()}">
+                                                            <div class="item-new-price">
+                                                                Free
+                                                            </div>
+                                                        </c:if> 
+
+                                                        <c:if test="${game.getInitialPrice() != game.getFinalPrice()}" >
+                                                            <div class="item-old-price">
+                                                                ${game.getFinalPrice()} USD 
+                                                            </div>
+                                                        </c:if>
                                                     </div>
                                                 </div>
                                                 <div class="tag new">

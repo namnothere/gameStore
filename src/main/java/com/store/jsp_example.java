@@ -1,4 +1,4 @@
-package com.store;
+/* package com.store;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,3 +66,4 @@ public class jsp_example extends javax.servlet.http.HttpServlet {
    
     
 }
+ */
