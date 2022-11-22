@@ -92,6 +92,10 @@ public class userDB {
         }
 
         //create a user object from the document
+
+        // Float balance = (Float)doc.getDouble("balance");
+
+
         user user = new user(
             doc.getString("name"),
             doc.getString("username"),
@@ -293,6 +297,7 @@ public class userDB {
 
     public static boolean login(String username, String password) {
         //get user from db
+
         user user = getUser(username);
         if (user == null) {
             return false;
@@ -370,7 +375,7 @@ public class userDB {
         // }
         
         //seedSample data for testing: 10 users
-        //seedSampleUsers();
+        // seedSampleUsers();
 
         // ====================================================================================================
 
@@ -396,8 +401,7 @@ public class userDB {
 
         //delete user
         // user User = userDB.getUser("zdragonz999");
-        // System.out.println(User);
-        // boolean del = userDB.deleteUser(User);
+        // boolean del = userDB.deleteUser("zdragonz999");
         // if (del) {
         //     LOGGER.log(Level.INFO, "Successfully deleted user");
         // }

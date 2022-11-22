@@ -151,7 +151,7 @@ public class Transaction {
         this.paymentMethod = paymentMethod;
     }
 
-    public double getBalanceBefore() {
+    public Double getBalanceBefore() {
         return user.getBalance();
     }
 
