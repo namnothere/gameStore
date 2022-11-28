@@ -94,6 +94,7 @@ public class dataUtils {
       String uri = "mongodb+srv://aegis:aegis@baekettle.lkh9f.mongodb.net/?retryWrites=true&w=majority";
       MongoClient mongoClient = MongoClients.create(uri);
       dataUtils.client = mongoClient;
+      // System.out.println("Connected to MongoDB");
       return mongoClient;
     }
 

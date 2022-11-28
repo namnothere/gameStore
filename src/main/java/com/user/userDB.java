@@ -1,5 +1,9 @@
 package com.user;
 
+import java.io.InputStream;
+import java.util.Base64;
+import java.util.List;
+
 // import java.net.UnknownHostException;
 // import java.util.ArrayList;
 // import java.util.Iterator;
@@ -16,6 +20,8 @@ import java.util.logging.Logger;
 // import org.apache.logging.log4j.Logger;
 // import org.apache.logging.log4j.LogManager;
 
+import com.cart.Cart;
+import com.cart.CartDB;
 import com.dataUtils.dataUtils;
 import com.mongodb.MongoException;
 // import javax.servlet.http.HttpSession;
@@ -27,10 +33,13 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.client.gridfs.*;
+import com.mongodb.client.gridfs.model.*;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;
 // import org.json.JSONObject;
+import org.bson.types.ObjectId;
 
 public class userDB {
     private static MongoClient client = null;
@@ -69,7 +78,7 @@ public class userDB {
         if (userDB.client == null) {
             LOGGER.log(Level.SEVERE, "mongoClient is null");
             userDB.client = dataUtils.getMongoClientInstance();
-            LOGGER.log(Level.INFO, "Successfully connected to the database");
+            LOGGER.log(Level.INFO, "Successfully connected to the database from userDB");
         }
         return userDB.client;
     }
@@ -93,18 +102,27 @@ public class userDB {
         }
 
         //create a user object from the document
-
         // Float balance = (Float)doc.getDouble("balance");
 
 
+        //String name, String username, String email, String password, String avatar, String role, Double balance, List<Integer> ownedGames
+        List<Integer> ownedGames = (List<Integer>)doc.get("ownedGames");
+        // List<Integer> cart = (List<Integer>)doc.get("cart");
+        List<Integer> cart = CartDB.getCart(username).getGames();
+
+        System.out.println("ownedGames: " + ownedGames);
+
+        //get array int of owned games
         user user = new user(
             doc.getString("name"),
             doc.getString("username"),
-            doc.getString("password"),
             doc.getString("email"),
+            doc.getString("password"),
             doc.getString("avatar"),
             doc.getString("role"),
-            doc.getDouble("balance")
+            doc.getDouble("balance"),
+            cart,
+            ownedGames
         );
         return user;
     }
@@ -152,12 +170,26 @@ public class userDB {
             //hash the password
             String hashedPassword = dataUtils.hashPassword(user.getPassword());
 
+
+            // doc.getString("name"),
+            // doc.getString("username"),
+            // doc.getString("password"),
+            // doc.getString("email"),
+            // doc.getString("avatar"),
+            // doc.getString("role"),
+            // doc.getDouble("balance")
+
             //create new user document object
             Document newUser = new Document("name", user.getName())
             .append("username", user.getUsername())
             .append("email", user.getEmail())
             .append("password", hashedPassword)
-            .append("avatar", user.getAvatar());
+            .append("avatar", user.getAvatar())
+            .append("role", user.getRole())
+            .append("balance", user.getBalance())
+            .append("ownedGames", user.getOwnedGames())
+            .append("cart", user.getCart());
+            
 
             //insert new user document
             InsertOneResult result = collection.insertOne(newUser);
@@ -252,8 +284,8 @@ public class userDB {
             user = new user(
                 doc.getString("name"),
                 doc.getString("username"),
-                doc.getString("password"),
                 doc.getString("email"),
+                doc.getString("password"),
                 doc.getString("avatar"),
                 doc.getString("role"),
                 doc.getDouble("balance")
@@ -289,6 +321,10 @@ public class userDB {
         doc.replace("avatar", user.getAvatar());
         doc.replace("role", user.getRole());
         doc.replace("balance", user.getBalance());
+        doc.replace("ownedGames", user.getOwnedGames());
+        doc.replace("cart", user.getCart().getGames());
+        
+
 
         //update the document
         Bson updateOperationDocument = new Document("$set", doc);
@@ -336,20 +372,53 @@ public class userDB {
         }
     }
     
-    
-    public static boolean seedSampleUsers() {
-        //connect to the database
-        // MongoClient client = connect();
+    public static boolean updateAvatar(String base64, String username) {
 
-        // MongoDatabase database = client.getDatabase("gameStore");
-        // MongoCollection<Document> collection = database.getCollection("users");
+        try {
+            user u = getUser(username);
+    
+            u.setAvatar(base64);
+    
+            updateUserBalance(u);
+            
+            return true;
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "[updateAvatar] Error: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public static boolean deleteAvatar(String username) {
+        //get grid fs bucket
+        GridFSBucket bucket = user.bucket;
+
+        try {
+            //get the file
+            GridFSFile file = bucket.find(Filters.eq("filename", username)).first();
+            if (file == null) {
+                LOGGER.log(Level.INFO, "File does not exist");
+                return false;
+            }
+    
+            //delete the file
+            bucket.delete(file.getObjectId());
+            return true;
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "[deleteAvatar] " + e.toString());
+            return false;
+        }
+    }
+
+
+    public static boolean seedSampleUsers() {
+
         try {
             for (int i = 0; i < 10; i++) {
                 insertUser(new user(
                     "name" + i,
                     "username" + i,
-                    "password" + i,
                     "email" + i,
+                    "password" + i,
                     "avatar" + i,
                     "user",
                     1000.0
@@ -366,7 +435,7 @@ public class userDB {
     public static void main(String[] args) throws Exception {
 
         //insert user
-        // user User = new user("adminAccount", "admin", "admin@gmail.com", "123456", "null");
+        // user User = new user("adminAccount", "admin", "admin@gmail.com", "123456", "null", "admin", 10000.0);
         // boolean insert = insertUser(User);
         // if (insert) {
         //     LOGGER.log(Level.INFO, "Successfully inserted user");
@@ -442,4 +511,16 @@ public class userDB {
 
     }
 
+    public static boolean save(user user) {
+        //replace the user in the database
+        try {
+            updateUserBalance(user);
+            return true;
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "[save] " + e.toString());
+            return false;
+        }
+    }
+
+    
 }

@@ -15,6 +15,7 @@ public class Game {
     public Float initialPrice = (float) 0.0;
     public Float finalPrice = (float) 0.0;
     public boolean isFree;
+    public int discount = 0;
     public List<String> publishers = new ArrayList<String>();
     public List<String> developers = new ArrayList<String>();
     public int rating = 0;
@@ -117,6 +118,14 @@ public class Game {
 
     public float getInitialPrice() {
         return this.initialPrice;
+    }
+
+    public float getFinalPrice() {
+        return this.finalPrice;
+    }
+
+    public int getDiscount() {
+        return this.discount;
     }
 
     public void setInitialPrice(float initialprice) {
@@ -262,6 +271,12 @@ public class Game {
 
     public boolean setRating(int i) {
         this.rating = i;
+        return true;
+    }
+
+    public boolean setDiscount(int discount) {
+        this.discount = discount;
+        this.finalPrice = this.initialPrice - (this.initialPrice * (discount / 100));
         return true;
     }
 
