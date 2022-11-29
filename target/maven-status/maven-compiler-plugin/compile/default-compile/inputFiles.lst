@@ -2,6 +2,7 @@ c:\Proj\gameStore-2\src\main\java\com\game\gameDB.java
 c:\Proj\gameStore-2\src\main\java\com\user\changePasswordAction.java
 c:\Proj\gameStore-2\src\main\java\com\game\category.java
 c:\Proj\gameStore-2\src\main\java\com\game\ProductUtils.java
+c:\Proj\gameStore-2\src\main\java\com\user\servletAccount.java
 c:\Proj\gameStore-2\src\main\java\com\cart\Cart.java
 c:\Proj\gameStore-2\src\main\java\com\transaction\Transaction.java
 c:\Proj\gameStore-2\src\main\java\com\store\servletProduct.java
@@ -9,7 +10,7 @@ c:\Proj\gameStore-2\src\main\java\com\user\servletLogout.java
 c:\Proj\gameStore-2\src\main\java\com\game\cartGame.java
 c:\Proj\gameStore-2\src\main\java\com\store\search.java
 c:\Proj\gameStore-2\src\main\java\com\store\servletStore.java
-c:\Proj\gameStore-2\src\main\java\com\Account\servletAccount.java
+c:\Proj\gameStore-2\src\main\java\com\user\servletProfile.java
 c:\Proj\gameStore-2\src\main\java\com\store\jsp_example.java
 c:\Proj\gameStore-2\src\main\java\com\user\user.java
 c:\Proj\gameStore-2\src\main\java\com\game\genre.java

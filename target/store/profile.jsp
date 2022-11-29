@@ -327,18 +327,6 @@
                           <label for="bio">Email</label>
                           <input class="form-control autosize" id="email" name="email" placeholder="Your email" value="${user.email}">
                         </div>
-                        <div class="form-group">
-                          <label for="bio">Your Bio</label>
-                          <textarea class="form-control autosize" id="bio" name="bio" placeholder="Write something about you" style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 62px;">A weeb.</textarea>
-                        </div>
-                        <div class="form-group">
-                          <label for="url">URL</label>
-                          <input type="text" class="form-control" id="url" name="url" placeholder="Enter your website address" value="http://benije.ke/pozzivkij">
-                        </div>
-                        <div class="form-group">
-                          <label for="location">Location</label>
-                          <input type="text" class="form-control" id="location" name="location" placeholder="Enter your location" value="Bay Area, San Francisco, CA">
-                        </div>
                         <div class="form-group small text-muted">
                           All of the fields on this page are optional and can be deleted at any time, and by filling them out, you're giving us consent to share this data wherever your user profile appears.
                         </div>
@@ -351,18 +339,24 @@
                   <div class="tab-pane" id="account">
                     <h6>ACCOUNT SETTINGS</h6>
                     <hr>
-                    <form>
+                    <form action="changeUsername" method="post">
+                      <input type="hidden" name="action" value="changeUsername">
                       <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter your username" value="kennethvaldez">
+                        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="Enter your username" value=${user.username}>
+                        <span>${messageChangeUsername}</span>
                         <small id="usernameHelp" class="form-text text-muted">After changing your username, your old username becomes available for anyone else to claim.</small>
                       </div>
+                      <button type="submit" class="btn btn-primary" id="updateProfile">Update Profile</button>
                       <hr>
+                    </form>
+                    <form action="deleteAccount" method="post">
+                      <input type="hidden" name="action" value="deleteAccount">
                       <div class="form-group">
                         <label class="d-block text-danger">Delete Account</label>
                         <p class="font-size-sm warning text-danger">Once you delete your account, there is no going back. Please be certain.</p>
                       </div>
-                      <button class="btn btn-danger" type="button">Delete Account</button>
+                      <button type="submit" class="btn btn-danger">Delete Account</button>
                     </form>
                   </div>
                   <div class="tab-pane" id="security">
@@ -370,13 +364,16 @@
                     <hr>
                     <form>
                       <div class="form-group">
+                        <input type="hidden" name="action" value="deleteAccount">
                         <label class="d-block">Change Password</label>
-                        <input type="text" class="form-control" placeholder="Enter your old password" id="oldPassword">
-                        <input type="text" class="form-control mt-1" placeholder="New password" id="newPassword">
-                        <input type="text" class="form-control mt-1" placeholder="Confirm new password" id="rnewPassword">
+                        <input type="text" class="form-control" placeholder="Enter your old password" name="oldPassword">
+                        <input type="text" class="form-control mt-1" placeholder="New password" name="newPassword">
+                        <input type="text" class="form-control mt-1" placeholder="Confirm new password" name="rnewPassword">
+                        <span>${messageChangePass}</span>
+                        <button type="submit" class="btn btn-primary" id="changePassword">Update Profile</button>
                       </div>
                     </form>
-                    <hr>
+                    <!-- <hr>
                     <form>
                       <div class="form-group">
                         <label class="d-block">Two Factor Authentication</label>
@@ -400,8 +397,8 @@
                         </ul>
                       </div>
                     </form>
-                  </div>
-                  <div class="tab-pane" id="notification">
+                  </div> -->
+                  <!-- <div class="tab-pane" id="notification">
                     <h6>NOTIFICATION SETTINGS</h6>
                     <hr>
                     <form>
@@ -458,7 +455,7 @@
                         </ul>
                       </div>
                     </form>
-                  </div>
+                  </div> -->
                   <div class="tab-pane" id="billing">
                     <h6>BILLING SETTINGS</h6>
                     <hr>

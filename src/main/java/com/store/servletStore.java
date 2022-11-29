@@ -39,6 +39,7 @@ public class servletStore extends HttpServlet {
     protected void doGet(HttpServletRequest request,
     HttpServletResponse response)
     throws ServletException, IOException {
+        System.out.println("ran");
 
         // String uri = request.getRequestURI();
         // System.out.println("uri: " + uri);

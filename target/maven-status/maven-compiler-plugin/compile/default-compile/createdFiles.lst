@@ -1,9 +1,9 @@
 com\game\ProductUtils.class
 com\transaction\Transaction.class
+com\user\servletAccount.class
 com\game\cartGame.class
 com\store\servletStore.class
 com\user\userDB.class
-com\Account\servletAccount.class
 com\game\Game.class
 com\store\search.class
 com\user\changePasswordAction.class
@@ -16,6 +16,7 @@ com\store\PageNotFound.class
 com\game\genre.class
 com\user\user.class
 com\user\servletLogout.class
+com\user\servletProfile.class
 com\cart\Cart.class
 com\store\servletProduct.class
 com\game\gameDB$1.class
