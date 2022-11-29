@@ -343,7 +343,8 @@
                       <input type="hidden" name="action" value="changeUsername">
                       <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter your username" value=${user.username}>
+                        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="Enter your username" value=${user.username}>
+                        <span>${messageChangeUsername}</span>
                         <small id="usernameHelp" class="form-text text-muted">After changing your username, your old username becomes available for anyone else to claim.</small>
                       </div>
                       <button type="submit" class="btn btn-primary" id="updateProfile">Update Profile</button>
@@ -355,21 +356,24 @@
                         <label class="d-block text-danger">Delete Account</label>
                         <p class="font-size-sm warning text-danger">Once you delete your account, there is no going back. Please be certain.</p>
                       </div>
-                      <button class="btn btn-danger" type="button">Delete Account</button>
+                      <button type="submit" class="btn btn-danger">Delete Account</button>
                     </form>
                   </div>
-                  <!-- <div class="tab-pane" id="security">
+                  <div class="tab-pane" id="security">
                     <h6>SECURITY SETTINGS</h6>
                     <hr>
                     <form>
                       <div class="form-group">
+                        <input type="hidden" name="action" value="deleteAccount">
                         <label class="d-block">Change Password</label>
-                        <input type="text" class="form-control" placeholder="Enter your old password" id="oldPassword">
-                        <input type="text" class="form-control mt-1" placeholder="New password" id="newPassword">
-                        <input type="text" class="form-control mt-1" placeholder="Confirm new password" id="rnewPassword">
+                        <input type="text" class="form-control" placeholder="Enter your old password" name="oldPassword">
+                        <input type="text" class="form-control mt-1" placeholder="New password" name="newPassword">
+                        <input type="text" class="form-control mt-1" placeholder="Confirm new password" name="rnewPassword">
+                        <span>${messageChangePass}</span>
+                        <button type="submit" class="btn btn-primary" id="changePassword">Update Profile</button>
                       </div>
                     </form>
-                    <hr>
+                    <!-- <hr>
                     <form>
                       <div class="form-group">
                         <label class="d-block">Two Factor Authentication</label>
