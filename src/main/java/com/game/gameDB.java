@@ -1,6 +1,7 @@
 package com.game;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -15,6 +16,7 @@ import com.mongodb.client.MongoClient;
 // import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Sorts;
 import com.mongodb.client.result.InsertOneResult;
@@ -31,9 +33,9 @@ public class gameDB {
 
     private static MongoClient connect() {
         if (gameDB.client == null) {
-            LOGGER.log(Level.SEVERE, "mongoClient is null");
+            // LOGGER.log(Level.SEVERE, "mongoClient is null");
             gameDB.client = dataUtils.getMongoClientInstance();
-            LOGGER.log(Level.INFO, "Successfully connected to the database");
+            LOGGER.log(Level.INFO, "Successfully connected to the database from gameDB");
         }
         return gameDB.client;
     }
@@ -464,6 +466,101 @@ public class gameDB {
         return getGamesByName(name, 0);
     }
 
+    public static Game getGameByID(Integer ID) {
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("products");
+
+        //declare filter to find the game
+        Bson filter = Filters.eq("id", ID);
+
+        //find the game
+        Document doc = collection.find(filter).first();
+
+        if (doc == null) {
+            //no games found / category not found
+            LOGGER.log(Level.INFO, "No games found for id: " + ID);
+            return null;
+        }
+
+        //create a new game object
+        Game game = new Game(doc.toJson(), doc.getInteger("id"));
+
+        return game;
+    }
+
+    public static List<Game> getRandom(Integer limit) {
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("products");
+
+        //declare filter to return random games
+        // Bson filter = Aggregates.sample(limit);
+
+        List<Document> docs = new ArrayList<Document>();
+
+        docs = collection.aggregate(Arrays.asList(Aggregates.sample(limit))).into(new ArrayList<Document>());
+
+        if (docs == null || docs.size() == 0) {
+            //no games found / category not found
+            LOGGER.log(Level.INFO, "No games found in database");
+            return null;
+        }
+
+        //create a list of games
+        List<Game> games = new ArrayList<Game>();
+
+        //iterate through the documents
+        for (Document doc : docs) {
+            //create a new game object
+            Game game = new Game(doc.toJson(), doc.getInteger("id"));
+            games.add(game);
+        }
+        return games;
+    }
+
+    public static Game[] getGamesByIDs(List<Integer> gameIds) {
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("products");
+
+        //declare filter to find the game
+        Bson filter = Filters.in("id", gameIds);
+
+        //find the game
+        List<Document> docs = collection.find(filter).into(new ArrayList<Document>());
+
+        if (docs == null || docs.size() == 0) {
+            //no games found / category not found
+            LOGGER.log(Level.INFO, "No games found for ids: " + gameIds);
+            return null;
+        }
+
+        //create a list of games
+        List<Game> games = new ArrayList<Game>();
+
+        //iterate through the documents
+        for (Document doc : docs) {
+            //create a new game object
+            Game game = new Game(doc.toJson(), doc.getInteger("id"));
+            games.add(game);
+        }
+
+        return games.toArray(new Game[games.size()]);
+    }
 
     public static void showGame(Game game) {
         System.out.println("Game ID: " + game.getID());
@@ -515,9 +612,12 @@ public class gameDB {
             // List<Game> games = getGamesByPrice(50 * 100, 100 * 100, 0, false);
 
             //get games by name
-            List<Game> games = getGamesByName("d", 10);
+            // List<Game> games = getGamesByName("d", 10);
             //return dota 2 and dota underlords
             //pretty much working as intended
+
+            //get random games
+            List<Game> games = getRandom(10);
 
             //show games found
             if (games != null) {
@@ -535,6 +635,18 @@ public class gameDB {
 
 
     }
+
+
+    public static double calTotal(List<Integer> games) {
+        float total = 0;
+        for (Integer game : games) {
+            total += getGameByID(game).getInitialPrice();
+        }
+        return total;
+    }
+
+
+  
 
     
 }

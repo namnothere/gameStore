@@ -6,9 +6,10 @@ import java.util.List;
 
 import org.bson.Document;
 import org.json.JSONArray;
-import org.json.JSONObject;
+// import org.json.JSONObject;
 
 import com.game.Game;
+import com.game.gameDB;
 import com.user.user;
 import com.user.userDB;
 // import com.dataUtils.dataUtils;
@@ -16,87 +17,97 @@ import com.user.userDB;
 // import com.transaction.transactionDB;
 public class Transaction {
     private Date date;
-    private String transactionCode;
-    //create a list of games
-    private List<Game> games = new ArrayList<Game>();
+    private int transactionCode;
+    private List<Integer> games = new ArrayList<Integer>();
     private String status;
     private String paymentMethod;
-    private float total;
-    // private float balanceBefore;
+    private double total;
     private user user;
+    private Double balanceBefore = 0.0;
 
     public Transaction() {
         this.date = new Date();
         this.transactionCode = Transaction.generateTransactionCode();
-        this.games = new ArrayList<Game>();
+        // this.games = new ArrayList<Game>();
+        this.games = new ArrayList<Integer>();
         this.status = "pending";
         this.paymentMethod = "cash";
         this.total = 0;
         // this.balanceBefore = 0;
         this.user = null;
-
     }
 
-    public Transaction(String transactionCode, List<Game> games) {
+    public Transaction(user user, List<Integer> games, String paymentMethod) {
         this.date = new Date();
-        this.transactionCode = transactionCode;
+        this.transactionCode = Transaction.generateTransactionCode();
         this.games = games;
-    }
-    public Transaction(String transactionCode, Game game) {
-        this.date = new Date();
-        this.transactionCode = transactionCode;
-        this.games.add(game);
-        // this.games = games;
-    }
 
-    public Transaction(String transactionCode, List<Game> games, String status, String paymentMethod, float total, user user) {
-        this.date = new Date();
-        this.transactionCode = transactionCode;
-        this.games = games;
-        this.status = status;
+        if (games != null) {
+            this.total = this.calTotal();
+        } else {
+            this.total = 0;
+        }
+
+        this.status = "pending";
         this.paymentMethod = paymentMethod;
-        this.total = total;
         this.user = user;
+        this.balanceBefore = user.getBalance();
     }
-    public Transaction(String transactionCode, List<Game> games, String status, String paymentMethod, float total, String username) {
-        this.date = new Date();
-        this.transactionCode = transactionCode;
-        this.games = games;
-        this.status = status;
-        this.paymentMethod = paymentMethod;
-        this.total = total;
-        this.user = userDB.getUser(username);
-    }
+    // public Transaction(user user, List<Game> games, String paymentMethod) {
+    //     this.date = new Date();
+    //     this.transactionCode = Transaction.generateTransactionCode();
+    //     this.games = games;
+    //     this.status = "pending";
+    //     this.paymentMethod = paymentMethod;
+    //     this.total = 0;
+    //     this.user = user;
+    //     this.balanceBefore = user.getBalance();
+    // }
     
     public Transaction(Document doc) {
         this.date = doc.getDate("date");
-        this.transactionCode = doc.getString("transactionCode");
-        this.games = doc.getList("games", Game.class);
+        this.transactionCode = doc.getInteger("transactionCode");
+        this.games = doc.getList("game", Integer.class);
+        this.status = doc.getString("status");
+        this.paymentMethod = doc.getString("paymentMethod");
+        this.total = doc.getDouble("total").floatValue();
+        this.user = userDB.getUser(doc.getString("user"));
     }
 
+    // public List<Game> jsonArrayToList(JSONArray jsonArray) {
+    //     List<Game> list = new ArrayList<Game>();
+    //     for (int i = 0; i < jsonArray.length(); i++) {
+    //         // list.add(new Game(jsonArray.getJSONObject(i)));
+
+    //         list.add(new Game(jsonArray.getJSONObject(i).toString(), jsonArray.getJSONObject(i).getInt("ID")));
+    //     }
+    //     return list;
+    // }
+
     //get the lastest transaction increment the transaction code by 1
-    public static String generateTransactionCode() {
-        String transactionCode = "0";
+    public static Integer generateTransactionCode() {
+        Integer transactionCode = 0;
         //get the lastest transaction
         Transaction lastestTransaction = transactionDB.getLastestTransaction();
         //if there is no transaction
         if (lastestTransaction == null) {
-            return "1";
+            System.out.println("No transaction. Transaction code is 1");
+            return 1;
         }
         else {
             //get the lastest transaction code
-            String lastestTransactionCode = lastestTransaction.getTransactionCode();
+            int lastestTransactionCode = lastestTransaction.getTransactionCode();
             //increment the transaction code by 1
-            int newTransactionCode = Integer.valueOf(lastestTransactionCode) + 1;
+            transactionCode = lastestTransactionCode + 1;
             //convert the transaction code to string
-            transactionCode = String.format("%08d", newTransactionCode);
+            // transactionCode = String.format("%08d", newTransactionCode);
         }
         return transactionCode;
     }
 
 
 
-    public float getTotal() {
+    public double getTotal() {
         return this.total;
     }
 
@@ -108,31 +119,35 @@ public class Transaction {
         this.date = date;
     }
 
-    public String getTransactionCode() {
+    public int getTransactionCode() {
         return transactionCode;
     }
 
-    public void setTransactionCode(String transactionCode) {
+    public void setTransactionCode(Integer transactionCode) {
         this.transactionCode = transactionCode;
     }
 
-    public List<Game> getGames() {
+    public List<Integer> getGames() {
         return games;
     }
 
     public void setGames(List<Game> games) {
-        this.games = games;
+        List<Integer> gameIds = new ArrayList<Integer>();
+        for (Game game : games) {
+            gameIds.add(game.getID());
+        }
+        this.games = gameIds;
         calTotal();
     }
 
     public void addGame(Game game) {
-        this.games.add(game);
-        this.total += game.getInitialPrice();
+        this.games.add(game.getID());
+        this.total += game.getFinalPrice();
     }
 
     public void removeGame(Game game) {
-        this.games.remove(game);
-        this.total -= game.getInitialPrice();
+        this.games.remove(game.getID());
+        this.total -= game.getFinalPrice();
     }
 
     public String getStatus() {
@@ -167,24 +182,39 @@ public class Transaction {
         this.user = user;
     }
 
-    public void calTotal() {
-        float total = 0;
-        for (Game game : this.games) {
-            total += game.getInitialPrice();
+    public double calTotal() {
+        double total = 0;
+        for (Integer game : this.games) {
+            //get the game from the database
+            Game gameInfo = gameDB.getGameByID(game);
+            total += gameInfo.getFinalPrice();
         }
-        this.total = total;
+
+        this.total = Math.round(total * 100.0) / 100.0;
+        return total;
     }
 
-    public JSONObject toJSON() {
-        JSONObject json = new JSONObject();
-        json.put("date", this.date);
-        json.put("transactionCode", this.transactionCode);
-        JSONArray games = new JSONArray();
-        for (Game game : this.games) {
-            games.put(game.toJSON());
-        }
-        json.put("games", games);
-        return json;
+    // public JSONObject toJSON() {
+    //     JSONObject json = new JSONObject();
+    //     json.put("date", this.date);
+    //     json.put("transactionCode", this.transactionCode);
+    //     JSONArray games = new JSONArray();
+    //     for (Game game : this.games) {
+    //         games.put(game.toJSON());
+    //     }
+    //     json.put("games", games);
+    //     return json;
+    // }
+    // public JSONArray getGamesJSON() {
+    //     JSONArray games = new JSONArray();
+    //     for (Game game : this.games) {
+    //         games.put(game.toJSON());
+    //     }
+    //     return games;
+    // }
+
+    public boolean saveTransaction() {
+        return transactionDB.createTransaction(this);
     }
 
     public boolean approve() {
@@ -201,11 +231,6 @@ public class Transaction {
     //     return transactionDB.getTransaction(transactionCode);
     // }
     public static void main(String[] args) throws Exception {
-        //Load our image
-        // byte[] imageBytes = LoadImage("C:/Temp/bear.bmp");
-        //Connect to database
-        // MongoClient client = MongoClients.create("mongodb://localhost:27017");
-
         
 
     }

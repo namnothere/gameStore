@@ -15,6 +15,7 @@ public class Game {
     public Float initialPrice = (float) 0.0;
     public Float finalPrice = (float) 0.0;
     public boolean isFree;
+    public int discount = 0;
     public List<String> publishers = new ArrayList<String>();
     public List<String> developers = new ArrayList<String>();
     public int rating = 0;
@@ -231,6 +232,172 @@ public class Game {
         this.genres = new ArrayList<genre>();
         this.releaseDate = "";
         this.background_raw = "";
+    }
+
+    
+
+    public float getInitialPrice() {
+        return this.initialPrice;
+    }
+
+    public float getFinalPrice() {
+        return this.finalPrice;
+    }
+
+    public int getDiscount() {
+        return this.discount;
+    }
+
+    public void setInitialPrice(float initialprice) {
+        this.initialPrice = initialprice;
+    }
+
+    public int getID() {
+        return this.ID;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDesc() {
+        return this.desc;
+    }
+    
+    public List<String> getVideos() {
+        return this.videos;
+    }
+
+    public List<String> getImages() {
+        return this.images;
+    }
+
+    public List<String> getPublishers() {
+        return this.publishers;
+    }
+
+    public List<String> getDevelopers() {
+        return this.developers;
+    }
+
+    public int getRating() {
+        return this.rating;
+    }
+
+    public List<category> getCategories() {
+        return this.categories;
+    }
+
+    public List<genre> getGenres() {
+        return this.genres;
+    }
+
+    public String getReleaseDate() {
+        return this.releaseDate;
+    }
+
+    public String getBackground_raw() {
+        return this.background_raw;
+    }
+
+    public boolean getIsFree() {
+        return this.isFree;
+    }
+
+    public boolean setInitialPrice(Float initialprice) {
+        this.initialPrice = initialprice;
+        return true;
+    }
+
+    public boolean setFinalPrice(Float finalprice) {
+        this.finalPrice = finalprice;
+        return true;
+    }
+
+    public boolean setID(int ID) {
+        this.ID = ID;
+        return true;
+    }
+
+    public boolean setName(String name) {
+        this.name = name;
+        return true;
+    }
+
+
+    public boolean setDesc(String desc) {
+        this.desc = desc;
+        return true;
+    }
+
+    public boolean setVideos(List<String> videos) {
+        this.videos = videos;
+        return true;
+    }
+
+    public boolean setImages(List<String> images) {
+        this.images = images;
+        return true;
+    }
+
+    public boolean setFree(boolean isFree) {
+        this.isFree = isFree;
+        return true;
+    }
+
+    public boolean setPublishers(List<String> publishers) {
+        this.publishers = publishers;
+        return true;
+    }
+
+    public boolean setDevelopers(List<String> developers) {
+        this.developers = developers;
+        return true;
+    }
+
+    public boolean setrating(int rating) {
+        this.rating = rating;
+        return true;
+    }
+
+    public boolean setCategories(List<category> categories) {
+        this.categories = categories;
+        return true;
+    }
+    public boolean setCategories(category category) {
+        this.categories.add(category);
+        return true;
+    }
+
+    public boolean setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+        return true;
+    }
+
+    public boolean setBackgroundRaw(String background_raw) {
+        this.background_raw = background_raw;
+        return true;
+    }
+
+    public boolean setGenres(List<genre> genres) {
+        this.genres = genres;
+        return true;
+    }
+
+    public boolean setGenres(genre genre) {
+        this.genres.add(genre);
+        return true;
+    }
+
+    public boolean setRating(int i) {
+        this.rating = i;
+        return true;
+    }
+
+    public boolean setDiscount(int discount) {
+        this.discount = discount;
+        this.finalPrice = this.initialPrice - (this.initialPrice * (discount / 100));
+        return true;
     }
 
     public List<String> jsonArrayToList(JSONArray jsonArray) {
