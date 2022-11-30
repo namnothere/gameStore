@@ -12,8 +12,8 @@ public class Game {
     public String desc;
     public List<String> videos = new ArrayList<String>();
     public List<String> images = new ArrayList<String>();
-    public Float initialPrice = (float) 0.0;
-    public Float finalPrice = (float) 0.0;
+    public double initialPrice = (float) 0.0;
+    public double finalPrice = (float) 0.0;
     public boolean isFree;
     public int discount = 0;
     public List<String> publishers = new ArrayList<String>();
@@ -41,13 +41,15 @@ public class Game {
 
         this.images = jsonArrayToList(game.getJSONArray("images"));
         if (game.has("price_overview")) {
-            this.initialPrice = game.getJSONObject("price_overview").getFloat("initial") / 100;
-            // this.initialPrice = game.getJSONObject("price_overview").getFloat("initial");
-            this.finalPrice = game.getJSONObject("price_overview").getFloat("final") / 100;
+            this.initialPrice = game.getJSONObject("price_overview").getDouble("initial") / 100;
+            this.initialPrice = Math.round(this.initialPrice * 100.0) / 100.0;
+
+            this.finalPrice = game.getJSONObject("price_overview").getDouble("final") / 100;
+            this.finalPrice = Math.round(this.finalPrice * 100.0) / 100.0;
         }
         else {
-            this.initialPrice = (float) 0;
-            this.finalPrice = (float) 0;
+            this.initialPrice = 0.0;
+            this.finalPrice = 0.0;
         }
 
         if (game.has("is_free")) {
@@ -116,11 +118,13 @@ public class Game {
 
     
 
-    public float getInitialPrice() {
+    public double getInitialPrice() {
+        this.initialPrice = Math.round(this.initialPrice * 100.0) / 100.0;
         return this.initialPrice;
     }
 
-    public float getFinalPrice() {
+    public double getFinalPrice() {
+        this.finalPrice = Math.round(this.finalPrice * 100.0) / 100.0;
         return this.finalPrice;
     }
 
@@ -128,7 +132,7 @@ public class Game {
         return this.discount;
     }
 
-    public void setInitialPrice(float initialprice) {
+    public void setInitialPrice(double initialprice) {
         this.initialPrice = initialprice;
     }
 
@@ -189,7 +193,7 @@ public class Game {
         return true;
     }
 
-    public boolean setFinalPrice(Float finalprice) {
+    public boolean setFinalPrice(double finalprice) {
         this.finalPrice = finalprice;
         return true;
     }
