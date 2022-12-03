@@ -187,6 +187,12 @@ public class user {
         this.cart.save();
     }
 
+    public void addGameToCart(int gameID) {
+        this.cart.addGame(gameID);
+        System.out.println("Total after adding game: " + this.cart.getTotal());
+        this.cart.save();
+    }
+
     public void removeGameFromCart(Game game) {
         this.cart.removeGame(game);
         this.cart.save();
@@ -295,16 +301,20 @@ public class user {
 
         List<Integer> ownedGames = user.getOwnedGames();
         System.out.println("Owned Games: ");
-        for (Integer gameID : ownedGames) {
-            Game game = gameDB.getGameByID(gameID);
-            System.out.println(game.getName());
-        }
+        System.out.println(ownedGames);
+        // for (Integer gameID : ownedGames) {
+        //     Game game = gameDB.getGameByID(gameID);
+        //     System.out.println(game.getName());
+        // }
 
         Cart cart = user.getCart();
-        for (Integer gameID : cart.getGames()) {
-            Game game = gameDB.getGameByID(gameID);
-            System.out.println(game.getName());
-        }
+        // for (Integer gameID : cart.getGames()) {
+        //     Game game = gameDB.getGameByID(gameID);
+        //     System.out.println(game.getName());
+        // }
+
+        System.out.println("Cart: ");
+        System.out.println(cart.getGames());
 
     }
 
@@ -324,23 +334,24 @@ public class user {
         // for (Game game : games) {
         //     user.addGameToCart(game);
         // }
+        
+        //Add game to cart by gameID
+        // user.addGameToCart(546560);
 
         //Remove games from cart
-        // user.removeGameFromCart(user.cart.getGames().get(0)); //use gameID
-        // user.removeGameFromCart(gameDB.getGame(205)); //use gameObject
+        // user.removeGameFromCart(546560); //use gameID
+        // user.removeGameFromCart(gameDB.getGame(546560)); //use gameObject
 
         System.out.println("Total cart: " + user.getCart().calTotal());
 
         //buy games
         //scenarion 1: user has enough balance
-        user.setBalance(1000);
+        // user.setBalance(1000);
         user.buyGames();
 
         //scenarion 2: user has not enough balance
         // user.setBalance(0);
         // user.buyGames();
-
-
         
         // user = userDB.getUser("admin");
         // System.out.println("Balance: " + user.getBalance());
