@@ -920,7 +920,7 @@
                             <!-- <h6 class="information-heading u-s-m-b-8">Description:</h6> -->
                             <div class="description">
                                 <span>Description:</span>
-                                <span>${game.getDesc()} VND</span>
+                                <span>${game.getDesc()}</span>
                             </div>
                             <div class="publisher">
                                 <span>Publisher: </span>
@@ -1012,12 +1012,12 @@
                                                 </div>
                                             </div>
                                             <div class="price-template">
-                                                <c:if test="${not game.isIsFree()}">
+                                                <c:if test="${not game.getIsFree()}">
                                                     <div class="item-new-price">
                                                         ${game.getInitialPrice()} USD
                                                     </div>
                                                 </c:if> 
-                                                <c:if test="${game.isIsFree()}">
+                                                <c:if test="${game.getIsFree()}">
                                                     <div class="item-new-price">
                                                         Free
                                                     </div>

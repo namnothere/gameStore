@@ -13,7 +13,7 @@ import com.game.Game;
 import com.game.category;
 import com.game.gameDB;
 import com.game.genre;
-import com.store.search;
+import com.store.servletSearch;
 
 // @WebServlet(name = "StoreController", urlPatterns = {"/home", "/"})
 @WebServlet(name = "StoreController", urlPatterns = {""})
@@ -23,7 +23,7 @@ public class servletStore extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
         //search button
-        String action = request.getParameter("action");
+        /* String action = request.getParameter("action");
         if ("search".equals(action.toString())) {
             search.processRequestSearch(request, response);
         }
@@ -32,64 +32,25 @@ public class servletStore extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println("Error<br/>");
         }
-        doGet(request, response);
+        doGet(request, response); */
     }
     
     @Override
     protected void doGet(HttpServletRequest request,
     HttpServletResponse response)
     throws ServletException, IOException {
-        System.out.println("ran");
-
         // String uri = request.getRequestURI();
         // System.out.println("uri: " + uri);
         // System.out.println("pathInfo: " + pathInfo .toString());
 
         String url = "/home.jsp";
-        HttpSession session = request.getSession(false);        
-        gameDB GameDB = new gameDB();
-        
-        user usr = new user();
-        if (session == null) {
-            session = request.getSession(true);
-            Cookie[] cookies = request.getCookies();
-            boolean foundUser = false;
-            boolean foundPass = false; 
-            for(int i = 0; i < cookies.length; i++)
-            { 
-                Cookie c = cookies[i];
-                if (c.getName().equals("cookuser"))
-                {
-                    usr.setUsername(c.getValue());
-                    foundUser = true;
-                    
-                }
-                if (c.getName().equals("cookpass"))
-                {
-                    usr.setPassword(c.getValue());
-                    foundPass = true;
-                }
-                
-                if (foundUser && foundPass)
-                {
-                    if(usr.login())
-                    {
-                        session.setAttribute("logined", "true");
-                        session.setAttribute("user", usr);
-                    }
-                    else
-                    {
-                        session.setAttribute("logined", "false");
-                    }
-                }
-            }
-        }
+        header.headerInitiate(request, response);
         //create lists of games
         HashMap<Integer, List<Game>> gamesGen = new HashMap<Integer, List<Game>>();
-        List<genre> genres = GameDB.getAllGenres();
+        List<genre> genres = gameDB.getAllGenres();
         for (genre gen : genres)
         {
-        gamesGen.put(gen.ID, GameDB.getGamesByGenre(gen.ID, 12));
+            gamesGen.put(gen.ID, gameDB.getGamesByGenre(gen.ID, 12));
         }
         
 

@@ -1,5 +1,6 @@
 package com.user;
 
+import com.store.*;
 import java.io.IOException;
 import java.io.PrintWriter;  
 import javax.servlet.ServletException;
@@ -21,7 +22,8 @@ public class servletAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
+        HttpSession session = request.getSession();
+        header.headerInitiate(request, response);
         if (session.getAttribute("logined") == "true") {
         //check if user is logged in
         response.sendRedirect(request.getContextPath() + "");

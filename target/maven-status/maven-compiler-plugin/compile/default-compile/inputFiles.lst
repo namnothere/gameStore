@@ -1,5 +1,4 @@
 c:\Proj\gameStore-2\src\main\java\com\game\gameDB.java
-c:\Proj\gameStore-2\src\main\java\com\user\changePasswordAction.java
 c:\Proj\gameStore-2\src\main\java\com\game\category.java
 c:\Proj\gameStore-2\src\main\java\com\game\ProductUtils.java
 c:\Proj\gameStore-2\src\main\java\com\user\servletAccount.java
@@ -8,16 +7,16 @@ c:\Proj\gameStore-2\src\main\java\com\transaction\Transaction.java
 c:\Proj\gameStore-2\src\main\java\com\store\servletProduct.java
 c:\Proj\gameStore-2\src\main\java\com\user\servletLogout.java
 c:\Proj\gameStore-2\src\main\java\com\game\cartGame.java
-c:\Proj\gameStore-2\src\main\java\com\store\search.java
+c:\Proj\gameStore-2\src\main\java\com\store\servletSearch.java
 c:\Proj\gameStore-2\src\main\java\com\store\servletStore.java
 c:\Proj\gameStore-2\src\main\java\com\user\servletProfile.java
+c:\Proj\gameStore-2\src\main\java\com\cart\CartDB.java
 c:\Proj\gameStore-2\src\main\java\com\store\jsp_example.java
 c:\Proj\gameStore-2\src\main\java\com\user\user.java
 c:\Proj\gameStore-2\src\main\java\com\game\genre.java
 c:\Proj\gameStore-2\src\main\java\com\user\userDB.java
 c:\Proj\gameStore-2\src\main\java\com\dataUtils\dataUtils.java
 c:\Proj\gameStore-2\src\main\java\com\game\Game.java
-c:\Proj\gameStore-2\src\main\java\com\store\servletUser.java
+c:\Proj\gameStore-2\src\main\java\com\store\header.java
 c:\Proj\gameStore-2\src\main\java\com\store\PageNotFound.java
 c:\Proj\gameStore-2\src\main\java\com\transaction\transactionDB.java
-c:\Proj\gameStore-2\src\main\java\com\user\servletLogin.java
