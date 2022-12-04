@@ -18,32 +18,59 @@ public class Cart {
     //works like a transaction but will not be stored in the database
 
     private String username;
-    private List<Integer> games = new ArrayList<Integer>();
+    // private List<Integer> games = new ArrayList<Integer>();
     private double total;
+    private cartItems cartItems;
 
     public Cart() {
-        this.games = new ArrayList<Integer>();
+        this.cartItems = new cartItems();
         this.total = 0;
         this.username = null;
     }
 
     public Cart(user user) {
-        this.games = new ArrayList<Integer>();
+        this.cartItems = new cartItems();
         this.total = 0;
         this.username = user.getUsername();
     }
 
     public Cart(Document doc) {
-        List<Integer> games = doc.getList("games", Integer.class);
-        this.games = games;
-        this.total = doc.getDouble("total");
+        // List<Integer> games = doc.getList("games", Integer.class);
+        // this.cartItems = new cartItems();
+        this.total = Double.valueOf(doc.get("total").toString());
         this.username = doc.getString("username");
+
+        //cartItems is a document in the cart document
+        // Document cartItemsDoc = (Document) doc.get("cartItems");
+
+        //create a new cartItems object
+        this.cartItems = new cartItems(doc);
+
+        System.out.println("Cart created from document");
+        System.out.println(cartItems.getGames());
+
     }
 
     public void addGame(Game game) {
-        this.games.add(game.getID());
-        this.total += game.getFinalPrice();
-        this.total = Math.round(this.total * 100.0) / 100.0;
+        // this.games.add(game.getID());
+        cartItems.addCartItem(game.getID(), 1);
+
+        // this.total += game.getFinalPrice();
+        // this.total = Math.round(this.total * 100.0) / 100.0;
+        this.total = cartItems.getTotal();
+
+    }
+
+    public void addGame(Integer gameID) {
+
+        //check if game exist 
+        if (gameDB.getGame(gameID) == null) {
+            System.out.println("Game does not exist");
+            return;
+        }
+
+        cartItems.addCartItem(gameID, 1);
+        this.total = cartItems.getTotal();
 
     }
 
@@ -52,29 +79,33 @@ public class Cart {
         if (game == null) {
             return;
         }
-        if (this.games.contains(game.getID())) {
-            this.games.remove(game.getID());
-            this.total -= game.getFinalPrice();
-            this.total = Math.round(this.total * 100.0) / 100.0;
-        }
+        // if (this.cartItems.contains(game.getID())) {
+        //     this.games.remove(game.getID());
+        //     this.total -= game.getFinalPrice();
+        //     this.total = Math.round(this.total * 100.0) / 100.0;
+        // }
+        this.cartItems.removeCartItem(game.getID());
+        this.total = cartItems.getTotal();
     }
 
     public void removeGame(Integer gameID) {
 
         Game game = gameDB.getGame(gameID);
         if (game != null) {
-            if (this.games.contains(gameID)) {
-                this.games.remove(gameID);
-                this.total -= game.getFinalPrice();
-                this.total = Math.round(this.total * 100.0) / 100.0;
-            }
+            // if (this.games.contains(gameID)) {
+            //     this.games.remove(gameID);
+            //     this.total -= game.getFinalPrice();
+            //     this.total = Math.round(this.total * 100.0) / 100.0;
+            // }
+            this.cartItems.removeCartItem(gameID);
+            this.total = cartItems.getTotal();
         }
     }
 
     public void clearCart() {
-        this.games.clear();
-        this.games = new ArrayList<Integer>();
+        this.cartItems.clearCart();
         this.total = 0;
+        this.save();
     }
 
     public void setUsername(String username) {
@@ -113,17 +144,18 @@ public class Cart {
 
     public double calTotal() {
         double total = 0;
-        for (Integer game : this.games) {
-            //get the game from the database
-            Game gameInfo = gameDB.getGameByID(game);
-            total += gameInfo.getFinalPrice();
-        }
+        // for (Integer game : this.games) {
+        //     //get the game from the database
+        //     Game gameInfo = gameDB.getGameByID(game);
+        //     total += gameInfo.getFinalPrice();
+        // }
+        total = this.cartItems.calTotal();
         this.total = Math.round(total * 100.0) / 100.0;
         return this.total;
     }
 
     public List<Integer> getGames() {
-        return games;
+        return this.cartItems.getGames();
     }
 
     public double getTotal() {
@@ -133,10 +165,12 @@ public class Cart {
 
     public Document toDocument() {
         Document doc = new Document();
-        doc.append("games", this.games);
-        doc.append("total", this.total);
-        doc.append("username", this.username);
 
+        Document cartItemsDoc = this.cartItems.toDocument();
+        doc.append("username", this.username);
+        doc.append("total", this.total);
+        doc.append("cartItems", cartItemsDoc);
+        
         return doc;
     }
 

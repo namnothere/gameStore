@@ -373,6 +373,64 @@ public class gameDB {
         return sortAlphabet(null);
     }
 
+    public static List<Game> sortByPrice(List<Game> games, Integer order) {
+        //1 = ascending
+        //-1 = descending
+
+
+        //pull games from database if null
+
+        //sort game prices (double) and return if games is not null
+        //sort ascending by default
+        if (games != null) {
+            Collections.sort(games, new Comparator<Game>() {
+                @Override
+                public int compare(Game o1, Game o2) {
+                    return Double.compare(o1.getFinalPrice(), o2.getFinalPrice());
+                }
+            });
+            if (order == -1) {
+                Collections.reverse(games);
+            }
+            return games;
+        }
+
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("products");
+
+        List<Document> docs;
+        //find all the documents
+        if (order == -1) {
+            //sort descending
+            docs = collection.find().sort(Sorts.descending("price_overview.final")).into(new ArrayList<Document>());
+        } else {
+            //sort ascending
+            docs = collection.find().sort(Sorts.ascending("price_overview.final")).into(new ArrayList<Document>());
+        }
+        // docs = collection.find().sort(Sorts.ascending("price")).into(new ArrayList<Document>());
+
+        //create a list of games
+        games = new ArrayList<Game>();
+
+        //iterate through the documents
+        for (Document doc : docs) {
+            //create a new game object
+            Game game = new Game(doc.toJson(), doc.getInteger("id"));
+            games.add(game);
+        }
+
+        return games;
+    }
+
+    public static List<Game> sortByPrice(Integer order) {
+        return sortByPrice(null, order);
+    }
+
     public static List<Game> getGamesByPrice(Integer min, Integer max, Integer limit, Boolean discount) {
         //return games with price between min and max | using initial price as default
         
@@ -619,11 +677,16 @@ public class gameDB {
             //get random games
             List<Game> games = getRandom(10);
 
+            //sort by price ascending
+            // games = sortByPrice(games, 1);
+            //sort by price descending
+            games = sortByPrice(games, -1);
+
             //show games found
             if (games != null) {
                 for (Game game : games) {
                     // showGame(game);
-                    System.out.println(game.getName() + ": " + game.getInitialPrice());
+                    System.out.println(game.getName() + ": " + game.getFinalPrice());
                 }
             }
             
@@ -644,9 +707,4 @@ public class gameDB {
         }
         return total;
     }
-
-
-  
-
-    
 }

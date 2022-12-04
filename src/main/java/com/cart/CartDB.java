@@ -60,8 +60,11 @@ public class CartDB {
             Document doc = collection.find(filter).first();
 
             if (doc == null) {
+                System.out.println("Cart not found");
                 return null;
             }
+
+            System.out.println("Cart found");
             
             return new Cart(doc);
 
