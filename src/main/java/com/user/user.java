@@ -276,6 +276,11 @@ public class user {
             this.name = user.getName();
             this.email = user.getEmail();
             this.avatar = user.getAvatar();
+            this.role = user.getRole();
+            this.balance = user.getBalance();
+            this.cart = user.getCart();
+            // this.cart.setUsername(this.username);
+            this.ownedGames = user.getOwnedGames();
             return true;
         }
         return false;
@@ -324,8 +329,8 @@ public class user {
         // List<Game> games = gameDB.getRandom(5);
 
         //get user
-        user user = userDB.getUser("admin");
-        // System.out.println("Total cart: " + user.getCart().calTotal());
+        user user = userDB.getUser("zdragonz999");
+        System.out.println("Total cart: " + user.getCart().calTotal());
 
         //Clear cart action
         // user.getCart().clearCart();
@@ -342,12 +347,12 @@ public class user {
         // user.removeGameFromCart(546560); //use gameID
         // user.removeGameFromCart(gameDB.getGame(546560)); //use gameObject
 
-        System.out.println("Total cart: " + user.getCart().calTotal());
+        // System.out.println("Total cart: " + user.getCart().calTotal());
 
         //buy games
         //scenarion 1: user has enough balance
         // user.setBalance(1000);
-        user.buyGames();
+        // user.buyGames();
 
         //scenarion 2: user has not enough balance
         // user.setBalance(0);

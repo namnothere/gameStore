@@ -16,10 +16,17 @@ com\game\ProductUtils.class
 com\transaction\Transaction.class
 com\cart\cartItems.class
 com\user\userDB.class
+<<<<<<< HEAD
 com\store\servletSearch.class
 com\cart\cartItems$cartItem.class
 com\game\gameDB.class
 com\dataUtils\dataUtils.class
+=======
+com\cart\cartItems$cartItem.class
+com\game\gameDB.class
+com\dataUtils\dataUtils.class
+com\store\servletUser.class
+>>>>>>> origin/dataInteract
 com\user\user.class
 com\user\servletLogout.class
 com\store\servletCart.class
