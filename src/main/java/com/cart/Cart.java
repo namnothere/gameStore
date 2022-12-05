@@ -173,5 +173,8 @@ public class Cart {
         
         return doc;
     }
+    public cartItems getCartItems() {
+        return this.cartItems;
+    }
 
 }

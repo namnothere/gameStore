@@ -8,6 +8,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 // import com.store.MongoUtils;
 import com.user.user;
+import com.user.userDB;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.game.Game;
@@ -19,6 +21,8 @@ import com.store.servletSearch;
 public class header {
     public static void headerInitiate(HttpServletRequest request, HttpServletResponse response)
     {
+        gameDB gameDB = new gameDB();
+        request.setAttribute("gameDB", gameDB);
         HttpSession session = request.getSession(false);        
         
         user usr = new user();
@@ -46,15 +50,16 @@ public class header {
                 {
                     if(usr.login())
                     {
+                        System.out.println("//");
                         session.setAttribute("logined", "true");
                         session.setAttribute("user", usr);
-                    }
-                    else
-                    {
-                        session.setAttribute("logined", "false");
+                        return;
                     }
                 }
             }
+            request.setAttribute("gameDB", gameDB);
+            session.setAttribute("logined", "false");
+            session.setAttribute("user", new user());
         }
     }
 }

@@ -153,20 +153,29 @@
                 <button type="button" class="button ion ion-md-close" id="mini-cart-close"></button>
             </div>
             <ul class="mini-cart-list">
-                <c:forEach var="cartItem" items="${sessionScope.user.cart}">
+                <c:forEach var="cartItem" items="${sessionScope.user.getCart().getCartItems().getCartItems()}">
+                    <c:set var="game" value="${gameDB.getGame(cartItem.getGameID())}"></c:set>
                     <li class="clearfix">
-                        <a href="single-product.html">
-                            <img src="images/product/product@1x.jpg" alt="Product">
-                            <span class="mini-item-name">Casual Hoodie Full Cotton</span>
-                            <span class="mini-item-price">$55.00</span>
-                            <span class="mini-item-quantity"> x 1 </span>
+                        <a href="game?id=${game.getID()}">
+                            <img src="${game.getImages().get(0)}" alt="Product">
+                            <span class="mini-item-name">${game.getName()}</span>
+                            <span class="mini-item-price">$${cartItem.getPrice()}</span>
+                            <span class="mini-item-quantity"> x ${cartItem.getQuantity()} </span>
                         </a>
                     </li> 
                 </c:forEach>
             </ul>
             <div class="mini-shop-total clearfix">
                 <span class="mini-total-heading float-left">Total:</span>
-                <span class="mini-total-price float-right">$220.00</span>
+                <c:choose>
+                    <c:when test="${sessionScope.user.getCart().getTotal() != null}">
+                        <span class="mini-total-price float-right">$${sessionScope.user.getCart().getTotal()}</span>
+                    </c:when>
+                    <c:otherwise>
+                        <span class="mini-total-price float-right">$0</span>
+                    </c:otherwise>
+                </c:choose>
+                
             </div>
             <div class="mini-action-anchors">
                 <a href="cart.html" class="cart-anchor">View Cart</a>

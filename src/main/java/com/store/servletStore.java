@@ -13,7 +13,6 @@ import com.game.Game;
 import com.game.category;
 import com.game.gameDB;
 import com.game.genre;
-import com.store.servletSearch;
 
 // @WebServlet(name = "StoreController", urlPatterns = {"/home", "/"})
 @WebServlet(name = "StoreController", urlPatterns = {""})
@@ -22,17 +21,17 @@ public class servletStore extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        //search button
-        /* String action = request.getParameter("action");
-        if ("search".equals(action.toString())) {
-            search.processRequestSearch(request, response);
+        //buttons
+        String action = request.getParameter("action");
+        if ("addCart".equals(action.toString())) {
+            servletCart.processRequestAddCart(request, response);
         }
         else
         {
             PrintWriter out = response.getWriter();
             out.println("Error<br/>");
         }
-        doGet(request, response); */
+        doGet(request, response);
     }
     
     @Override
@@ -45,6 +44,10 @@ public class servletStore extends HttpServlet {
 
         String url = "/home.jsp";
         header.headerInitiate(request, response);
+        System.out.println("//");
+        HttpSession session = request.getSession(false);  
+        System.out.println(session.getAttribute("logined"));
+        System.out.println("//");
         //create lists of games
         HashMap<Integer, List<Game>> gamesGen = new HashMap<Integer, List<Game>>();
         List<genre> genres = gameDB.getAllGenres();

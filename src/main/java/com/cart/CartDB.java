@@ -61,7 +61,10 @@ public class CartDB {
 
             if (doc == null) {
                 System.out.println("Cart not found");
-                return null;
+                Cart cart = new Cart();
+                cart.setUsername(username);
+                CartDB.insertCart(cart);
+                return cart;
             }
 
             System.out.println("Cart found");

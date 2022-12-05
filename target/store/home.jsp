@@ -111,11 +111,15 @@
                                                         <img class="img-fluid" src="${game.getImages().get(0)}" alt="Product">
                                                     </a>
                                                     <div class="item-action-behaviors">
-                                                        <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
-                                                        </a>
-                                                        <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                        <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                        <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+<!--                                                         <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look
+                                                        </a> -->
+<!--                                                         <form action="addWishlist"
+                                                        <button class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a> -->
+                                                        <form action="" method="post" id ="${game.getID()}">
+                                                            <input type="hidden" name="action" value="addCart">
+                                                            <input type="hidden" name="gameID" value="${game.getID()}">
+                                                            <a class="item-addCart" href="javascript:{}" onclick="document.getElementById('${game.getID()}').submit();">Add to Cart</a>
+                                                        </form>
                                                     </div>
                                                 </div>
                                                 <div class="item-content">
