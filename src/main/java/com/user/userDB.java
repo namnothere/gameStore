@@ -82,6 +82,13 @@ public class userDB {
         return userDB.client;
     }
 
+    public static int getUserCount() {
+        MongoClient client = userDB.connect();
+        MongoDatabase db = client.getDatabase("gameStore");
+        MongoCollection<Document> collection = db.getCollection("users");
+        return (int) collection.countDocuments();
+    }
+
     public static user getUser(String username) {
         //connect to the database
         MongoClient client = connect();
@@ -186,13 +193,28 @@ public class userDB {
             .append("avatar", user.getAvatar())
             .append("role", user.getRole())
             .append("balance", user.getBalance())
-            .append("ownedGames", user.getOwnedGames())
-            .append("cart", user.getCart());
+            .append("ownedGames", user.getOwnedGames());
             
-
             //insert new user document
-            InsertOneResult result = collection.insertOne(newUser);
-            // System.out.println("Success! Inserted document id: " + result.getInsertedId());
+            InsertOneResult result = collection.insertOne(newUser);  
+        
+            //insert cart
+            Cart userCart = user.getCart();
+            try {
+                if (userCart != null) {
+                    CartDB.insertCart(userCart);
+                }
+                else {
+                    userCart = new Cart(user.getUsername());
+                    user.setCart(userCart);
+                    CartDB.insertCart(userCart);
+                }
+            }
+            catch (Exception e) {
+                LOGGER.log(Level.SEVERE, "Error inserting cart");
+                LOGGER.log(Level.SEVERE, e.getMessage());
+                return false;
+            }
             LOGGER.log(Level.INFO, "Success! Inserted document id: " + result.getInsertedId());
 
             return true;
@@ -433,10 +455,11 @@ public class userDB {
     public static void main(String[] args) throws Exception {
 
         //insert user
-        // user User = new user("adminAccount", "admin", "admin@gmail.com", "123456", "null", "admin", 10000.0);
+        // user User = new user("adminTestAccount", "admintest", "admin@gmail.com", "123456", "null", "admin", 10000.0);
         // boolean insert = insertUser(User);
         // if (insert) {
         //     LOGGER.log(Level.INFO, "Successfully inserted user");
+        //     user.showUser(User);
         // }
         // else {
         //     LOGGER.log(Level.INFO, "Failed to insert user");
@@ -519,6 +542,4 @@ public class userDB {
             return false;
         }
     }
-
-    
 }

@@ -34,6 +34,12 @@ public class Cart {
         this.username = user.getUsername();
     }
 
+    public Cart(String username) {
+        this.cartItems = new cartItems();
+        this.total = 0;
+        this.username = username;
+    }
+
     public Cart(Document doc) {
         // List<Integer> games = doc.getList("games", Integer.class);
         // this.cartItems = new cartItems();
