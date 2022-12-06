@@ -117,8 +117,6 @@ public class userDB {
         // List<Integer> cart = (List<Integer>)doc.get("cart");
         List<Integer> cart = CartDB.getCart(username).getGames();
 
-        System.out.println("ownedGames: " + ownedGames);
-
         //get array int of owned games
         user user = new user(
             doc.getString("name"),
