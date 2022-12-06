@@ -67,7 +67,27 @@ public class Transaction {
     public Transaction(Document doc) {
         this.date = doc.getDate("date");
         this.transactionCode = doc.getInteger("transactionCode");
-        this.games = doc.getList("game", Integer.class);
+        // this.games = doc.getList("games", Integer.class);
+        // this.games = 
+
+        //parse the games
+        // List<Game> games = new ArrayList<Game>();
+
+        //games contains a list of game doc
+        List<Document> gameDocs = doc.getList("games", Document.class);
+
+        // for (Document gameDoc : gameDocs) {
+        //     Game game = gameDB.getGame(gameDoc.getInteger("id"));
+        //     game.setInitialPrice(gameDoc.getDouble("initialPrice"));
+        //     game.setFinalPrice(gameDoc.getDouble("finalPrice"));
+        //     game.setDiscount(gameDoc.getInteger("discount"));
+        //     games.add(game);
+        // }
+
+        for (Document gameDoc : gameDocs) {
+            this.games.add(gameDoc.getInteger("ID"));
+        }
+
         this.status = doc.getString("status");
         this.paymentMethod = doc.getString("paymentMethod");
         this.total = doc.getDouble("total").floatValue();

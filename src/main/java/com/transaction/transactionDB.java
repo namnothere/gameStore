@@ -160,6 +160,38 @@ public class transactionDB {
         return transaction;
     }
 
+    public static List<Transaction> getUserTransaction(String username) {
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("transactions");
+
+        //declare filter to find the transaction
+        Document filter = new Document("user", username);
+
+        //find the transactions that match the filter
+        List<Document> docs = collection.find(filter).into(new ArrayList<Document>());
+
+        if (docs == null) {
+            return null;
+        }
+
+        //create a list of transactions
+        List<Transaction> transactions = new ArrayList<Transaction>();
+
+        //create a new transaction object
+        for (Document doc : docs) {
+            Transaction transaction = new Transaction(doc);
+            transactions.add(transaction);
+        }
+
+        return transactions;
+
+    }
+
     public static boolean updateTransaction(Transaction transaction) {
         //connect to the database
         MongoClient client = connect();
@@ -223,11 +255,16 @@ public class transactionDB {
     }
 
     public static void main(String[] args) {
-        // seedSampleTransactions();
-        // Transaction t = getLastestTransaction();
-        // showTransaction(t);
 
-        // dataUtils.disconnect();
+        //get user transactions
+        List<Transaction> transactions = getUserTransaction("admin");
+
+        //show the transactions
+        for (Transaction transaction : transactions) {
+            showTransaction(transaction);
+        }
+
+        dataUtils.disconnect();
     }
 
 }
