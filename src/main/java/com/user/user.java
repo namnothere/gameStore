@@ -226,6 +226,7 @@ public class user {
         
         this.balance -= this.cart.getTotal();
         System.out.println("total pay: " + this.cart.getTotal());
+        
         this.ownedGames.addAll(gameIDs);
 
         //round balance to 2 decimal places
