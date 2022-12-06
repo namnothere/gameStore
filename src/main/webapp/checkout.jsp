@@ -110,7 +110,7 @@
                                     </table>
                                     <div class="u-s-m-b-13">
                                         <input type="checkbox" class="check-box" id="accept" name="accept">
-                                        <label class="label-text no-color" for="accept">I’ve read and accept the
+                                        <label class="label-text no-color" for="accept">I&#39ve read and accept the
                                             <a href="terms-and-conditions.html" class="u-c-brand">terms & conditions</a>
                                         </label>
                                     </div>

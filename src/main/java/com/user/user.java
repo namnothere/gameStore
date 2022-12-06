@@ -226,7 +226,7 @@ public class user {
         
         this.balance -= this.cart.getTotal();
         System.out.println("total pay: " + this.cart.getTotal());
-        
+
         this.ownedGames.addAll(gameIDs);
 
         //round balance to 2 decimal places
@@ -330,7 +330,9 @@ public class user {
         // List<Game> games = gameDB.getRandom(5);
 
         //get user
-        user user = userDB.getUser("zdragonz999");
+        user user = userDB.getUser("zdragonz99999");
+        user.setBalance(1000);
+        user.save();
         System.out.println("Total cart: " + user.getCart().calTotal());
 
         //Clear cart action
