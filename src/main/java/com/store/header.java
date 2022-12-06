@@ -63,6 +63,13 @@ public class header {
             request.setAttribute("gameDB", gameDB);
             session.setAttribute("logined", "false");
             session.setAttribute("user", new user());
+            return;
         }
+        else if ("true".equals(request.getAttribute("logined")))
+        {
+            usr = userDB.getUser(session.getAttribute("user.getUsername()").toString());
+            session.setAttribute("user", usr);
+        }
+
     }
 }

@@ -339,7 +339,7 @@ public class user {
 
         //get user
         user user = userDB.getUser("zdragonz99999");
-        user.setBalance(1000);
+        user.setBalance(10);
         user.save();
         System.out.println("Total cart: " + user.getCart().calTotal());
 

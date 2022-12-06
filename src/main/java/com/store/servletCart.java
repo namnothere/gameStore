@@ -29,6 +29,10 @@ public class servletCart extends HttpServlet{
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String action = request.getParameter("action");
+        if ("deleteFromCart".equals(action))
+        {
+            processRequestRemoveCart(request, response);
+        }
         doGet(request, response);
     }
 
@@ -45,8 +49,18 @@ public class servletCart extends HttpServlet{
         {
             user.getCart().save();
         }
-        System.out.println("//");
-        System.out.println(gameDB.getGame(user.getCart().getCartItems().getCartItems().get(0).getGameID()).getName());
-        System.out.println("//");
+    }
+    public static void processRequestRemoveCart(HttpServletRequest request,
+    HttpServletResponse response) throws ServletException, IOException 
+    {
+        HttpSession session = request.getSession(false);
+        user user = new user();
+        user = (user) session.getAttribute("user");
+        user.removeGameFromCart(Integer.parseInt(request.getParameter("gameID").toString()));
+        session.setAttribute("user", user);
+        if (session.getAttribute("logined") == "true")
+        {
+            user.getCart().save();
+        }
     }
 }

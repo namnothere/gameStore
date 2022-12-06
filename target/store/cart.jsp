@@ -66,20 +66,20 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <form>
-                        <!-- Products-List-Wrapper -->
-                        <div class="table-wrapper u-s-m-b-60">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Product</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Subtotal</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="cartItem" items="${sessionScope.user.getCart().getCartItems().getCartItems()}">
+                    <!-- Products-List-Wrapper -->
+                    <div class="table-wrapper u-s-m-b-60">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="cartItem" items="${sessionScope.user.getCart().getCartItems().getCartItems()}">
+                                    <form action="cart" method="post">
                                         <c:set var="game" value="${gameDB.getGame(cartItem.getGameID())}"></c:set>
                                         <tr>
                                             <td>
@@ -106,33 +106,33 @@
                                             </td>
                                             <td>
                                                 <div class="action-wrapper">
-                                                    <button class="button button-outline-secondary fas fa-sync"></button>
-                                                    <button class="button button-outline-secondary fas fa-trash"></button>
+                                                    <input type="hidden" name="action" value="deleteFromCart">
+                                                    <button type="submit" class="button button-outline-secondary fas fa-trash" name="gameID" value="${cartItem.getGameID()}"></button>
                                                 </div>
                                             </td>
                                         </tr>
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- Products-List-Wrapper /- -->
-                        <!-- Coupon -->
-                        <div class="coupon-continue-checkout u-s-m-b-60">
-                            <!-- <div class="coupon-area">
-                                <h6>Enter your coupon code if you have one.</h6>
-                                <div class="coupon-field">
-                                    <label class="sr-only" for="coupon-code">Apply Coupon</label>
-                                    <input id="coupon-code" type="text" class="text-field" placeholder="Coupon Code">
-                                    <button type="submit" class="button">Apply Coupon</button>
-                                </div>
-                            </div> -->
-                            <div class="button-area">
-                                <a href="${pageContext.request.contextPath}/home" class="continue">Continue Shopping</a>
-                                <a href="${pageContext.request.contextPath}/checkout" class="checkout">Proceed to Checkout</a>
+                                    </form>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Products-List-Wrapper /- -->
+                    <!-- Coupon -->
+                    <div class="coupon-continue-checkout u-s-m-b-60">
+                        <!-- <div class="coupon-area">
+                            <h6>Enter your coupon code if you have one.</h6>
+                            <div class="coupon-field">
+                                <label class="sr-only" for="coupon-code">Apply Coupon</label>
+                                <input id="coupon-code" type="text" class="text-field" placeholder="Coupon Code">
+                                <button type="submit" class="button">Apply Coupon</button>
                             </div>
+                        </div> -->
+                        <div class="button-area">
+                            <a href="${pageContext.request.contextPath}/home" class="continue">Continue Shopping</a>
+                            <a href="${pageContext.request.contextPath}/checkout" class="checkout">Proceed to Checkout</a>
                         </div>
-                        <!-- Coupon /- -->
-                    </form>
+                    </div>
+                    <!-- Coupon /- -->
                     <!-- Billing -->
                     <div class="calculation u-s-m-b-60">
                         <div class="table-wrapper-2">

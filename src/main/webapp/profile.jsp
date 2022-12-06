@@ -59,6 +59,9 @@
                     <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Security
                     </a>
+                    <a href="#ownedGames" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Owned Games
+                    </a>
                     <!-- <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Notification
                     </a>
@@ -78,6 +81,9 @@
                     </li>
                     <li class="nav-item">
                       <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#ownedGames" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
                     </li>
                     <!-- <li class="nav-item">
                       <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
@@ -131,103 +137,19 @@
                         <button type="submit" class="btn btn-primary" id="changePassword">Update Profile</button>
                       </div>
                     </form>
-                    <!-- <hr>
-                    <form>
-                      <div class="form-group">
-                        <label class="d-block">Two Factor Authentication</label>
-                        <button class="btn btn-info" type="button">Enable two-factor authentication</button>
-                        <p class="small text-muted mt-2">Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.</p>
-                      </div>
-                    </form>
+                  </div>
+                  <div class="tab-pane" id="ownedGames">
+                    <h6>OWNED GAMES</h6>
                     <hr>
-                    <form>
-                      <div class="form-group mb-0">
-                        <label class="d-block">Sessions</label>
-                        <p class="font-size-sm text-secondary">This is a list of devices that have logged into your account. Revoke any sessions that you do not recognize.</p>
-                        <ul class="list-group list-group-sm">
-                          <li class="list-group-item has-icon">
-                            <div>
-                              <h6 class="mb-0">San Francisco City 190.24.335.55</h6>
-                              <small class="text-muted">Your current session seen in United States</small>
-                            </div>
-                            <button class="btn btn-light btn-sm ml-auto" type="button">More info</button>
-                          </li>
-                        </ul>
+                    <c:forEach var="gameID" items="${sessionScope.user.getOwnedGames()}">
+                      <c:set var="game" value="${gameDB.getGame(gameID)}"></c:set>
+                      <div class="cart-anchor-image">
+                        <a href="game?id=${game.getID()}">
+                            <img src="${game.getImages().get(0)}" alt="Product">
+                            <h6>${game.getName()}</h6>
+                        </a>
                       </div>
-                    </form>
-                  </div> -->
-                  <!-- <div class="tab-pane" id="notification">
-                    <h6>NOTIFICATION SETTINGS</h6>
-                    <hr>
-                    <form>
-                      <div class="form-group">
-                        <label class="d-block mb-0">Security Alerts</label>
-                        <div class="small text-muted mb-3">Receive security alert notifications via email</div>
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck1" checked="">
-                          <label class="custom-control-label" for="customCheck1">Email each time a vulnerability is found</label>
-                        </div>
-                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" id="customCheck2" checked="">
-                          <label class="custom-control-label" for="customCheck2">Email a digest summary of vulnerability</label>
-                        </div>
-                      </div>
-                      <div class="form-group mb-0">
-                        <label class="d-block">SMS Notifications</label>
-                        <ul class="list-group list-group-sm">
-                          <li class="list-group-item has-icon">
-                            Comments
-                            <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                              <input type="checkbox" class="custom-control-input" id="customSwitch1" checked="">
-                              <label class="custom-control-label" for="customSwitch1"></label>
-                            </div>
-                          </li>
-                          <li class="list-group-item has-icon">
-                            Updates From People
-                            <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                              <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                              <label class="custom-control-label" for="customSwitch2"></label>
-                            </div>
-                          </li>
-                          <li class="list-group-item has-icon">
-                            Reminders
-                            <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                              <input type="checkbox" class="custom-control-input" id="customSwitch3" checked="">
-                              <label class="custom-control-label" for="customSwitch3"></label>
-                            </div>
-                          </li>
-                          <li class="list-group-item has-icon">
-                            Events
-                            <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                              <input type="checkbox" class="custom-control-input" id="customSwitch4" checked="">
-                              <label class="custom-control-label" for="customSwitch4"></label>
-                            </div>
-                          </li>
-                          <li class="list-group-item has-icon">
-                            Pages You Follow
-                            <div class="custom-control custom-control-nolabel custom-switch ml-auto">
-                              <input type="checkbox" class="custom-control-input" id="customSwitch5">
-                              <label class="custom-control-label" for="customSwitch5"></label>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </form>
-                  </div> -->
-                  <div class="tab-pane" id="billing">
-                    <h6>BILLING SETTINGS</h6>
-                    <hr>
-                    <form>
-                      <div class="form-group">
-                        <label class="d-block mb-0">Payment Method</label>
-                        <div class="small text-muted mb-3">You have not added a payment method</div>
-                        <button class="btn btn-info" type="button">Add Payment Method</button>
-                      </div>
-                      <div class="form-group mb-0">
-                        <label class="d-block">Payment History</label>
-                        <div class="border border-gray-500 bg-gray-200 p-3 text-center font-size-sm">You have not made any payment.</div>
-                      </div>
-                    </form>
+                    </c:forEach>
                   </div>
                 </div>
               </div>
