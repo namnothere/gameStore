@@ -147,6 +147,21 @@ public class gameDB {
         return games;
     }
 
+    public static int getGameCount() {
+        //connect to the database
+        MongoClient client = connect();
+
+        //get the database
+        MongoDatabase database = client.getDatabase("gameStore");
+        //get the collection
+        MongoCollection<Document> collection = database.getCollection("products");
+
+        //find all the documents
+        List<Document> docs = collection.find().into(new ArrayList<Document>());
+
+        return docs.size();
+    }
+
     public static List<category> getAllCategories() {
         //connect to the database
         MongoClient client = connect();

@@ -83,6 +83,13 @@ public class userDB {
         return userDB.client;
     }
 
+    public static int getUserCount() {
+        MongoClient client = userDB.connect();
+        MongoDatabase db = client.getDatabase("gameStore");
+        MongoCollection<Document> collection = db.getCollection("users");
+        return (int) collection.countDocuments();
+    }
+
     public static user getUser(String username) {
         //connect to the database
         MongoClient client = connect();
