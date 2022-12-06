@@ -31,29 +31,32 @@ public class header {
             Cookie[] cookies = request.getCookies();
             boolean foundUser = false;
             boolean foundPass = false; 
-            for(int i = 0; i < cookies.length; i++)
-            { 
-                Cookie c = cookies[i];
-                if (c.getName().equals("cookuser"))
-                {
-                    usr.setUsername(c.getValue());
-                    foundUser = true;
-                    
-                }
-                if (c.getName().equals("cookpass"))
-                {
-                    usr.setPassword(c.getValue());
-                    foundPass = true;
-                }
-                
-                if (foundUser && foundPass)
-                {
-                    if(usr.login())
+            if (cookies != null)
+            {
+                for(int i = 0; i < cookies.length; i++)
+                { 
+                    Cookie c = cookies[i];
+                    if (c.getName().equals("cookuser"))
                     {
-                        System.out.println("//");
-                        session.setAttribute("logined", "true");
-                        session.setAttribute("user", usr);
-                        return;
+                        usr.setUsername(c.getValue());
+                        foundUser = true;
+                        
+                    }
+                    if (c.getName().equals("cookpass"))
+                    {
+                        usr.setPassword(c.getValue());
+                        foundPass = true;
+                    }
+                    
+                    if (foundUser && foundPass)
+                    {
+                        if(usr.login())
+                        {
+                            System.out.println("//");
+                            session.setAttribute("logined", "true");
+                            session.setAttribute("user", usr);
+                            return;
+                        }
                     }
                 }
             }

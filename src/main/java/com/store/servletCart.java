@@ -16,7 +16,22 @@ import com.game.category;
 import com.game.gameDB;
 import com.game.genre;
 
+@WebServlet(name = "CartController", urlPatterns = {"/cart"})
 public class servletCart extends HttpServlet{
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        header.headerInitiate(request, response);
+        String url = "/cart.jsp";
+        request.getRequestDispatcher(url).forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException {
+        String action = request.getParameter("action");
+        doGet(request, response);
+    }
+
     public static void processRequestAddCart(HttpServletRequest request,
     HttpServletResponse response) throws ServletException, IOException 
     {

@@ -1,5 +1,6 @@
 package com.user;
 
+import com.store.*;
 import java.io.IOException;
 import java.io.PrintWriter;  
 import javax.servlet.ServletException;
@@ -25,6 +26,8 @@ public class servletProfile extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         HttpSession session = request.getSession(false);
+        header.headerInitiate(request, response);
+        request.getAttribute("user.showUser(user)");
         if (session.getAttribute("logined") != "true") {
         //check if user is logged in
         response.sendRedirect(request.getContextPath() + "/account");
@@ -42,10 +45,6 @@ public class servletProfile extends HttpServlet {
         if ("updateProfile".equals(action.toString())) {
             processRequestUpdateProfile(request, response);
         }
-        else if ("changeUsername".equals(action.toString()))
-        {
-            processRequestChangeUsername(request, response);
-        }
         else if ("deleteAccount".equals(action.toString()))
         {
             processRequestDeleteAccount(request, response);
@@ -54,6 +53,7 @@ public class servletProfile extends HttpServlet {
         {
             processRequestChangePassword(request, response);
         }
+        request.getRequestDispatcher("profile.jsp").forward(request, response);
         
 
     }
@@ -61,9 +61,10 @@ public class servletProfile extends HttpServlet {
     protected void processRequestUpdateProfile (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        user u = userDB.getUser(session.getAttribute("user.name").toString());
+        user u = (user) session.getAttribute("user");
         u.setName(request.getParameter("fullName"));
         userDB.updateUserBalance(u);
+        session.setAttribute("user", u);
         PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Update profile success');");
@@ -71,39 +72,11 @@ public class servletProfile extends HttpServlet {
             out.println("</script>");
             out.close();
     }
-
-    protected void processRequestChangeUsername (HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-        String username = session.getAttribute("user.username").toString();
-        if (username == null)
-        {
-            request.setAttribute("messageChangeUsername", "Username cant be empty.");
-        }
-        else if (userDB.isExistUser(username))
-        {
-            request.setAttribute("messageChangeUsername", "Username exist.");
-        }
-        else
-        {
-            user u = userDB.getUser(username);
-            u.setUsername(request.getParameter("username"));
-            userDB.updateUserBalance(u);
-            session.setAttribute("user.username", request.getParameter("username"));
-            PrintWriter out = response.getWriter();
-            out.println("<script type=\"text/javascript\">");
-            out.println("alert('Change username success');");
-            out.println("location='profile.jsp';");
-            out.println("</script>");
-            out.close();
-        }
-        
-    }
     
     protected void processRequestDeleteAccount (HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        userDB.deleteUser(session.getAttribute("user.username").toString());
+        userDB.deleteUser(session.getAttribute("user.getUsername()").toString());
         PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Delete account success');");
@@ -116,24 +89,23 @@ public class servletProfile extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession(false);
-        user u = userDB.getUser(session.getAttribute("user.name").toString());
+        user u = (user) session.getAttribute("user");
         String oldpass = request.getParameter("oldPassword");
         String newpass = request.getParameter("newPassword");
         String rnewpass = request.getParameter("rnewPassword");
         if (oldpass == newpass)
         {
             request.setAttribute("messageChangePass", "New password cannot be the same as old password");
-            request.getRequestDispatcher("/profile.jsp").forward(request, response);
         }
         else if(newpass != rnewpass)
         {
             request.setAttribute("messageChangePass", "New passwords are not the same");
-            request.getRequestDispatcher("/profile.jsp").forward(request, response);
         }
         else
         {
+            System.out.print("ran");
             u.setPassword(rnewpass);
-            session.setAttribute("user.password", rnewpass);
+            session.setAttribute("user", u);
             PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Reset password success');");

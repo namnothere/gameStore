@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en" class="js">
 <head>
@@ -33,221 +34,7 @@
 <body>
   <div class="app">
     <!-- Header -->
-    <header>
-      <!-- Top-Header -->
-      <div class="full-layer-outer-header">
-          <div class="container clearfix">
-              <nav>
-                  <ul class="primary-nav g-nav">
-                      <li>
-                          <a href="tel:+111444989">
-                              <i class="fas fa-phone u-c-brand u-s-m-r-9"></i>
-                              Telephone:+111-444-989</a>
-                      </li>
-                      <li>
-                          <a href="mailto:contact@domain.com">
-                              <i class="fas fa-envelope u-c-brand u-s-m-r-9"></i>
-                              E-mail: contact@domain.com
-                          </a>
-                      </li>
-                  </ul>
-              </nav>
-              <nav>
-                  <ul class="secondary-nav g-nav">
-                      <li>
-                          <a>My Account
-                              <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                          </a>
-                          <ul class="g-dropdown" style="width:200px">
-                              <li>
-                                  <a href="cart.html">
-                                      <i class="fas fa-cog u-s-m-r-9"></i>
-                                      My Cart</a>
-                              </li>
-                              <li>
-                                  <a href="wishlist.html">
-                                      <i class="far fa-heart u-s-m-r-9"></i>
-                                      My Wishlist</a>
-                              </li>
-                              <li>
-                                  <a href="checkout.html">
-                                      <i class="far fa-check-circle u-s-m-r-9"></i>
-                                      Checkout</a>
-                              </li>
-                              <li>
-                                  <a href="account.html">
-                                      <i class="fas fa-sign-in-alt u-s-m-r-9"></i>
-                                      Login / Signup</a>
-                                      <!-- Replace with logout button if user is already logged in -->
-                              </li>
-                          </ul>
-                      </li>
-                      <li>
-                          <a>USD
-                              <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                          </a>
-                          <ul class="g-dropdown" style="width:90px">
-                              <li>
-                                  <a href="#" class="u-c-brand">($) USD</a>
-                              </li>
-                              <li>
-                                  <a href="#">(£) GBP</a>
-                              </li>
-                          </ul>
-                      </li>
-                      <li>
-                          <a>ENG
-                              <i class="fas fa-chevron-down u-s-m-l-9"></i>
-                          </a>
-                          <ul class="g-dropdown" style="width:70px">
-                              <li>
-                                  <a href="#" class="u-c-brand">ENG</a>
-                              </li>
-                              <li>
-                                  <a href="#">ARB</a>
-                              </li>
-                          </ul>
-                  </ul>
-              </nav>
-          </div>
-      </div>
-      <!-- Top-Header /- -->
-      <!-- Mid-Header -->
-      <div class="full-layer-mid-header">
-          <div class="container">
-              <div class="row clearfix align-items-center">
-                  <div class="col-lg-3 col-md-9 col-sm-6">
-                      <div class="brand-logo text-lg-center">
-                          <a href="/">
-                              <img src="images/main-logo/groover-branding-1.png" alt="Groover Brand Logo" class="app-brand-logo">
-                          </a>
-                      </div>
-                  </div>
-                  <div class="col-lg-6 u-d-none-lg">
-                      <form class="form-searchbox">
-                          <label class="sr-only" for="search-landscape">Search</label>
-                          <input id="search-landscape" type="text" class="text-field" placeholder="Search everything">
-                          <div class="select-box-position">
-                              <div class="select-box-wrapper select-hide">
-                                  <label class="sr-only" for="select-category">Choose category for search</label>
-                                  <select class="select-box" id="select-category">
-                                      <option selected="selected" value="">
-                                          All
-                                      </option>
-                                      <option value="">Men's Clothing</option>
-                                      <option value="">Women's Clothing
-                                      </option>
-                                      <option value="">Toys Hobbies & Robots
-                                      </option>
-                                      <option value="">Mobiles & Tablets
-                                      </option>
-                                      <option value="">Consumer Electronics
-                                      </option>
-                                      <option value="">Books & Audible
-                                      </option>
-                                      <option value="">Beauty & Health
-                                      </option>
-                                      <option value="">Furniture Home & Office
-                                      </option>
-                                  </select>
-                              </div>
-                          </div>
-                          <button id="btn-search" type="submit" class="button button-primary fas fa-search"></button>
-                      </form>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-6">
-                      <nav>
-                          <ul class="mid-nav g-nav">
-                              <li class="u-d-none-lg">
-                                  <a href="/">
-                                      <i class="ion ion-md-home u-c-brand"></i>
-                                  </a>
-                              </li>
-                              <li class="u-d-none-lg">
-                                  <a href="wishlist.html">
-                                      <i class="far fa-heart"></i>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a id="mini-cart-trigger">
-                                      <i class="ion ion-md-basket"></i>
-                                      <span class="item-counter">4</span>
-                                      <span class="item-price">$220.00</span>
-                                  </a>
-                              </li>
-                          </ul>
-                      </nav>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <!-- Mid-Header /- -->
-      <!-- Responsive-Buttons -->
-      <div class="fixed-responsive-container">
-          <div class="fixed-responsive-wrapper">
-              <button type="button" class="button fas fa-search" id="responsive-search"></button>
-          </div>
-          <div class="fixed-responsive-wrapper">
-              <a href="wishlist.html">
-                  <i class="far fa-heart"></i>
-                  <span class="fixed-item-counter">4</span>
-              </a>
-          </div>
-      </div>
-      <!-- Responsive-Buttons /- -->
-      <!-- Mini Cart -->
-      <div class="mini-cart-wrapper">
-          <div class="mini-cart">
-              <div class="mini-cart-header">
-                  YOUR CART
-                  <button type="button" class="button ion ion-md-close" id="mini-cart-close"></button>
-              </div>
-              <ul class="mini-cart-list">
-                  <li class="clearfix">
-                      <a href="single-product.html">
-                          <img src="images/product/product@1x.jpg" alt="Product">
-                          <span class="mini-item-name">Casual Hoodie Full Cotton</span>
-                          <span class="mini-item-price">$55.00</span>
-                          <span class="mini-item-quantity"> x 1 </span>
-                      </a>
-                  </li>
-                  <li class="clearfix">
-                      <a href="single-product.html">
-                          <img src="images/product/product@1x.jpg" alt="Product">
-                          <span class="mini-item-name">Black Rock Dress with High Jewelery Necklace</span>
-                          <span class="mini-item-price">$55.00</span>
-                          <span class="mini-item-quantity"> x 1 </span>
-                      </a>
-                  </li>
-                  <li class="clearfix">
-                      <a href="single-product.html">
-                          <img src="images/product/product@1x.jpg" alt="Product">
-                          <span class="mini-item-name">Xiaomi Note 2 Black Color</span>
-                          <span class="mini-item-price">$55.00</span>
-                          <span class="mini-item-quantity"> x 1 </span>
-                      </a>
-                  </li>
-                  <li class="clearfix">
-                      <a href="single-product.html">
-                          <img src="images/product/product@1x.jpg" alt="Product">
-                          <span class="mini-item-name">Dell Inspiron 15</span>
-                          <span class="mini-item-price">$55.00</span>
-                          <span class="mini-item-quantity"> x 1 </span>
-                      </a>
-                  </li>
-              </ul>
-              <div class="mini-shop-total clearfix">
-                  <span class="mini-total-heading float-left">Total:</span>
-                  <span class="mini-total-price float-right">$220.00</span>
-              </div>
-              <div class="mini-action-anchors">
-                  <a href="cart.html" class="cart-anchor">View Cart</a>
-                  <a href="checkout.html" class="checkout-anchor">Checkout</a>
-              </div>
-          </div>
-      </div>
-      <!-- Mini Cart /- -->
-    </header>
+    <c:import url="header.jsp"></c:import>
   <!-- Header /- -->
     <div class="container">
   
@@ -269,18 +56,15 @@
                     <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile Information
                     </a>
-                    <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Account Settings
-                    </a>
                     <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Security
                     </a>
-                    <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                    <!-- <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Notification
                     </a>
                     <a href="#billing" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Billing
-                    </a>
+                    </a> -->
                   </nav>
                 </div>
               </div>
@@ -293,17 +77,14 @@
                       <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
                     </li>
                     <li class="nav-item">
-                      <a href="#account" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></a>
-                    </li>
-                    <li class="nav-item">
                       <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
                     </li>
                     <li class="nav-item">
                       <a href="#billing" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
-                    </li>
+                    </li> -->
                   </ul>
                 </div>
                 <div class="card-body tab-content">
@@ -336,35 +117,12 @@
                       
                     </form>
                   </div>
-                  <div class="tab-pane" id="account">
-                    <h6>ACCOUNT SETTINGS</h6>
-                    <hr>
-                    <form action="changeUsername" method="post">
-                      <input type="hidden" name="action" value="changeUsername">
-                      <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" placeholder="Enter your username" value=${user.username}>
-                        <span>${messageChangeUsername}</span>
-                        <small id="usernameHelp" class="form-text text-muted">After changing your username, your old username becomes available for anyone else to claim.</small>
-                      </div>
-                      <button type="submit" class="btn btn-primary" id="updateProfile">Update Profile</button>
-                      <hr>
-                    </form>
-                    <form action="deleteAccount" method="post">
-                      <input type="hidden" name="action" value="deleteAccount">
-                      <div class="form-group">
-                        <label class="d-block text-danger">Delete Account</label>
-                        <p class="font-size-sm warning text-danger">Once you delete your account, there is no going back. Please be certain.</p>
-                      </div>
-                      <button type="submit" class="btn btn-danger">Delete Account</button>
-                    </form>
-                  </div>
                   <div class="tab-pane" id="security">
                     <h6>SECURITY SETTINGS</h6>
                     <hr>
-                    <form>
+                    <form action="profile" method="post">
                       <div class="form-group">
-                        <input type="hidden" name="action" value="deleteAccount">
+                        <input type="hidden" name="action" value="changePassword">
                         <label class="d-block">Change Password</label>
                         <input type="text" class="form-control" placeholder="Enter your old password" name="oldPassword">
                         <input type="text" class="form-control mt-1" placeholder="New password" name="newPassword">
@@ -605,7 +363,7 @@
     <script>
     
       // var newMessage = $('<divclass="successToast"id="update"><divclass="toastfadehide"role="alert"data-delay="3000"data-autohide="false"><divclass="toast-header"><strongclass="mr-autotoast-header">Notification</strong><smallstyle="color:white">Justnow</small><buttontype="button"class="ml-2mb-1close"data-dismiss="toast"aria-label="Close"><spanaria-hidden="true">×</span></button></div><divclass="toast-body">Successfullyupdateprofile.</div></div></div>');
-      $(document).ready(function() {
+     /*  $(document).ready(function() {
         $('#updateProfileToast').click( function (){
           $('.toast').toast('show');
         });
@@ -640,7 +398,7 @@
             }
           });
           return false;
-      });
+      }); */
 
     </script>
     <div class="successToast" id="update">

@@ -142,10 +142,6 @@ public class Cart {
         return this;
     }
 
-    public cartItems geCartItems() {
-        return this.cartItems;
-    }
-
     public double calTotal() {
         double total = 0;
         // for (Integer game : this.games) {

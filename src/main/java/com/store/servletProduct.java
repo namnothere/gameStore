@@ -29,6 +29,7 @@ public class servletProduct extends HttpServlet {
             HttpServletResponse response)
             throws ServletException, IOException {
             
+            header.headerInitiate(request, response);
             gameDB GameDB = new gameDB();
             //?id=100
             //split the 100 and get the id

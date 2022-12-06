@@ -44,10 +44,6 @@ public class servletStore extends HttpServlet {
 
         String url = "/home.jsp";
         header.headerInitiate(request, response);
-        System.out.println("//");
-        HttpSession session = request.getSession(false);  
-        System.out.println(session.getAttribute("logined"));
-        System.out.println("//");
         //create lists of games
         HashMap<Integer, List<Game>> gamesGen = new HashMap<Integer, List<Game>>();
         List<genre> genres = gameDB.getAllGenres();

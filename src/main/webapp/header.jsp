@@ -27,6 +27,8 @@
                             <c:when test="${sessionScope.logined == 'true'}">
                                 <a>${sessionScope.user.name}
                                     <i class="fas fa-chevron-down u-s-m-l-9"></i>
+                                    <br>
+                                    $${sessionScope.user.getBalance()}
                                 </a>
                                 <ul class="g-dropdown" style="width:200px">
                                     <li>
@@ -35,15 +37,15 @@
                                             My Profile</a>
                                     </li>
                                     <li>
-                                        <a href="${pageContext.request.contextPath}/cart.jsp">
+                                        <a href="${pageContext.request.contextPath}/cart">
                                             <i class="fas fa-cog u-s-m-r-9"></i>
                                             My Cart</a>
                                     </li>
-                                    <li>
-                                        <a href="${pageContext.request.contextPath}/wishlist.jsp">
+                                    <!-- <li>
+                                        <a href="${pageContext.request.contextPath}/wishlist">
                                             <i class="far fa-heart u-s-m-r-9"></i>
                                             My Wishlist</a>
-                                    </li>
+                                    </li> -->
                                     <li>
                                         <a href="${pageContext.request.contextPath}/logout">
                                             <i class="far fa-check-circle u-s-m-r-9"></i>
@@ -167,19 +169,12 @@
             </ul>
             <div class="mini-shop-total clearfix">
                 <span class="mini-total-heading float-left">Total:</span>
-                <c:choose>
-                    <c:when test="${sessionScope.user.getCart().getTotal() != null}">
-                        <span class="mini-total-price float-right">$${sessionScope.user.getCart().getTotal()}</span>
-                    </c:when>
-                    <c:otherwise>
-                        <span class="mini-total-price float-right">$0</span>
-                    </c:otherwise>
-                </c:choose>
+                <span class="mini-total-price float-right">$${sessionScope.user.getCart().getTotal()}</span>
                 
             </div>
             <div class="mini-action-anchors">
-                <a href="cart.html" class="cart-anchor">View Cart</a>
-                <a href="checkout.html" class="checkout-anchor">Checkout</a>
+                <a href="${pageContext.request.contextPath}/cart" class="cart-anchor">View Cart</a>
+                <a href="${pageContext.request.contextPath}/checkout" class="checkout-anchor">Checkout</a>
             </div>
         </div>
     </div>
