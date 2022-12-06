@@ -63,6 +63,7 @@ public class user {
         ownedGames = null;
         // cart = null;
         cart = new Cart();
+        ownedGames = new ArrayList<Integer>();
         this.cart.setUsername(this.username);
     }
 
@@ -74,6 +75,8 @@ public class user {
         this.avatar = avatar;
         this.role = role;
         this.balance = balance;
+        this.cart = new Cart(this);
+        this.ownedGames = new ArrayList<Integer>();
     }
 
     public user(String name, String username, String email, String password, String avatar, String role, Double balance, List<Integer> ownedGames) {
@@ -227,6 +230,11 @@ public class user {
         this.balance -= this.cart.getTotal();
         System.out.println("total pay: " + this.cart.getTotal());
 
+
+        if (this.ownedGames == null) {
+            this.ownedGames = new ArrayList<Integer>();
+        }
+
         this.ownedGames.addAll(gameIDs);
 
         //round balance to 2 decimal places
@@ -237,34 +245,34 @@ public class user {
         return true;
     }
 
-    public boolean purchase(Transaction transaction) {
-        //check if user has enough balance
-        if (this.balance >= transaction.getTotal()) {
-            //update user balance
-            this.balance -= transaction.getTotal();
-            //update transaction status
-            // transaction.setStatus("success");
-            //update transaction payment method
-            // transaction.setPaymentMethod("cash");
+    // public boolean purchase(Transaction transaction) {
+    //     //check if user has enough balance
+    //     if (this.balance >= transaction.getTotal()) {
+    //         //update user balance
+    //         this.balance -= transaction.getTotal();
+    //         //update transaction status
+    //         // transaction.setStatus("success");
+    //         //update transaction payment method
+    //         // transaction.setPaymentMethod("cash");
             
-            //assign transaction to user
-            transaction.setUser(this);
+    //         //assign transaction to user
+    //         transaction.setUser(this);
 
-            //add games to user owned games
-            for (Integer gameID : transaction.getGames()) {
-                this.ownedGames.add(gameID);
-            }
+    //         //add games to user owned games
+    //         for (Integer gameID : transaction.getGames()) {
+    //             this.ownedGames.add(gameID);
+    //         }
 
-            //confirm transaction
-            transaction.approve();
-            //update user
-            userDB.updateUserBalance(this);
-            //add transaction to database
-            // transactionDB.addTransaction(transaction);
-            return true;
-        }
-        return false;
-    }
+    //         //confirm transaction
+    //         transaction.approve();
+    //         //update user
+    //         userDB.updateUserBalance(this);
+    //         //add transaction to database
+    //         // transactionDB.addTransaction(transaction);
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     public boolean save() {
         return userDB.save(this);
@@ -344,7 +352,7 @@ public class user {
         // }
         
         //Add game to cart by gameID
-        // user.addGameToCart(546560);
+        user.addGameToCart(546560);
 
         //Remove games from cart
         // user.removeGameFromCart(546560); //use gameID
@@ -355,7 +363,7 @@ public class user {
         //buy games
         //scenarion 1: user has enough balance
         // user.setBalance(1000);
-        // user.buyGames();
+        user.buyGames();
 
         //scenarion 2: user has not enough balance
         // user.setBalance(0);
