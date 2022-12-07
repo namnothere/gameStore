@@ -53,14 +53,14 @@
                 <div class="col-lg-12">
                     
                     <!-- Breadcrumb -->
-                    <nav aria-label="breadcrumb" class="main-breadcrumb">
+                    <!-- <nav aria-label="breadcrumb" class="main-breadcrumb">
                         <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+                        <li class="breadcrumb-item"><a href="$[g">Home</a></li> -->
                         <!-- <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li> -->
-                        <li class="breadcrumb-item"><a href="shop-v1-root-category.html">Men's Clothing</a></li>
-                        <li class="breadcrumb-item active"><a href="shop-v3-sub-sub-category.html">Hoodies</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="shop-v1-root-category.html">Men's Clothing</a></li>
+                        <li class="breadcrumb-item active"><a href="shop-v3-sub-sub-category.html">Hoodies</a></li> -->
                         <!-- <li class="breadcrumb-item active" aria-current="page">Profile Settings</li> -->
-                        </ol>
+                        <!-- </ol>
                         <style>
                             ol.breadcrumb {
                             background-color: #272E48;
@@ -72,7 +72,7 @@
                             .breadcrumb a:hover {
                                 color: #d90429; }
                         </style>
-                    </nav>
+                    </nav> -->
                     <!-- /Breadcrumb -->
                     <!-- <ul class="bread-crumb">
                         <li class="has-separator">
