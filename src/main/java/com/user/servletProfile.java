@@ -1,6 +1,8 @@
 package com.user;
 
 import com.store.*;
+import com.transaction.transactionDB;
+
 import java.io.IOException;
 import java.io.PrintWriter;  
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.game.gameDB;
 import com.oracle.wls.shaded.org.apache.xalan.templates.ElemSort;
 
 import java.io.*;
@@ -35,6 +38,10 @@ public class servletProfile extends HttpServlet {
         }
         String url = "/profile.jsp";
         request.setAttribute("user", session.getAttribute("user"));
+        gameDB gameDB = new gameDB();
+        request.setAttribute("gameDB", gameDB);
+        transactionDB transactionDB = new transactionDB();
+        request.setAttribute("transactionDB", transactionDB);
         getServletContext().getRequestDispatcher(url).forward(request, response);
     }
 

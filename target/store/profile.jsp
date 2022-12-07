@@ -62,6 +62,9 @@
                     <a href="#ownedGames" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Owned Games
                     </a>
+                    <a href="#transactionHistory" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card mr-2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>Transaction History
+                    </a>
                     <!-- <a href="#notification" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Notification
                     </a>
@@ -84,6 +87,9 @@
                     </li>
                     <li class="nav-item">
                       <a href="#ownedGames" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="#transactionHistory" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-credit-card"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg></a>
                     </li>
                     <!-- <li class="nav-item">
                       <a href="#notification" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
@@ -150,6 +156,43 @@
                         </a>
                       </div>
                     </c:forEach>
+                  </div>
+                  <div class="tab-pane" id="transactionHistory">
+                    <h6>TRANSACTION HISTORY</h6>
+                    <hr>
+                    <div class="table-wrapper u-s-m-b-60">
+                      <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Transaction Code</th>
+                                <th>Game(s)</th>
+                                <th>Status</th>
+                                <th>Payment Method</th>
+                                <th>Total</th>
+                                <th>Balance Before</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <c:forEach var="transaction" items="${transactionDB.getUserTransaction(user.getUsername())}">
+                            <tr>
+                              <td><div>${transaction.getDate()}</div></td>
+                              <td><div>${transaction.getTransactionCode()}</div></td>
+                              <td>
+                                <c:forEach var="gameID" items="${transaction.getGames()}">
+                                  <c:set var="game" value="${gameDB.getGame(gameID)}"></c:set>
+                                  <div>${game.getName()}</div>
+                                </c:forEach>
+                              </td>
+                              <td><div>${transaction.getStatus()}</div></td>
+                              <td><div>${transaction.getPaymentMethod()}</div></td>
+                              <td><div>$${Math.round(transaction.getTotal() * 100.0) / 100.0}</div></td>
+                              <td><div>${transaction.getBalanceBefore()}</div></td>
+                            </tr>
+                          </c:forEach>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
