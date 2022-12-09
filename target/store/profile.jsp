@@ -56,9 +56,9 @@
                     <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile Information
                     </a>
-                    <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
+                    <!-- <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Security
-                    </a>
+                    </a> -->
                     <a href="#ownedGames" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell mr-2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>Owned Games
                     </a>
@@ -82,9 +82,9 @@
                     <li class="nav-item">
                       <a href="#profile" data-toggle="tab" class="nav-link has-icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                       <a href="#security" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></a>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                       <a href="#ownedGames" data-toggle="tab" class="nav-link has-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></a>
                     </li>
@@ -380,134 +380,7 @@
       </div>
     </div>
     <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-          <!-- Mid-Footer -->
-          <!-- <div class="mid-footer-wrapper u-s-p-b-80"> -->
-          <div class="mid-footer-wrapper u-s-p-y-60">
-              <div class="row">
-                  <div class="col-lg-3 col-md-3 col-sm-12">
-                      <div class="footer-list">
-                          <h6>CUSTOMER SERVICE</h6>
-                          <ul>
-                              <li>
-                                  <a href="faq.html">FAQs</a>
-                              </li>
-                              <li>
-                                  <a href="track-order.html">Track Order</a>
-                              </li>
-                              <li>
-                                  <a href="terms-and-conditions.html">Terms & Conditions</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12">
-                      <div class="footer-list">
-                          <h6>COMPANY</h6>
-                          <ul>
-                              <li>
-                                  <a href="/">Home</a>
-                              </li>
-                              <li>
-                                  <a href="about.html">About</a>
-                              </li>
-                              <li>
-                                  <a href="contact.html">Contact</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12">
-                      <div class="footer-list">
-                          <h6>INFORMATION</h6>
-                          <ul>
-                              <li>
-                                  <a href="store-directory.html">Categories Directory</a>
-                              </li>
-                              <li>
-                                  <a href="wishlist.html">My Wishlist</a>
-                              </li>
-                              <li>
-                                  <a href="cart.html">My Cart</a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-md-3 col-sm-12">
-                      <div class="footer-list">
-                          <h6>Address</h6>
-                          <ul>
-                              <li>
-                                  <i class="fas fa-location-arrow u-s-m-r-9"></i>
-                                  <span>819 Sugar Camp Road, West Concord, MN 55985</span>
-                              </li>
-                              <li>
-                                  <a href="tel:+923086561801">
-                                      <i class="fas fa-phone u-s-m-r-9"></i>
-                                      <span>+111-444-989</span>
-                                  </a>
-                              </li>
-                              <li>
-                                  <a href="mailto:contact@domain.com">
-                                      <i class="fas fa-envelope u-s-m-r-9"></i>
-                                      <span>
-                                          contact@domain.com</span>
-                                  </a>
-                              </li>
-                          </ul>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <!-- Mid-Footer /- -->
-          <!-- Bottom-Footer -->
-          <div class="bottom-footer-wrapper">
-              <div class="social-media-wrapper">
-                  <ul class="social-media-list">
-                      <li>
-                          <a href="#">
-                              <i class="fab fa-facebook-f"></i>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <i class="fab fa-twitter"></i>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <i class="fab fa-google-plus-g"></i>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <i class="fas fa-rss"></i>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <i class="fab fa-pinterest"></i>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <i class="fab fa-linkedin-in"></i>
-                          </a>
-                      </li>
-                      <li>
-                          <a href="#">
-                              <i class="fab fa-youtube"></i>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-              <p class="copyright-text">Copyright &copy; 2018
-                  <a href="/">Groover</a> All Right Reserved</p>
-          </div>
-      </div>
-      <!-- Bottom-Footer /- -->
-  </footer>
+    <c:import url="footer.jsp"></c:import>
   <!-- Footer /- -->
   </div>
 

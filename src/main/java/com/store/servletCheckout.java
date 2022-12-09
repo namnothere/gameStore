@@ -65,7 +65,7 @@ public class servletCheckout extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println("<script type=\"text/javascript\">");
             out.println("alert('Order complete');");
-            out.println("location='account.jsp';");
+            out.println("location='checkout.jsp';");
             out.println("</script>");
             out.close();
         }

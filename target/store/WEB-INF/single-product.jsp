@@ -37,7 +37,7 @@
 </head>
 
 <body>
-
+    <c:catch var="e">
 <!-- app -->
 <!-- <div id="app"> -->
 <div id="app">
@@ -165,9 +165,11 @@
                             </div>
                         </div>
                                 <div>
-                                    <button class="button button-outline-secondary" type="submit">Add to cart</button>
-                                    <button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
-                                    <button class="button button-outline-secondary far fa-envelope u-s-m-l-6"></button>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="action" value="addCart">
+                                        <input type="hidden" name="gameID" value="${game.getID()}">
+                                        <button class="button button-outline-secondary" type="submit">Add to cart</button>
+                                    </form>
                                 </div>
                         </div>
                     </div>
@@ -185,65 +187,69 @@
                         </div>
                         <div class="slider-fouc">
                             <div class="products-slider owl-carousel" data-item="4">
-                                <c:forEach var="game" items="${similarGames}">
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="game?id=${game.ID}">
-                                                <img class="img-fluid" src="${game.images.get(0)}" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                
+                                    <c:forEach var="game" items="${similarGames}">
+                                        <div class="item">
+                                            <div class="image-container">
+                                                <form action="" method="post" id ="${game.getID()}">
+                                                    <a class="item-img-wrapper-link" href="game?id=${game.getID()}">
+                                                        <img class="img-fluid" src="${game.getImages().get(0)}" alt="Product">
+                                                    </a>
+                                                    <div class="item-action-behaviors">
+                                                        <input type="hidden" name="action" value="addCart">
+                                                        <input type="hidden" name="gameID" value="${game.getID()}">
+                                                        <a class="item-addCart" href="javascript:{}" onclick="document.getElementById('${game.getID()}').submit();">Add to Cart</a>
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <!-- <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Tops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                                    </li>
-                                                </ul> -->
-                                                <h6 class="item-title">
-                                                    <a href="game?id=${game.ID}">${game.name}</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="${game.rating} out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
+                                            <div class="item-content">
+                                                <div class="what-product-is">
+                                                    <!-- <ul class="bread-crumb">
+                                                        <li class="has-separator">
+                                                            <a href="shop-v1-root-category.html">Men's</a>
+                                                        </li>
+                                                        <li class="has-separator">
+                                                            <a href="shop-v2-sub-category.html">Tops</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="shop-v3-sub-sub-category.html">Hoodies</a>
+                                                        </li>
+                                                    </ul> -->
+                                                    <h6 class="item-title">
+                                                        <a href="game?id=${game.getID()}">${game.getName()}</a>
+                                                    </h6>
+                                                    <div class="item-stars">
+                                                        <div class='star' title="${game.getRating()} out of 5 - based on 0 Reviews">
+                                                            <span style='width:0'></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <c:if test="${not game.getIsFree()}">
-                                                    <div class="item-new-price">
-                                                        ${game.getInitialPrice()} USD
-                                                    </div>
-                                                </c:if> 
-                                                <c:if test="${game.getIsFree()}">
-                                                    <div class="item-new-price">
-                                                        Free
-                                                    </div>
-                                                </c:if> 
+                                                <div class="price-template">
+                                                    <c:if test="${not game.getIsFree()}">
+                                                        <div class="item-new-price">
+                                                            ${game.getInitialPrice()} USD
+                                                        </div>
+                                                    </c:if> 
+                                                    <c:if test="${game.getIsFree()}">
+                                                        <div class="item-new-price">
+                                                            Free
+                                                        </div>
+                                                    </c:if> 
 
-                                                <c:if test="${game.getInitialPrice() != game.getFinalPrice()}" >
-                                                    <div class="item-old-price">
-                                                        ${game.getFinalPrice()} USD 
-                                                    </div>
-                                                </c:if>
+                                                    <c:if test="${game.getInitialPrice() != game.getFinalPrice()}" >
+                                                        <div class="item-old-price">
+                                                            ${game.getFinalPrice()} USD 
+                                                        </div>
+                                                    </c:if>
+                                                </div>
+                                            </div>
+                                            <div class="tag new">
+                                                <span>NEW</span>
                                             </div>
                                         </div>
-                                        <div class="tag new">
-                                            <span>NEW</span>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                                    </c:forEach>
+                                
+
                             </div>
                         </div>
                     </div>
@@ -315,151 +321,7 @@
         </div>
     <!-- Single-Product-Full-Width-Page /- -->
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <!-- Outer-Footer -->
-            <div class="outer-footer-wrapper u-s-p-y-80">
-                <h6>
-                    For special offers and other discount information
-                </h6>
-                <h1>
-                    Subscribe to our Newsletter
-                </h1>
-                <p>
-                    Subscribe to the mailing list to receive updates on promotions, new arrivals, discount and coupons.
-                </p>
-                <form class="newsletter-form">
-                    <label class="sr-only" for="newsletter-field">Enter your Email</label>
-                    <input type="text" id="newsletter-field" placeholder="Your Email Address">
-                    <button type="submit" class="button">SUBMIT</button>
-                </form>
-            </div>
-            <!-- Outer-Footer /- -->
-            <!-- Mid-Footer -->
-            <div class="mid-footer-wrapper u-s-p-b-80">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>CUSTOMER SERVICE</h6>
-                            <ul>
-                                <li>
-                                    <a href="faq.html">FAQs</a>
-                                </li>
-                                <li>
-                                    <a href="track-order.html">Track Order</a>
-                                </li>
-                                <li>
-                                    <a href="terms-and-conditions.html">Terms & Conditions</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>COMPANY</h6>
-                            <ul>
-                                <li>
-                                    <a href="home.html">Home</a>
-                                </li>
-                                <li>
-                                    <a href="about.html">About</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>INFORMATION</h6>
-                            <ul>
-                                <li>
-                                    <a href="store-directory.html">Categories Directory</a>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html">My Wishlist</a>
-                                </li>
-                                <li>
-                                    <a href="cart.html">My Cart</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="footer-list">
-                            <h6>Address</h6>
-                            <ul>
-                                <li>
-                                    <i class="fas fa-location-arrow u-s-m-r-9"></i>
-                                    <span>819 Sugar Camp Road, West Concord, MN 55985</span>
-                                </li>
-                                <li>
-                                    <a href="tel:+923086561801">
-                                        <i class="fas fa-phone u-s-m-r-9"></i>
-                                        <span>+111-444-989</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="mailto:contact@domain.com">
-                                        <i class="fas fa-envelope u-s-m-r-9"></i>
-                                        <span>
-                                            contact@domain.com</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Mid-Footer /- -->
-            <!-- Bottom-Footer -->
-            <div class="bottom-footer-wrapper">
-                <div class="social-media-wrapper">
-                    <ul class="social-media-list">
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-google-plus-g"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fas fa-rss"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-pinterest"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <p class="copyright-text">Copyright &copy; 2018
-                    <a href="home.html">Groover</a> All Right Reserved</p>
-            </div>
-        </div>
-        <!-- Bottom-Footer /- -->
-    </footer>
+    <c:import url="../footer.jsp"></c:import>
     <!-- Footer /- -->
     <!-- Dummy Selectbox -->
     <div class="select-dummy-wrapper">
@@ -654,5 +516,11 @@ ga('send', 'pageview')
 <script type="text/javascript" src="js/owl.carousel.min.js"></script>
 <!-- Main -->
 <script type="text/javascript" src="js/app.js"></script>
+</c:catch>
+<c:if test="${e!=null}">The caught exception is:
+<c:out value="${e}" />
+<br />
+</c:if>
+<% System.out.println(pageContext.findAttribute("e") ); %>
 </body>
 </html>

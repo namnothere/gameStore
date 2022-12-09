@@ -15,9 +15,16 @@ public class servletProduct extends HttpServlet {
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String url = "/WEB-INF/single-product.jsp";
-        request.getRequestDispatcher(url).forward(request, response);
+        String action = request.getParameter("action");
+        if ("addCart".equals(action.toString())) {
+            servletCart.processRequestAddCart(request, response);
+        }
+        else
+        {
+            PrintWriter out = response.getWriter();
+            out.println("Error<br/>");
+        }
+        doGet(request, response);
         // get getServletContext()
         // getServletContext().getRequestDispatcher(url).forward(request, response);
         // RequestDispatcher rd = request.getRequestDispatcher(url);
@@ -31,9 +38,6 @@ public class servletProduct extends HttpServlet {
             
             header.headerInitiate(request, response);
             gameDB GameDB = new gameDB();
-            //?id=100
-            //split the 100 and get the id
-            
             String id = request.getParameter("id");
             if (id==null) {
                 id = "0";
@@ -50,19 +54,11 @@ public class servletProduct extends HttpServlet {
                 }
                 
             }
-
             request.setAttribute("game", game);
             request.setAttribute("similarGames", similarGames);
-            //System.out.println(game.name);
-            doPost(request, response);
-            //generate the product using the id
-            //send the product to the jsp
-            //forward the request to the jsp
-            // System.out.println("doGET");
-
-            // doPost(request, response);
-
-            // doPost(request, response);
+            System.out.println(similarGames.get(0).getName());
+            String url = "/WEB-INF/single-product.jsp";
+            request.getRequestDispatcher(url).forward(request, response);
     }
     public static String getFullURL(HttpServletRequest request) {
         StringBuilder requestURL = new StringBuilder(request.getRequestURL().toString());

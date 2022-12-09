@@ -25,7 +25,7 @@ public class servletLogout extends HttpServlet {
                     response.addCookie(cookie);
                 }
             }
-            response.sendRedirect(request.getHeader("referer"));
+            response.sendRedirect(request.getContextPath());
         }
 
     }  

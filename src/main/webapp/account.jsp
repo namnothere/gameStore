@@ -136,10 +136,10 @@
                                 <label for="password">Password
                                     <span class="astk">*</span>
                                 </label>
-                                <div class="input-group" id="show_hide_password">
-                                    <input name="pass" id="register-password" class="form-control" type="password" placeholder="Password">
+                                <div class="input-group" id="show_hide_password_2">
+                                    <input name="pass" id="register-password" class="form-control" type="password" placeholder="Password" onkeyup="success()">
                                     <div class="input-group-prepend input-group-text">
-                                        <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                        <a><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
                                     </div>
                                 </div>
                             </div>

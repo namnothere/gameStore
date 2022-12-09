@@ -37,7 +37,7 @@
 </head>
 
 <body>
-
+    <c:catch var="e">
 <!-- app -->
 <!-- <div id="app"> -->
 <div id="app">
@@ -165,9 +165,11 @@
                             </div>
                         </div>
                                 <div>
-                                    <button class="button button-outline-secondary" type="submit">Add to cart</button>
-                                    <button class="button button-outline-secondary far fa-heart u-s-m-l-6"></button>
-                                    <button class="button button-outline-secondary far fa-envelope u-s-m-l-6"></button>
+                                    <form action="" method="post">
+                                        <input type="hidden" name="action" value="addCart">
+                                        <input type="hidden" name="gameID" value="${game.getID()}">
+                                        <button class="button button-outline-secondary" type="submit">Add to cart</button>
+                                    </form>
                                 </div>
                         </div>
                     </div>
@@ -185,65 +187,69 @@
                         </div>
                         <div class="slider-fouc">
                             <div class="products-slider owl-carousel" data-item="4">
-                                <c:forEach var="game" items="${similarGames}">
-                                    <div class="item">
-                                        <div class="image-container">
-                                            <a class="item-img-wrapper-link" href="game?id=${game.ID}">
-                                                <img class="img-fluid" src="${game.images.get(0)}" alt="Product">
-                                            </a>
-                                            <div class="item-action-behaviors">
-                                                <a class="item-quick-look" data-toggle="modal" href="#quick-view">Quick Look</a>
-                                                <a class="item-mail" href="javascript:void(0)">Mail</a>
-                                                <a class="item-addwishlist" href="javascript:void(0)">Add to Wishlist</a>
-                                                <a class="item-addCart" href="javascript:void(0)">Add to Cart</a>
+                                
+                                    <c:forEach var="game" items="${similarGames}">
+                                        <div class="item">
+                                            <div class="image-container">
+                                                <form action="" method="post" id ="${game.getID()}">
+                                                    <a class="item-img-wrapper-link" href="game?id=${game.getID()}">
+                                                        <img class="img-fluid" src="${game.getImages().get(0)}" alt="Product">
+                                                    </a>
+                                                    <div class="item-action-behaviors">
+                                                        <input type="hidden" name="action" value="addCart">
+                                                        <input type="hidden" name="gameID" value="${game.getID()}">
+                                                        <a class="item-addCart" href="javascript:{}" onclick="document.getElementById('${game.getID()}').submit();">Add to Cart</a>
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </div>
-                                        <div class="item-content">
-                                            <div class="what-product-is">
-                                                <!-- <ul class="bread-crumb">
-                                                    <li class="has-separator">
-                                                        <a href="shop-v1-root-category.html">Men's</a>
-                                                    </li>
-                                                    <li class="has-separator">
-                                                        <a href="shop-v2-sub-category.html">Tops</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="shop-v3-sub-sub-category.html">Hoodies</a>
-                                                    </li>
-                                                </ul> -->
-                                                <h6 class="item-title">
-                                                    <a href="game?id=${game.ID}">${game.name}</a>
-                                                </h6>
-                                                <div class="item-stars">
-                                                    <div class='star' title="${game.rating} out of 5 - based on 0 Reviews">
-                                                        <span style='width:0'></span>
+                                            <div class="item-content">
+                                                <div class="what-product-is">
+                                                    <!-- <ul class="bread-crumb">
+                                                        <li class="has-separator">
+                                                            <a href="shop-v1-root-category.html">Men's</a>
+                                                        </li>
+                                                        <li class="has-separator">
+                                                            <a href="shop-v2-sub-category.html">Tops</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="shop-v3-sub-sub-category.html">Hoodies</a>
+                                                        </li>
+                                                    </ul> -->
+                                                    <h6 class="item-title">
+                                                        <a href="game?id=${game.getID()}">${game.getName()}</a>
+                                                    </h6>
+                                                    <div class="item-stars">
+                                                        <div class='star' title="${game.getRating()} out of 5 - based on 0 Reviews">
+                                                            <span style='width:0'></span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="price-template">
-                                                <c:if test="${not game.getIsFree()}">
-                                                    <div class="item-new-price">
-                                                        ${game.getInitialPrice()} USD
-                                                    </div>
-                                                </c:if> 
-                                                <c:if test="${game.getIsFree()}">
-                                                    <div class="item-new-price">
-                                                        Free
-                                                    </div>
-                                                </c:if> 
+                                                <div class="price-template">
+                                                    <c:if test="${not game.getIsFree()}">
+                                                        <div class="item-new-price">
+                                                            ${game.getInitialPrice()} USD
+                                                        </div>
+                                                    </c:if> 
+                                                    <c:if test="${game.getIsFree()}">
+                                                        <div class="item-new-price">
+                                                            Free
+                                                        </div>
+                                                    </c:if> 
 
-                                                <c:if test="${game.getInitialPrice() != game.getFinalPrice()}" >
-                                                    <div class="item-old-price">
-                                                        ${game.getFinalPrice()} USD 
-                                                    </div>
-                                                </c:if>
+                                                    <c:if test="${game.getInitialPrice() != game.getFinalPrice()}" >
+                                                        <div class="item-old-price">
+                                                            ${game.getFinalPrice()} USD 
+                                                        </div>
+                                                    </c:if>
+                                                </div>
+                                            </div>
+                                            <div class="tag new">
+                                                <span>NEW</span>
                                             </div>
                                         </div>
-                                        <div class="tag new">
-                                            <span>NEW</span>
-                                        </div>
-                                    </div>
-                                </c:forEach>
+                                    </c:forEach>
+                                
+
                             </div>
                         </div>
                     </div>
@@ -315,7 +321,7 @@
         </div>
     <!-- Single-Product-Full-Width-Page /- -->
     <!-- Footer -->
-    <c:import url="footer.jsp"></c:import>
+    <c:import url="../footer.jsp"></c:import>
     <!-- Footer /- -->
     <!-- Dummy Selectbox -->
     <div class="select-dummy-wrapper">
@@ -510,5 +516,11 @@ ga('send', 'pageview')
 <script type="text/javascript" src="js/owl.carousel.min.js"></script>
 <!-- Main -->
 <script type="text/javascript" src="js/app.js"></script>
+</c:catch>
+<c:if test="${e!=null}">The caught exception is:
+<c:out value="${e}" />
+<br />
+</c:if>
+<% System.out.println(pageContext.findAttribute("e") ); %>
 </body>
 </html>
