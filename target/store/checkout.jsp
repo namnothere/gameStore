@@ -1,6 +1,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="true" %>
+<%@page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
