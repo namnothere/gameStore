@@ -28,9 +28,9 @@
                             <li>
                                 <a href="faq.html">FAQs</a>
                             </li>
-                            <li>
+<!--                             <li>
                                 <a href="track-order.html">Track Order</a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="terms-and-conditions.html">Terms & Conditions</a>
                             </li>
@@ -42,7 +42,7 @@
                         <h6>COMPANY</h6>
                         <ul>
                             <li>
-                                <a href="home.html">Home</a>
+                                <a href="${pageContext.request.contextPath}">Home</a>
                             </li>
                             <li>
                                 <a href="about.html">About</a>
@@ -57,14 +57,14 @@
                     <div class="footer-list">
                         <h6>INFORMATION</h6>
                         <ul>
-                            <li>
+                            <!-- <li>
                                 <a href="store-directory.html">Categories Directory</a>
                             </li>
                             <li>
                                 <a href="wishlist.html">My Wishlist</a>
-                            </li>
+                            </li> -->
                             <li>
-                                <a href="cart.html">My Cart</a>
+                                <a href="${pageContext.request.contextPath}/cart">My Cart</a>
                             </li>
                         </ul>
                     </div>

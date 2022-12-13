@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page session="true" %>
+<%@page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html class="no-js" lang="en-US">
 
@@ -46,13 +47,14 @@
     <!-- Main-Slider -->
     <div class="default-height ph-item">
         <div class="slider-main owl-carousel">
-            <% for(int i = 0; i < 3; i++) { %>
-                <div class="bg-image one">
+            <c:set var="nums" value="${['one', 'two', 'three']}"></c:set>
+            <c:forEach  var="num" items="${nums}">
+                <div class="bg-image ${num}">
                     <div class="slide-content slide-animation">
-                        <h1>Sample</h1>
+
                     </div>
                 </div>
-            <% } %>
+            </c:forEach>
             <!-- <div class="bg-image one">
                 <div class="slide-content slide-animation">
                     <h1>Casual Clothing</h1>
@@ -85,7 +87,7 @@
         <div class="container">
             <div class="image-banner">
                 <a href="#" class="mx-auto banner-hover effect-dark-opacity">
-                    <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/1330/2869/products/Sale-_Generic_1024x1024.jpg?v=1491234572" alt="Winter Season Banner">
+                    <img class="img-fluid" src="images/banners/bannerlayer-1.jpg" alt="Winter Season Banner">
                 </a>
             </div>
         </div>
@@ -174,44 +176,6 @@
             </div>
         </section>
     </c:forEach>
-    <!-- Brand-Slider -->
-    <div class="brand-slider u-s-p-b-80">
-        <div class="container">
-            <div class="brand-slider-content owl-carousel" data-item="5">
-                <div class="brand-pic">
-                    <a href="#">
-                        <img src="images/brand-logos/b1.png" alt="Brand Logo 1">
-                    </a>
-                </div>
-                <div class="brand-pic">
-                    <a href="#">
-                        <img src="images/brand-logos/b1.png" alt="Brand Logo 2">
-                    </a>
-                </div>
-                <div class="brand-pic">
-                    <a href="#">
-                        <img src="images/brand-logos/b1.png" alt="Brand Logo 3">
-                    </a>
-                </div>
-                <div class="brand-pic">
-                    <a href="#">
-                        <img src="images/brand-logos/b1.png" alt="Brand Logo 5">
-                    </a>
-                </div>
-                <div class="brand-pic">
-                    <a href="#">
-                        <img src="images/brand-logos/b1.png" alt="Brand Logo 6">
-                    </a>
-                </div>
-                <div class="brand-pic">
-                    <a href="#">
-                        <img src="images/brand-logos/b1.png" alt="Brand Logo 7">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Brand-Slider /- -->
     <!-- Site-Priorities -->
     <section class="app-priority">
         <div class="container">

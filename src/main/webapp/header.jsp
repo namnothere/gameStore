@@ -9,7 +9,7 @@
                     <li>
                         <a href="tel:+84819200602">
                             <i class="fas fa-phone u-c-brand u-s-m-r-9"></i>
-                            Telephone:+848-81920-0602</a>
+                            Telephone:+848-1920-0602</a>
                     </li>
                     <li>
                         <a href="mailto:20110386@student.hcmute.edu.vn">
@@ -118,11 +118,11 @@
                                     <i class="ion ion-md-home u-c-brand"></i>
                                 </a>
                             </li>
-                            <li class="u-d-none-lg">
+                            <!-- <li class="u-d-none-lg">
                                 <a href="${pageContext.request.contextPath}/wishlist.jsp">
                                     <i class="far fa-heart"></i>
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a id="mini-cart-trigger">
                                     <i class="ion ion-md-basket"></i>
@@ -136,7 +136,7 @@
     </div>
     <!-- Mid-Header /- -->
     <!-- Responsive-Buttons -->
-    <div class="fixed-responsive-container">
+    <!-- <div class="fixed-responsive-container">
         <div class="fixed-responsive-wrapper">
             <button type="button" class="button fas fa-search" id="responsive-search"></button>
         </div>
@@ -145,7 +145,7 @@
                 <i class="far fa-heart"></i>
             </a>
         </div>
-    </div>
+    </div> -->
     <!-- Responsive-Buttons /- -->
     <!-- Mini Cart -->
     <div class="mini-cart-wrapper">

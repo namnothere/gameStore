@@ -56,7 +56,6 @@ public class servletProduct extends HttpServlet {
             }
             request.setAttribute("game", game);
             request.setAttribute("similarGames", similarGames);
-            System.out.println(similarGames.get(0).getName());
             String url = "/WEB-INF/single-product.jsp";
             request.getRequestDispatcher(url).forward(request, response);
     }
